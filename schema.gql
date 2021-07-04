@@ -1,0 +1,68 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Category {
+  Todos: [Todo!]!
+  User: User!
+  color: String!
+  createdAt: Int!
+  id: ID!
+  name: String!
+  updatedAt: Int!
+}
+
+enum Platform {
+  GOOGLE
+}
+
+type Query {
+  me: Boolean!
+}
+
+enum StartOfWeek {
+  MONDAY
+  SUNDAY
+}
+
+enum Theme {
+  DARK
+  WHITE
+}
+
+type Todo {
+  Category: Category!
+  allIndex: Int!
+  categoryIndex: Int!
+  checkedAt: Int!
+  contents: String!
+  createdAt: Int!
+  id: ID!
+  todayIndex: Int!
+  updatedAt: Int!
+}
+
+type User {
+  Categories: [Category!]!
+  Todos: [Todo!]!
+  UserSetting: UserSetting!
+  createdAt: Int!
+  email: String!
+  id: ID!
+  motto: String
+  name: String!
+  nickname: String
+  platform: Platform!
+  profileImageUrl: String!
+  tutorialClearedAt: Int!
+  updatedAt: Int!
+}
+
+type UserSetting {
+  User: User!
+  createdAt: Int!
+  id: ID!
+  startOfWeek: StartOfWeek!
+  theme: Theme!
+  updatedAt: Int!
+}
