@@ -11,6 +11,7 @@ import { UserSettingModule } from './user-setting/user-setting.module';
 import { TodoModule } from './todo/todo.module';
 import { TodoPeriodModule } from './todo-period/todo-period.module';
 import { CategoryModule } from './category/category.module';
+import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
     GraphQLModule.forRoot({
@@ -29,6 +30,7 @@ import { CategoryModule } from './category/category.module';
     TodoModule,
     TodoPeriodModule,
     CategoryModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

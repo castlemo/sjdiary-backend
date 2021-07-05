@@ -16,9 +16,14 @@ interface DBConfig {
   database: string;
 }
 
+interface Auth {
+  auth0Domain: string;
+  auth0Audience: string;
+}
 interface Config {
   port: number;
   db: DBConfig;
+  auth: Auth;
 }
 
 export const config: Config = {
@@ -29,5 +34,9 @@ export const config: Config = {
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
+  },
+  auth: {
+    auth0Domain: process.env.AUTH0_DOMAIN,
+    auth0Audience: process.env.AUTH0_AUDIENCE,
   },
 };
