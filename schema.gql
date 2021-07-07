@@ -12,12 +12,28 @@ type Category {
   updatedAt: Int!
 }
 
-enum Platform {
-  GOOGLE
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Mutation {
+  deleteUser: Boolean!
+  registerUser(registerUserInput: RegisterUserInput!): User!
+  updateUser(updateUserInput: UpdateUserInput!, updateUserSettingInput: UpdateUserSettingInput!): User!
 }
 
 type Query {
-  me: Boolean!
+  me: User!
+
+  """Returns true if user with given Auth0 token, and false otherwise."""
+  verifyUser: Boolean!
+}
+
+input RegisterUserInput {
+  email: String!
+  name: String!
+  profileImageUrl: String!
 }
 
 enum StartOfWeek {
@@ -34,35 +50,44 @@ type Todo {
   Category: Category!
   allIndex: Int!
   categoryIndex: Int!
-  checkedAt: Int!
+  checkedAt: DateTime!
   contents: String!
-  createdAt: Int!
+  createdAt: DateTime!
   id: ID!
   todayIndex: Int!
-  updatedAt: Int!
+  updatedAt: DateTime!
+}
+
+input UpdateUserInput {
+  motto: String
+  nickname: String
+}
+
+input UpdateUserSettingInput {
+  startOfWeek: StartOfWeek
+  theme: Theme
 }
 
 type User {
   Categories: [Category!]!
   Todos: [Todo!]!
   UserSetting: UserSetting!
-  createdAt: Int!
+  createdAt: DateTime!
   email: String!
   id: ID!
   motto: String
   name: String!
   nickname: String
-  platform: Platform!
   profileImageUrl: String!
-  tutorialClearedAt: Int!
-  updatedAt: Int!
+  tutorialClearedAt: DateTime
+  updatedAt: DateTime!
 }
 
 type UserSetting {
   User: User!
-  createdAt: Int!
+  createdAt: DateTime!
   id: ID!
   startOfWeek: StartOfWeek!
   theme: Theme!
-  updatedAt: Int!
+  updatedAt: DateTime!
 }

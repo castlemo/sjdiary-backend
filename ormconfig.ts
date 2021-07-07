@@ -9,7 +9,7 @@ export const ormconfig: ConnectionOptions = {
   username: config.db.username,
   password: config.db.password,
   database: config.db.database,
-  synchronize: process.env.NODE_ENV == 'development' ? true : false,
+  // synchronize: process.env.NODE_ENV == 'development' ? true : false,
   logging: process.env.NODE_ENV == 'development' ? false : false,
   // dropSchema: process.env.NODE_ENV == 'development' ? true : false,
   migrations: ['dist/src/migrations/*{.ts,.js}'],
