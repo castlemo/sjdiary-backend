@@ -8,27 +8,9 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { ObjectType, Field, ID, registerEnumType, Int } from '@nestjs/graphql';
-
+import { ObjectType, Field, ID } from '@nestjs/graphql';
 import { User } from '../../user/entity/user.entity';
-
-enum Theme {
-  DARK = 'dark',
-  WHITE = 'white',
-}
-
-enum StartOfWeek {
-  MONDAY = 'monday',
-  SUNDAY = 'sunday',
-}
-
-registerEnumType(Theme, {
-  name: 'Theme',
-});
-
-registerEnumType(StartOfWeek, {
-  name: 'StartOfWeek',
-});
+import { Theme, StartOfWeek } from '../enum/user-setting.enum';
 
 @Entity()
 @ObjectType()
@@ -40,7 +22,7 @@ export class UserSetting extends BaseEntity {
   @Column({ name: 'user_id' })
   userId: number;
 
-  @Column({ type: 'enum', enum: Theme, default: 'dark' })
+  @Column({ type: 'enum', enum: Theme, default: Theme.DARK })
   @Field(() => Theme)
   theme: Theme;
 
@@ -48,20 +30,20 @@ export class UserSetting extends BaseEntity {
     name: 'start_of_week',
     type: 'enum',
     enum: StartOfWeek,
-    default: 'sunday',
+    default: StartOfWeek.SUNDAY,
   })
   @Field(() => StartOfWeek)
   startOfWeek: StartOfWeek;
 
   @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
-  @Field(() => Int)
-  createdAt: number;
+  @Field(() => Date)
+  createdAt: Date;
 
   @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
-  @Field(() => Int)
-  updatedAt: number;
+  @Field(() => Date)
+  updatedAt: Date;
 
-  @OneToOne((type) => User, (user) => user.UserSetting)
+  @OneToOne(() => User, (user) => user.UserSetting)
   @JoinColumn({ name: 'user_id' })
   @Field(() => User)
   User: User;

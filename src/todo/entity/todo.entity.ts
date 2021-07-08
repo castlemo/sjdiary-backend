@@ -48,19 +48,19 @@ export class Todo extends BaseEntity {
   categoryId: number;
 
   @Column({ name: 'checked_at', type: 'timestamp', nullable: true })
-  @Field(() => Int)
-  checkedAt: number;
+  @Field(() => Date)
+  checkedAt: Date;
 
   @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
-  @Field(() => Int)
-  createdAt: number;
+  @Field(() => Date)
+  createdAt: Date;
 
   @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
-  @Field(() => Int)
-  updatedAt: number;
+  @Field(() => Date)
+  updatedAt: Date;
 
   @DeleteDateColumn({ name: 'deleted_at', type: 'timestamp', nullable: true })
-  deletedAt: number;
+  deletedAt: Date;
 
   @ManyToOne(() => User, (user) => user.Todos)
   @JoinColumn({ name: 'user_id' })

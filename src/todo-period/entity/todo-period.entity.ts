@@ -6,7 +6,7 @@ import {
   OneToOne,
   JoinColumn,
 } from 'typeorm';
-import { ObjectType, Field, ID, Int } from '@nestjs/graphql';
+import { ObjectType, Field, ID } from '@nestjs/graphql';
 
 import { Todo } from './../../todo/entity/todo.entity';
 
@@ -21,12 +21,12 @@ export class TodoPeriod extends BaseEntity {
   todoId: number;
 
   @Column({ name: 'started_at', type: 'timestamp' })
-  @Field(() => Int)
-  startedAt: number;
+  @Field(() => Date)
+  startedAt: Date;
 
   @Column({ name: 'ended_at', type: 'timestamp' })
-  @Field(() => Int)
-  endedAt: number;
+  @Field(() => Date)
+  endedAt: Date;
 
   @OneToOne(() => Todo, (todo: Todo) => todo.TodoPeriod)
   @JoinColumn({ name: 'todo_id' })

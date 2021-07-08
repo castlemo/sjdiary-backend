@@ -10,7 +10,7 @@ import {
   DeleteDateColumn,
   OneToMany,
 } from 'typeorm';
-import { ObjectType, Field, ID, registerEnumType, Int } from '@nestjs/graphql';
+import { ObjectType, Field, ID, registerEnumType } from '@nestjs/graphql';
 
 import { Todo } from './../../todo/entity/todo.entity';
 import { UserSetting } from '../../user-setting/entity/user-setting.entity';
@@ -31,16 +31,12 @@ export class User extends BaseEntity {
   @Field(() => ID)
   id: number;
 
+  @Column({ name: 'auth0_id', unique: true })
+  auth0Id: string;
+
   @Column()
   @Field()
   email: string;
-
-  @Column({ type: 'enum', enum: Platform })
-  @Field(() => Platform)
-  platform: Platform;
-
-  @Column({ name: 'platform_id' })
-  platformId: string;
 
   @Column()
   @Field()
@@ -58,26 +54,22 @@ export class User extends BaseEntity {
   @Field()
   profileImageUrl: string;
 
-  @Column({ name: 'user_setting_id' })
-  userSettingId: number;
-
   @Column({ name: 'tutorial_cleared_at', type: 'timestamp', nullable: true })
-  @Field(() => Int)
-  tutorialClearedAt: number;
+  @Field(() => Date, { nullable: true })
+  tutorialClearedAt: Date;
 
   @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
-  @Field(() => Int)
-  createdAt: number;
+  @Field(() => Date)
+  createdAt: Date;
 
   @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
-  @Field(() => Int)
-  updatedAt: number;
+  @Field(() => Date)
+  updatedAt: Date;
 
   @DeleteDateColumn({ name: 'deleted_at', type: 'timestamp', nullable: true })
-  deletedAt: number;
+  deletedAt: Date;
 
   @OneToOne((type) => UserSetting, (userSetting) => userSetting.User)
-  @JoinColumn({ name: 'user_setting_id' })
   @Field(() => UserSetting)
   UserSetting: UserSetting;
 
