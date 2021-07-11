@@ -82,6 +82,8 @@ export class UserService {
 
       user.UserSetting = userSetting;
 
+      await queryRunner.commitTransaction();
+
       return user;
     } catch (err) {
       await queryRunner.rollbackTransaction();
@@ -143,6 +145,8 @@ export class UserService {
       const userSetting = await queryRunner.manager.save(_user.UserSetting);
 
       user.UserSetting = userSetting;
+
+      await queryRunner.commitTransaction();
 
       return user;
     } catch (err) {
