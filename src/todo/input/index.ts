@@ -1,2 +1,2 @@
-export { CreateTodoInput } from './create-todo.input';
-export { UpdateTodoInput } from './update-todo.input';
+export * from './create-todo.input';
+export * from './update-todo.input';

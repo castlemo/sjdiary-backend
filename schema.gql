@@ -30,6 +30,12 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+enum GetTodosTypeInput {
+  ALL
+  CATEGORY
+  TODAY
+}
+
 type Mutation {
   createCategory(input: CreateCategoryInput!): Category!
   createTodo(input: CreateTodoInput!): Todo!
@@ -45,6 +51,8 @@ type Mutation {
 type Query {
   getCategories: [Category!]!
   getCategory(categoryId: Float!): Category!
+  getTodo(todoId: Float!): Todo!
+  getTodos(categoryId: Float, type: GetTodosTypeInput!): [Todo!]!
   me: User!
 
   """Returns true if user with given Auth0 token, and false otherwise."""

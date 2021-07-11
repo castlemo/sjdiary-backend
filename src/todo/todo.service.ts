@@ -1,15 +1,17 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Connection, QueryRunner, Repository } from 'typeorm';
+import { Connection, Not, QueryRunner, Repository } from 'typeorm';
 import { ApolloError } from 'apollo-server-express';
 
 import { User } from '../user/entity/user.entity';
 import { Category } from '../category/entity/category.entity';
 import { Auth0UserInterface } from '../auth/auth.guard';
 import { TodoPeriod } from '../todo-period/entity/todo-period.entity';
+import * as Utils from '../common/utils';
 
 import { Todo } from './entity/todo.entity';
 import { CreateTodoInput, UpdateTodoInput } from './input';
+import { GetTodosTypeInput } from './enum/todo.enum';
 
 @Injectable()
 export class TodoService {
@@ -270,30 +272,105 @@ export class TodoService {
     return todo;
   }
 
-  async getTodos(currentUser: Auth0UserInterface): Promise<Todo[]> {
+  async getTodos(
+    currentUser: Auth0UserInterface,
+    type: GetTodosTypeInput,
+    categoryId?: number,
+  ): Promise<Todo[]> {
     const user = await this.userRepo.findOne({
       where: { auth0Id: currentUser.sub, deletedAt: null },
     });
 
     if (!user) {
-      throw new ApolloError('[getTodo] this user Not Exist');
+      throw new ApolloError('[getTodos] this user Not Exist');
     }
 
-    const todos = await this.todoRepo.find({
-      where: {
-        User: user,
-        deletedAt: null,
-      },
-      join: {
-        alias: 'todo',
-        leftJoinAndSelect: {
-          TodoPeriod: 'todo.TodoPeriod',
+    let todos: Todo[] = [];
+
+    if (type === 'all') {
+      // all
+      todos = await this.todoRepo.find({
+        where: {
+          User: user,
+          deletedAt: null,
+          checkedAt: null,
         },
-      },
-    });
+        join: {
+          alias: 'todo',
+          leftJoinAndSelect: {
+            TodoPeriod: 'todo.TodoPeriod',
+          },
+        },
+        order: {
+          allIndex: 'ASC',
+        },
+      });
+    } else if (type === 'today') {
+      // today
+      const { startDate, endDate } = Utils.getTodayUTCDate();
+      todos = await this.todoRepo
+        .createQueryBuilder('todo')
+        .where('todo.userId = :userId AND todo.deletedAt = null', {
+          userId: user.id,
+        })
+        .leftJoinAndSelect('todo.TodoPeriod', 'todoPeriod')
+        .andWhere(
+          'todoPeriod.startedAt >= :startDate AND todoPeriod.endedAt <= :endDate',
+          {
+            startDate,
+            endDate,
+          },
+        )
+        .orderBy('todoPeriod.startedAt', 'ASC')
+        .getMany();
+    } else if (type === 'category' && !!categoryId) {
+      // category One by categoryId
+      const category = await this.categoryRepo.findOne({
+        where: {
+          User: user,
+          id: categoryId,
+          deletedAt: null,
+        },
+      });
+
+      todos = await this.todoRepo.find({
+        where: {
+          User: user,
+          Category: category,
+          deletedAt: null,
+          checkedAt: null,
+        },
+        join: {
+          alias: 'todo',
+          leftJoinAndSelect: {
+            TodoPeriod: 'todo.TodoPeriod',
+          },
+        },
+        order: {
+          categoryIndex: 'ASC',
+        },
+      });
+    } else {
+      // category All
+      todos = await this.todoRepo.find({
+        where: {
+          User: user,
+          Category: Not(null),
+          deletedAt: null,
+          checkedAt: null,
+        },
+        join: {
+          alias: 'todo',
+          leftJoinAndSelect: {
+            TodoPeriod: 'todo.TodoPeriod',
+            Category: 'todo.Category',
+          },
+        },
+      });
+    }
 
     if (!todos) {
-      throw new ApolloError('[getTodo] this todos Not Exist');
+      throw new ApolloError('[getTodos] this todos Not Exist');
     }
 
     return todos;
