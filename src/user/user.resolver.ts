@@ -1,4 +1,3 @@
-import { UpdateUserSettingInput } from './input/update-user-setting.input';
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { UseGuards } from '@nestjs/common';
 
@@ -7,7 +6,7 @@ import {
   CurrentUser,
   Auth0UserInterface,
 } from '../auth/auth.guard';
-import { User } from './entity/user.entity';
+import { User } from './entity';
 import { UserService } from './user.service';
 import { RegisterUserInput, UpdateUserInput } from './input';
 

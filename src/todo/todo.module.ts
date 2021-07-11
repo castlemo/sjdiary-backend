@@ -5,7 +5,7 @@ import { CategoryModule } from '../category/category.module';
 import { UserModule } from '../user/user.module';
 import { TodoPeriodModule } from '../todo-period/todo-period.module';
 
-import { Todo } from './entity/todo.entity';
+import { Todo } from './entity';
 import { TodoService } from './todo.service';
 import { TodoResolver } from './todo.resolver';
 

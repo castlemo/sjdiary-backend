@@ -8,9 +8,9 @@ import {
 } from '../auth/auth.guard';
 
 import { TodoService } from './todo.service';
-import { Todo } from './entity/todo.entity';
+import { Todo } from './entity';
 import { CreateTodoInput, UpdateTodoInput } from './input';
-import { GetTodosTypeInput } from './enum/todo.enum';
+import { GetTodosTypeInput } from './enum';
 
 @Resolver()
 export class TodoResolver {

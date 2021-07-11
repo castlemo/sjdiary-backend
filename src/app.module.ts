@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { join } from 'path';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -20,7 +19,7 @@ import { AuthModule } from './auth/auth.module';
       debug: true,
       playground: true,
       // cors: {
-      //   origin: [config.frontend_url, config.parentfront_url, config.admin_url],
+      //   origin: [],
       //   credentials: true,
       // },
     }),

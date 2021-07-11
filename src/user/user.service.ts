@@ -3,15 +3,15 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Connection, QueryRunner, Repository } from 'typeorm';
 import { ApolloError } from 'apollo-server-errors';
 
-import { User } from './entity/user.entity';
+import { UserSetting } from '../user-setting/entity';
 import { Auth0UserInterface } from '../auth/auth.guard';
+
 import {
   RegisterUserInput,
   UpdateUserInput,
   UpdateUserSettingInput,
 } from './input';
-import { UserSetting } from '../user-setting/entity/user-setting.entity';
-
+import { User } from './entity';
 @Injectable()
 export class UserService {
   @InjectRepository(User)

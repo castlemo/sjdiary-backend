@@ -3,15 +3,15 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Connection, Not, QueryRunner, Repository } from 'typeorm';
 import { ApolloError } from 'apollo-server-express';
 
-import { User } from '../user/entity/user.entity';
-import { Category } from '../category/entity/category.entity';
+import { User } from '../user/entity';
+import { Category } from '../category/entity';
 import { Auth0UserInterface } from '../auth/auth.guard';
-import { TodoPeriod } from '../todo-period/entity/todo-period.entity';
+import { TodoPeriod } from '../todo-period/entity';
 import * as Utils from '../common/utils';
 
-import { Todo } from './entity/todo.entity';
+import { Todo } from './entity';
 import { CreateTodoInput, UpdateTodoInput } from './input';
-import { GetTodosTypeInput } from './enum/todo.enum';
+import { GetTodosTypeInput } from './enum';
 
 @Injectable()
 export class TodoService {

@@ -6,7 +6,7 @@ import { Repository } from 'typeorm';
 
 import { User } from '../user/entity/user.entity';
 
-import { Category } from './entity/category.entity';
+import { Category } from './entity';
 import { CreateCategoryInput, UpdateCategoryInput } from './input';
 
 @Injectable()
