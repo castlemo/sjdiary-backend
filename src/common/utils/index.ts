@@ -1,1 +1,2 @@
-export { consoleLog } from './logger.util';
+export * from './logger.util';
+export * from './time.util';
