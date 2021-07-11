@@ -110,8 +110,7 @@ export class UserService {
 
   async updateUser(
     currentUser: Auth0UserInterface,
-    updateUserInput: UpdateUserInput,
-    updateUserSettingInput: UpdateUserSettingInput,
+    input: UpdateUserInput,
   ): Promise<User> {
     const queryRunner: QueryRunner = this.connection.createQueryRunner();
 
@@ -119,6 +118,13 @@ export class UserService {
     await queryRunner.startTransaction();
 
     try {
+      const updateUserInput = {
+        motto: input.motto,
+        nickname: input.nickname,
+      };
+
+      const updateUserSettingInput = input.userSetting;
+
       const _user = await this.userRepo.findOne({
         where: { auth0Id: currentUser.sub },
         join: {

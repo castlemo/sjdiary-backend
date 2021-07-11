@@ -10,6 +10,7 @@ import { TodoPeriod } from '../todo-period/entity/todo-period.entity';
 
 import { Todo } from './entity/todo.entity';
 import { CreateTodoInput, UpdateTodoInput } from './input';
+
 @Injectable()
 export class TodoService {
   @InjectRepository(User)
@@ -236,11 +237,65 @@ export class TodoService {
     return true;
   }
 
-  async getTodo() {
-    return true;
+  async getTodo(
+    currentUser: Auth0UserInterface,
+    todoId: number,
+  ): Promise<Todo> {
+    const user = await this.userRepo.findOne({
+      where: { auth0Id: currentUser.sub, deletedAt: null },
+    });
+
+    if (!user) {
+      throw new ApolloError('[getTodo] this user Not Exist');
+    }
+
+    const todo = await this.todoRepo.findOne({
+      where: {
+        User: user,
+        id: todoId,
+        deletedAt: null,
+      },
+      join: {
+        alias: 'todo',
+        leftJoinAndSelect: {
+          TodoPeriod: 'todo.TodoPeriod',
+        },
+      },
+    });
+
+    if (!todo) {
+      throw new ApolloError('[getTodo] this todo Not Exist');
+    }
+
+    return todo;
   }
 
-  async getTodos() {
-    return true;
+  async getTodos(currentUser: Auth0UserInterface): Promise<Todo[]> {
+    const user = await this.userRepo.findOne({
+      where: { auth0Id: currentUser.sub, deletedAt: null },
+    });
+
+    if (!user) {
+      throw new ApolloError('[getTodo] this user Not Exist');
+    }
+
+    const todos = await this.todoRepo.find({
+      where: {
+        User: user,
+        deletedAt: null,
+      },
+      join: {
+        alias: 'todo',
+        leftJoinAndSelect: {
+          TodoPeriod: 'todo.TodoPeriod',
+        },
+      },
+    });
+
+    if (!todos) {
+      throw new ApolloError('[getTodo] this todos Not Exist');
+    }
+
+    return todos;
   }
 }

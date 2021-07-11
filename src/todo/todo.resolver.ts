@@ -19,7 +19,7 @@ export class TodoResolver {
   @UseGuards(GqlAuthGuard)
   async createTodo(
     @CurrentUser() currentUser: Auth0UserInterface,
-    @Args('createTodoInput') createTodoInput: CreateTodoInput,
+    @Args('input') createTodoInput: CreateTodoInput,
   ): Promise<Todo> {
     return await this.todoService.createTodo(currentUser, createTodoInput);
   }
@@ -29,7 +29,7 @@ export class TodoResolver {
   async updateTodo(
     @CurrentUser() currentUser: Auth0UserInterface,
     @Args('todoId') todoId: number,
-    @Args('updateTodoInput') updateTodoInput: UpdateTodoInput,
+    @Args('input') updateTodoInput: UpdateTodoInput,
   ): Promise<Todo> {
     return await this.todoService.updateTodo(
       currentUser,

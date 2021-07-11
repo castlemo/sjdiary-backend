@@ -36,7 +36,7 @@ export class CategoryResolver {
   @UseGuards(GqlAuthGuard)
   async createCategory(
     @CurrentUser() currentUser: Auth0UserInterface,
-    @Args('createCategoryInput') createCategoryInput: CreateCategoryInput,
+    @Args('input') createCategoryInput: CreateCategoryInput,
   ): Promise<Category> {
     return await this.categoryService.createCategory(
       currentUser,
@@ -49,7 +49,7 @@ export class CategoryResolver {
   async updateCategory(
     @CurrentUser() currentUser: Auth0UserInterface,
     @Args('categoryId') categoryId: number,
-    @Args('updateCategoryInput') updateCategoryInput: UpdateCategoryInput,
+    @Args('input') updateCategoryInput: UpdateCategoryInput,
   ): Promise<Category> {
     return await this.categoryService.updateCategory(
       currentUser,

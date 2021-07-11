@@ -31,13 +31,15 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 scalar DateTime
 
 type Mutation {
-  createCategory(createCategoryInput: CreateCategoryInput!): Category!
-  createTodo(createTodoInput: CreateTodoInput!): Todo!
+  createCategory(input: CreateCategoryInput!): Category!
+  createTodo(input: CreateTodoInput!): Todo!
   deleteCategory(categoryId: Float!): Boolean!
+  deleteTodo(todoId: Float!): Boolean!
   deleteUser: Boolean!
-  registerUser(registerUserInput: RegisterUserInput!): User!
-  updateCategory(categoryId: Float!, updateCategoryInput: UpdateCategoryInput!): Category!
-  updateUser(updateUserInput: UpdateUserInput!, updateUserSettingInput: UpdateUserSettingInput!): User!
+  registerUser(input: RegisterUserInput!): User!
+  updateCategory(categoryId: Float!, input: UpdateCategoryInput!): Category!
+  updateTodo(input: UpdateTodoInput!, todoId: Float!): Todo!
+  updateUser(input: UpdateUserInput!): User!
 }
 
 type Query {
@@ -73,7 +75,6 @@ type Todo {
   contents: String!
   createdAt: DateTime!
   id: ID!
-  todayIndex: Int!
   updatedAt: DateTime!
 }
 
@@ -82,9 +83,19 @@ input UpdateCategoryInput {
   name: String
 }
 
+input UpdateTodoInput {
+  categoryId: Int
+  contents: String
+  endedAt: DateTime
+  isTime: Boolean
+  startedAt: DateTime
+  todoPeriodId: Int
+}
+
 input UpdateUserInput {
   motto: String
   nickname: String
+  userSetting: UpdateUserSettingInput
 }
 
 input UpdateUserSettingInput {

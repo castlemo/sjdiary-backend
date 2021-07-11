@@ -39,7 +39,7 @@ export class UserResolver {
   @UseGuards(GqlAuthGuard)
   async registerUser(
     @CurrentUser() currentUser: Auth0UserInterface,
-    @Args('registerUserInput') registerUserInput: RegisterUserInput,
+    @Args('input') registerUserInput: RegisterUserInput,
   ): Promise<User> {
     Utils.consoleLog('registerUser', [
       { key: 'currentUser', value: currentUser },
@@ -63,14 +63,8 @@ export class UserResolver {
   @UseGuards(GqlAuthGuard)
   async updateUser(
     @CurrentUser() currentUser: Auth0UserInterface,
-    @Args('updateUserInput') updateUserInput: UpdateUserInput,
-    @Args('updateUserSettingInput')
-    updateUserSettingInput: UpdateUserSettingInput,
+    @Args('input') updateUserInput: UpdateUserInput,
   ): Promise<User> {
-    return await this.userService.updateUser(
-      currentUser,
-      updateUserInput,
-      updateUserSettingInput,
-    );
+    return await this.userService.updateUser(currentUser, updateUserInput);
   }
 }
