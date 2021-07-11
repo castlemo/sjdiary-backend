@@ -4,25 +4,16 @@ import {
   Column,
   PrimaryGeneratedColumn,
   OneToOne,
-  JoinColumn,
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
   OneToMany,
 } from 'typeorm';
-import { ObjectType, Field, ID, registerEnumType } from '@nestjs/graphql';
+import { ObjectType, Field, ID } from '@nestjs/graphql';
 
 import { Todo } from './../../todo/entity/todo.entity';
 import { UserSetting } from '../../user-setting/entity/user-setting.entity';
 import { Category } from '../../category/entity/category.entity';
-
-enum Platform {
-  GOOGLE = 'google',
-}
-
-registerEnumType(Platform, {
-  name: 'Platform',
-});
 
 @Entity()
 @ObjectType()
