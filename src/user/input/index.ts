@@ -1,3 +1,3 @@
-export { RegisterUserInput } from './registerUser.input';
-export { UpdateUserInput } from './updateUser.input';
-export { UpdateUserSettingInput } from './updateUserSetting.input';
+export { RegisterUserInput } from './register-user.input';
+export { UpdateUserInput } from './update-user.input';
+export { UpdateUserSettingInput } from './update-user-setting.input';

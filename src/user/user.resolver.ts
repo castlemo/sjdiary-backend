@@ -1,4 +1,4 @@
-import { UpdateUserSettingInput } from './input/updateUserSetting.input';
+import { UpdateUserSettingInput } from './input/update-user-setting.input';
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { UseGuards } from '@nestjs/common';
 
