@@ -33,16 +33,9 @@ export class Todo extends BaseEntity {
   @Field(() => Int)
   allIndex: number;
 
-  @Column({ name: 'today_index', nullable: true })
-  @Field(() => Int)
-  todayIndex: number;
-
   @Column({ name: 'category_index', nullable: true })
   @Field(() => Int)
   categoryIndex: number;
-
-  @Column({ name: 'todo_period_id', nullable: true })
-  todoPeriodId: number;
 
   @Column({ name: 'category_id', nullable: true })
   categoryId: number;
@@ -67,7 +60,6 @@ export class Todo extends BaseEntity {
   User: User;
 
   @OneToOne(() => TodoPeriod, (todoPeriod) => todoPeriod.Todo)
-  @JoinColumn({ name: 'todo_period_id' })
   TodoPeriod: TodoPeriod;
 
   @ManyToOne(() => Category, (category) => category.Todos)

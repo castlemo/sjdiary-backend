@@ -20,6 +20,10 @@ export class TodoPeriod extends BaseEntity {
   @Column({ name: 'todo_id' })
   todoId: number;
 
+  @Column({ name: 'is_time' })
+  @Field(() => Boolean, { description: '시간설정' })
+  isTime: boolean;
+
   @Column({ name: 'started_at', type: 'timestamp' })
   @Field(() => Date)
   startedAt: Date;

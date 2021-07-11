@@ -12,18 +12,37 @@ type Category {
   updatedAt: Int!
 }
 
+input CreateCategoryInput {
+  color: String!
+  name: String!
+}
+
+input CreateTodoInput {
+  categoryId: Int
+  contents: String!
+  endedAt: DateTime
+  isTime: Boolean
+  startedAt: DateTime
+}
+
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
 scalar DateTime
 
 type Mutation {
+  createCategory(createCategoryInput: CreateCategoryInput!): Category!
+  createTodo(createTodoInput: CreateTodoInput!): Todo!
+  deleteCategory(categoryId: Float!): Boolean!
   deleteUser: Boolean!
   registerUser(registerUserInput: RegisterUserInput!): User!
+  updateCategory(categoryId: Float!, updateCategoryInput: UpdateCategoryInput!): Category!
   updateUser(updateUserInput: UpdateUserInput!, updateUserSettingInput: UpdateUserSettingInput!): User!
 }
 
 type Query {
+  getCategories: [Category!]!
+  getCategory(categoryId: Float!): Category!
   me: User!
 
   """Returns true if user with given Auth0 token, and false otherwise."""
@@ -56,6 +75,11 @@ type Todo {
   id: ID!
   todayIndex: Int!
   updatedAt: DateTime!
+}
+
+input UpdateCategoryInput {
+  color: String
+  name: String
 }
 
 input UpdateUserInput {
