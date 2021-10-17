@@ -2,11 +2,13 @@ import * as dotenv from 'dotenv-safe';
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'local';
 
-dotenv.config({
-  allowEmptyValues: true,
-  example: '.env.example',
-  path: `.env.${process.env.NODE_ENV}`,
-});
+if (process.env.NODE_ENV === 'local') {
+  dotenv.config({
+    allowEmptyValues: true,
+    example: '.env.example',
+    path: `.env.${process.env.NODE_ENV}`,
+  });
+}
 
 interface DBConfig {
   host: string;
