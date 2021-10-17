@@ -8,9 +8,9 @@ import {
 } from '../auth/auth.guard';
 
 import { TodoService } from './todo.service';
-import { Todo } from './entity';
-import { CreateTodoInput, UpdateTodoInput } from './input';
-import { GetTodosTypeInput } from './enum';
+import { Todo } from './todo.entity';
+import { CreateTodoInput, UpdateTodoInput, GetTodosInput } from './input';
+import { TodoType } from './todo.enum';
 
 @Resolver()
 export class TodoResolver {
@@ -29,19 +29,18 @@ export class TodoResolver {
   @UseGuards(GqlAuthGuard)
   async getTodos(
     @CurrentUser() currentUser: Auth0UserInterface,
-    @Args('type', { type: () => GetTodosTypeInput }) type: GetTodosTypeInput,
-    @Args('categoryId', { nullable: true }) categoryId?: number,
+    @Args('input') input: GetTodosInput,
   ): Promise<Todo[]> {
-    return await this.todoService.getTodos(currentUser, type, categoryId);
+    return await this.todoService.getTodos(currentUser, input);
   }
 
   @Mutation(() => Todo)
   @UseGuards(GqlAuthGuard)
   async createTodo(
     @CurrentUser() currentUser: Auth0UserInterface,
-    @Args('input') createTodoInput: CreateTodoInput,
+    @Args('input') input: CreateTodoInput,
   ): Promise<Todo> {
-    return await this.todoService.createTodo(currentUser, createTodoInput);
+    return await this.todoService.createTodo(currentUser, input);
   }
 
   @Mutation(() => Todo)
@@ -49,13 +48,9 @@ export class TodoResolver {
   async updateTodo(
     @CurrentUser() currentUser: Auth0UserInterface,
     @Args('todoId') todoId: number,
-    @Args('input') updateTodoInput: UpdateTodoInput,
+    @Args('input') input: UpdateTodoInput,
   ): Promise<Todo> {
-    return await this.todoService.updateTodo(
-      currentUser,
-      todoId,
-      updateTodoInput,
-    );
+    return await this.todoService.updateTodo(currentUser, todoId, input);
   }
 
   @Mutation(() => Boolean)

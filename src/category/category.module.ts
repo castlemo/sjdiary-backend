@@ -5,7 +5,7 @@ import { UserModule } from '../user/user.module';
 
 import { CategoryResolver } from './category.resolver';
 import { CategoryService } from './category.service';
-import { Category } from './entity';
+import { Category } from './category.entity';
 @Module({
   imports: [TypeOrmModule.forFeature([Category]), UserModule],
   providers: [CategoryResolver, CategoryService],

@@ -8,7 +8,7 @@ import {
 } from '../auth/auth.guard';
 
 import { CategoryService } from './category.service';
-import { Category } from './entity';
+import { Category } from './category.entity';
 import { CreateCategoryInput, UpdateCategoryInput } from './input';
 
 @Resolver()

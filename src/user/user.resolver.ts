@@ -6,7 +6,7 @@ import {
   CurrentUser,
   Auth0UserInterface,
 } from '../auth/auth.guard';
-import { User } from './entity';
+import { User } from './user.entity';
 import { UserService } from './user.service';
 import { RegisterUserInput, UpdateUserInput } from './input';
 
@@ -19,7 +19,6 @@ export class UserResolver {
   @Query(() => User)
   @UseGuards(GqlAuthGuard)
   async me(@CurrentUser() currentUser: Auth0UserInterface): Promise<User> {
-    Utils.consoleLog('me', [{ key: 'currentUser', value: currentUser }]);
     return await this.userService.me(currentUser);
   }
 
@@ -38,13 +37,11 @@ export class UserResolver {
   @UseGuards(GqlAuthGuard)
   async registerUser(
     @CurrentUser() currentUser: Auth0UserInterface,
-    @Args('input') registerUserInput: RegisterUserInput,
+    @Args('input') input: RegisterUserInput,
   ): Promise<User> {
-    Utils.consoleLog('registerUser', [
-      { key: 'currentUser', value: currentUser },
-      { key: 'registerUserInput', value: registerUserInput },
-    ]);
-    return await this.userService.registerUser(currentUser, registerUserInput);
+    console.log('registerUser');
+    console.log({ currentUser, input });
+    return await this.userService.registerUser(currentUser, input);
   }
 
   @Mutation(() => Boolean)

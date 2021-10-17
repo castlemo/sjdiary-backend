@@ -11,11 +11,12 @@ import { TodoModule } from './todo/todo.module';
 import { TodoPeriodModule } from './todo-period/todo-period.module';
 import { CategoryModule } from './category/category.module';
 import { AuthModule } from './auth/auth.module';
+import { TestModule } from './test/test.module';
 @Module({
   imports: [
     GraphQLModule.forRoot({
       autoSchemaFile: 'schema.gql',
-      sortSchema: true,
+      // sortSchema: true,
       debug: true,
       playground: true,
       // cors: {
@@ -30,6 +31,7 @@ import { AuthModule } from './auth/auth.module';
     TodoPeriodModule,
     CategoryModule,
     AuthModule,
+    TestModule,
   ],
   controllers: [AppController],
   providers: [AppService],

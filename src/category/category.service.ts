@@ -4,9 +4,9 @@ import { ApolloError } from 'apollo-server-express';
 import { Auth0UserInterface } from 'src/auth/auth.guard';
 import { Repository } from 'typeorm';
 
-import { User } from '../user/entity/user.entity';
+import { User } from '../user/user.entity';
 
-import { Category } from './entity';
+import { Category } from './category.entity';
 import { CreateCategoryInput, UpdateCategoryInput } from './input';
 
 @Injectable()
@@ -97,7 +97,8 @@ export class CategoryService {
     }
 
     const categories = await this.categoryRepo.find({
-      User: _user,
+      where: { User: _user },
+      order: { createdAt: 'DESC' },
     });
 
     return categories;

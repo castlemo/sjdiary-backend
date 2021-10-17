@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 import { ObjectType, Field, ID } from '@nestjs/graphql';
 
-import { Todo } from './../../todo/entity/todo.entity';
+import { Todo } from '../todo/todo.entity';
 
 @Entity()
 @ObjectType()

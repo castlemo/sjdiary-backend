@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Connection, QueryRunner, Repository } from 'typeorm';
 import { ApolloError } from 'apollo-server-errors';
 
-import { UserSetting } from '../user-setting/entity';
+import { UserSetting } from '../user-setting/user-setting.entity';
 import { Auth0UserInterface } from '../auth/auth.guard';
 
 import {
@@ -11,7 +11,8 @@ import {
   UpdateUserInput,
   UpdateUserSettingInput,
 } from './input';
-import { User } from './entity';
+import { User } from './user.entity';
+import { VirtualTimeScheduler } from 'rxjs';
 @Injectable()
 export class UserService {
   @InjectRepository(User)
@@ -22,27 +23,58 @@ export class UserService {
   constructor(private readonly connection: Connection) {}
 
   async me(currentUser: Auth0UserInterface): Promise<User> {
-    const me = await this.userRepo.findOne({
-      where: { auth0Id: currentUser.sub },
-      join: {
-        alias: 'user',
-        leftJoinAndSelect: {
-          UserSetting: 'user.UserSetting',
-        },
-      },
-    });
+    const queryResult: User[] = await this.userRepo.query(
+      `
+      SELECT 
+        user.id as id,
+        user.auth0_id as auth0Id,
+        user.email as email,
+        user.name as name,
+        user.nickname as nickname,
+        user.motto as motto,
+        user.profile_image_url as profileImageUrl,
+        JSON_OBJECT(
+          'id', us.id,
+          'userId', us.user_id,
+          'theme', us.theme,
+          'startOfWeek', us.start_of_week
+        ) as UserSetting 
+      FROM 
+        user 
+      LEFT JOIN 
+        user_setting as us
+      ON 
+        user.id = us.user_id 
+      WHERE 
+        user.auth0_id = ? AND user.deleted_at IS NULL
+      ;
+      `,
+      [currentUser.sub],
+    );
 
-    if (!me) {
-      throw new ApolloError('[me] this user Not Exist');
+    // const me = await this.userRepo.findOne({
+    //   where: { auth0Id: currentUser.sub },
+    //   join: {
+    //     alias: 'user',
+    //     leftJoinAndSelect: {
+    //       UserSetting: 'user.UserSetting',
+    //     },
+    //   },
+    // });
+
+    if (queryResult.length < 1) {
+      throw new ApolloError('[me] this queryResult Not Exist');
     }
 
-    return me;
+    console.log('queryResult: ', queryResult);
+
+    return queryResult[0];
   }
 
   async verifyUser(currentUser: Auth0UserInterface): Promise<boolean> {
-    const _user = await this.userRepo.findOne({ auth0Id: currentUser.sub });
+    const user = await this.userRepo.findOne({ auth0Id: currentUser.sub });
 
-    if (!!_user) {
+    if (!!user) {
       return true;
     } else {
       return false;
@@ -51,7 +83,7 @@ export class UserService {
 
   async registerUser(
     currentUser: Auth0UserInterface,
-    registerUserInput: RegisterUserInput,
+    input: RegisterUserInput,
   ): Promise<User> {
     const queryRunner: QueryRunner = this.connection.createQueryRunner();
 
@@ -70,14 +102,15 @@ export class UserService {
 
       const _user = this.userRepo.create({
         auth0Id: currentUser.sub,
-        email: registerUserInput.email,
-        name: registerUserInput.name,
-        profileImageUrl: registerUserInput.profileImageUrl,
+        ...input,
       });
 
       const user = await queryRunner.manager.save(_user);
 
-      const _userSetting = this.userSettingRepo.create({ User: user });
+      const _userSetting = this.userSettingRepo.create({
+        User: user,
+        startOfWeek: input.startOfWeek,
+      });
       const userSetting = await queryRunner.manager.save(_userSetting);
 
       user.UserSetting = userSetting;

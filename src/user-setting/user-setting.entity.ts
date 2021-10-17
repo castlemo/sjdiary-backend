@@ -9,8 +9,8 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { ObjectType, Field, ID } from '@nestjs/graphql';
-import { User } from '../../user/entity/user.entity';
-import { Theme, StartOfWeek } from '../enum/user-setting.enum';
+import { User } from '../user/user.entity';
+import { Theme, StartOfWeek } from './user-setting.enum';
 
 @Entity()
 @ObjectType()

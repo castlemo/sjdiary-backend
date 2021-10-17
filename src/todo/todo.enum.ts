@@ -1,11 +1,11 @@
 import { registerEnumType } from '@nestjs/graphql';
 
-export enum GetTodosTypeInput {
+export enum TodoType {
   ALL = 'all',
   TODAY = 'today',
   CATEGORY = 'category',
 }
 
-registerEnumType(GetTodosTypeInput, {
-  name: 'GetTodosTypeInput',
+registerEnumType(TodoType, {
+  name: 'TodoType',
 });

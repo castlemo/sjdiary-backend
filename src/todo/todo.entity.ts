@@ -1,5 +1,5 @@
-import { TodoPeriod } from './../../todo-period/entity/todo-period.entity';
-import { User } from './../../user/entity/user.entity';
+import { TodoPeriod } from '../todo-period/todo-period.entity';
+import { User } from '../user/user.entity';
 import {
   BaseEntity,
   Entity,
@@ -13,7 +13,7 @@ import {
   ManyToOne,
 } from 'typeorm';
 import { ObjectType, Field, ID, Int } from '@nestjs/graphql';
-import { Category } from 'src/category/entity/category.entity';
+import { Category } from 'src/category/category.entity';
 
 @Entity()
 @ObjectType()
@@ -34,14 +34,14 @@ export class Todo extends BaseEntity {
   allIndex: number;
 
   @Column({ name: 'category_index', nullable: true })
-  @Field(() => Int)
+  @Field(() => Int, { nullable: true })
   categoryIndex: number;
 
   @Column({ name: 'category_id', nullable: true })
   categoryId: number;
 
   @Column({ name: 'checked_at', type: 'timestamp', nullable: true })
-  @Field(() => Date)
+  @Field(() => Date, { nullable: true })
   checkedAt: Date;
 
   @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
@@ -60,10 +60,11 @@ export class Todo extends BaseEntity {
   User: User;
 
   @OneToOne(() => TodoPeriod, (todoPeriod) => todoPeriod.Todo)
+  @Field(() => TodoPeriod, { nullable: true })
   TodoPeriod: TodoPeriod;
 
   @ManyToOne(() => Category, (category) => category.Todos)
   @JoinColumn({ name: 'category_id' })
-  @Field(() => Category)
+  @Field(() => Category, { nullable: true })
   Category: Category;
 }

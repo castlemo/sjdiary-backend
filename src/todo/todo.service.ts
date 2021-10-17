@@ -3,15 +3,15 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Connection, Not, QueryRunner, Repository } from 'typeorm';
 import { ApolloError } from 'apollo-server-express';
 
-import { User } from '../user/entity';
-import { Category } from '../category/entity';
+import { User } from '../user/user.entity';
+import { Category } from '../category/category.entity';
 import { Auth0UserInterface } from '../auth/auth.guard';
-import { TodoPeriod } from '../todo-period/entity';
+import { TodoPeriod } from '../todo-period/todo-period.entity';
 import * as Utils from '../common/utils';
 
-import { Todo } from './entity';
-import { CreateTodoInput, UpdateTodoInput } from './input';
-import { GetTodosTypeInput } from './enum';
+import { Todo } from './todo.entity';
+import { CreateTodoInput, GetTodosInput, UpdateTodoInput } from './input';
+import { TodoType } from './todo.enum';
 
 @Injectable()
 export class TodoService {
@@ -108,6 +108,8 @@ export class TodoService {
       }
 
       await queryRunner.commitTransaction();
+
+      console.log({ todo });
 
       return todo;
     } catch (err) {
@@ -274,8 +276,7 @@ export class TodoService {
 
   async getTodos(
     currentUser: Auth0UserInterface,
-    type: GetTodosTypeInput,
-    categoryId?: number,
+    { type, categoryId }: GetTodosInput,
   ): Promise<Todo[]> {
     const user = await this.userRepo.findOne({
       where: { auth0Id: currentUser.sub, deletedAt: null },

@@ -10,10 +10,10 @@ export const ormconfig: ConnectionOptions = {
   password: config.db.password,
   database: config.db.database,
   // synchronize: process.env.NODE_ENV == 'development' ? true : false,
-  logging: process.env.NODE_ENV == 'development' ? false : false,
+  logging: process.env.NODE_ENV == 'development' ? true : false,
   // dropSchema: process.env.NODE_ENV == 'development' ? true : false,
   migrations: ['dist/src/migrations/*{.ts,.js}'],
-  entities: ['dist/src/**/entity/*.entity{.ts,.js}'],
+  entities: ['dist/src/**/*.entity{.ts,.js}'],
   cli: {
     // entitiesDir: 'dist/src/modules/**/*.entity{.ts,.js}',
     migrationsDir: './src/migrations',

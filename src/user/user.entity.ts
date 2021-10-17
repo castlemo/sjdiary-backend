@@ -11,9 +11,9 @@ import {
 } from 'typeorm';
 import { ObjectType, Field, ID } from '@nestjs/graphql';
 
-import { Todo } from './../../todo/entity/todo.entity';
-import { UserSetting } from '../../user-setting/entity/user-setting.entity';
-import { Category } from '../../category/entity/category.entity';
+import { Todo } from '../todo/todo.entity';
+import { UserSetting } from '../user-setting/user-setting.entity';
+import { Category } from '../category/category.entity';
 
 @Entity()
 @ObjectType()
@@ -44,10 +44,6 @@ export class User extends BaseEntity {
   @Column({ name: 'profile_image_url', nullable: true })
   @Field()
   profileImageUrl: string;
-
-  @Column({ name: 'tutorial_cleared_at', type: 'timestamp', nullable: true })
-  @Field(() => Date, { nullable: true })
-  tutorialClearedAt: Date;
 
   @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
   @Field(() => Date)

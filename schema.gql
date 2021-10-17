@@ -2,27 +2,14 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Category {
-  Todos: [Todo!]!
-  User: User!
-  color: String!
-  createdAt: Int!
+type TodoPeriod {
   id: ID!
-  name: String!
-  updatedAt: Int!
-}
 
-input CreateCategoryInput {
-  color: String!
-  name: String!
-}
-
-input CreateTodoInput {
-  categoryId: Int
-  contents: String!
-  endedAt: DateTime
-  isTime: Boolean
-  startedAt: DateTime
+  """시간설정"""
+  isTime: Boolean!
+  startedAt: DateTime!
+  endedAt: DateTime!
+  Todo: Todo!
 }
 
 """
@@ -30,44 +17,35 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
-enum GetTodosTypeInput {
-  ALL
-  CATEGORY
-  TODAY
-}
-
-type Mutation {
-  createCategory(input: CreateCategoryInput!): Category!
-  createTodo(input: CreateTodoInput!): Todo!
-  deleteCategory(categoryId: Float!): Boolean!
-  deleteTodo(todoId: Float!): Boolean!
-  deleteUser: Boolean!
-  registerUser(input: RegisterUserInput!): User!
-  updateCategory(categoryId: Float!, input: UpdateCategoryInput!): Category!
-  updateTodo(input: UpdateTodoInput!, todoId: Float!): Todo!
-  updateUser(input: UpdateUserInput!): User!
-}
-
-type Query {
-  getCategories: [Category!]!
-  getCategory(categoryId: Float!): Category!
-  getTodo(todoId: Float!): Todo!
-  getTodos(categoryId: Float, type: GetTodosTypeInput!): [Todo!]!
-  me: User!
-
-  """Returns true if user with given Auth0 token, and false otherwise."""
-  verifyUser: Boolean!
-}
-
-input RegisterUserInput {
-  email: String!
+type Category {
+  id: ID!
   name: String!
-  profileImageUrl: String!
+  color: String!
+  createdAt: Int!
+  updatedAt: Int!
+  User: User!
+  Todos: [Todo!]!
 }
 
-enum StartOfWeek {
-  MONDAY
-  SUNDAY
+type Todo {
+  id: ID!
+  contents: String!
+  allIndex: Int!
+  categoryIndex: Int
+  checkedAt: DateTime
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  TodoPeriod: TodoPeriod
+  Category: Category
+}
+
+type UserSetting {
+  id: ID!
+  theme: Theme!
+  startOfWeek: StartOfWeek!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  User: User!
 }
 
 enum Theme {
@@ -75,62 +53,103 @@ enum Theme {
   WHITE
 }
 
-type Todo {
-  Category: Category!
-  allIndex: Int!
-  categoryIndex: Int!
-  checkedAt: DateTime!
-  contents: String!
-  createdAt: DateTime!
+enum StartOfWeek {
+  MONDAY
+  SUNDAY
+}
+
+type User {
   id: ID!
+  email: String!
+  name: String!
+  nickname: String
+  motto: String
+  profileImageUrl: String!
+  createdAt: DateTime!
   updatedAt: DateTime!
+  UserSetting: UserSetting!
+  Todos: [Todo!]!
+  Categories: [Category!]!
 }
 
-input UpdateCategoryInput {
-  color: String
-  name: String
+type Query {
+  me: User!
+
+  """Returns true if user with given Auth0 token, and false otherwise."""
+  verifyUser: Boolean!
+  getTodo(todoId: Float!): Todo!
+  getTodos(input: GetTodosInput!): [Todo!]!
+  getCategory(categoryId: Float!): Category!
+  getCategories: [Category!]!
+  testRawQuery: Boolean!
 }
 
-input UpdateTodoInput {
+input GetTodosInput {
+  type: TodoType!
   categoryId: Int
-  contents: String
-  endedAt: DateTime
-  isTime: Boolean
-  startedAt: DateTime
-  todoPeriodId: Int
+}
+
+enum TodoType {
+  ALL
+  TODAY
+  CATEGORY
+}
+
+type Mutation {
+  registerUser(input: RegisterUserInput!): User!
+  deleteUser: Boolean!
+  updateUser(input: UpdateUserInput!): User!
+  createTodo(input: CreateTodoInput!): Todo!
+  updateTodo(input: UpdateTodoInput!, todoId: Float!): Todo!
+  deleteTodo(todoId: Float!): Boolean!
+  createCategory(input: CreateCategoryInput!): Category!
+  updateCategory(input: UpdateCategoryInput!, categoryId: Float!): Category!
+  deleteCategory(categoryId: Float!): Boolean!
+}
+
+input RegisterUserInput {
+  email: String!
+  name: String!
+  nickname: String!
+  motto: String!
+  profileImageUrl: String!
+  startOfWeek: StartOfWeek!
 }
 
 input UpdateUserInput {
-  motto: String
   nickname: String
+  motto: String
   userSetting: UpdateUserSettingInput
 }
 
 input UpdateUserSettingInput {
-  startOfWeek: StartOfWeek
   theme: Theme
+  startOfWeek: StartOfWeek
 }
 
-type User {
-  Categories: [Category!]!
-  Todos: [Todo!]!
-  UserSetting: UserSetting!
-  createdAt: DateTime!
-  email: String!
-  id: ID!
-  motto: String
+input CreateTodoInput {
+  contents: String!
+  categoryId: Int
+  isTime: Boolean
+  startedAt: DateTime
+  endedAt: DateTime
+}
+
+input UpdateTodoInput {
+  contents: String
+  categoryId: Int
+  todoPeriodId: Int
+  isTime: Boolean
+  startedAt: DateTime
+  endedAt: DateTime
+}
+
+input CreateCategoryInput {
   name: String!
-  nickname: String
-  profileImageUrl: String!
-  tutorialClearedAt: DateTime
-  updatedAt: DateTime!
+  color: String!
 }
 
-type UserSetting {
-  User: User!
-  createdAt: DateTime!
-  id: ID!
-  startOfWeek: StartOfWeek!
-  theme: Theme!
-  updatedAt: DateTime!
+input UpdateCategoryInput {
+  name: String
+  color: String
 }
