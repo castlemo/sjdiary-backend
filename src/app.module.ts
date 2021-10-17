@@ -13,6 +13,7 @@ import { CategoryModule } from './category/category.module';
 import { AuthModule } from './auth/auth.module';
 import { TestModule } from './test/test.module';
 import { config } from './config';
+import { AppResolver } from './app.resolver';
 @Module({
   imports: [
     GraphQLModule.forRoot({
@@ -35,6 +36,6 @@ import { config } from './config';
     TestModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, AppResolver],
 })
 export class AppModule {}
