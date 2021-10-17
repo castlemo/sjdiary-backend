@@ -13,6 +13,7 @@ interface Config {
     port: number;
     db: DBConfig;
     auth: Auth;
+    frontendUrl: string;
 }
 export declare const config: Config;
 export {};

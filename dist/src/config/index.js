@@ -23,5 +23,6 @@ exports.config = {
         auth0Domain: process.env.AUTH0_DOMAIN,
         auth0Audience: process.env.AUTH0_AUDIENCE,
     },
+    frontendUrl: process.env.FRONTEND_URL,
 };
 //# sourceMappingURL=index.js.map

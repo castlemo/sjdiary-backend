@@ -12,6 +12,7 @@ import { TodoPeriodModule } from './todo-period/todo-period.module';
 import { CategoryModule } from './category/category.module';
 import { AuthModule } from './auth/auth.module';
 import { TestModule } from './test/test.module';
+import { config } from './config';
 @Module({
   imports: [
     GraphQLModule.forRoot({
@@ -20,7 +21,7 @@ import { TestModule } from './test/test.module';
       debug: true,
       playground: true,
       cors: {
-        origin: ['https://tiry.vercel.app/', 'http://localhost:3000/'],
+        origin: [config.frontendUrl],
         credentials: true,
       },
     }),

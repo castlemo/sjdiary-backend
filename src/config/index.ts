@@ -26,6 +26,7 @@ interface Config {
   port: number;
   db: DBConfig;
   auth: Auth;
+  frontendUrl: string;
 }
 
 export const config: Config = {
@@ -41,4 +42,5 @@ export const config: Config = {
     auth0Domain: process.env.AUTH0_DOMAIN,
     auth0Audience: process.env.AUTH0_AUDIENCE,
   },
+  frontendUrl: process.env.FRONTEND_URL,
 };

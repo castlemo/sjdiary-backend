@@ -20,6 +20,7 @@ const todo_period_module_1 = require("./todo-period/todo-period.module");
 const category_module_1 = require("./category/category.module");
 const auth_module_1 = require("./auth/auth.module");
 const test_module_1 = require("./test/test.module");
+const config_1 = require("./config");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -30,7 +31,7 @@ AppModule = __decorate([
                 debug: true,
                 playground: true,
                 cors: {
-                    origin: ['https://tiry.vercel.app/', 'http://localhost:3000/'],
+                    origin: [config_1.config.frontendUrl],
                     credentials: true,
                 },
             }),
