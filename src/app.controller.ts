@@ -14,4 +14,9 @@ export class AppController {
   healthCheck(): string {
     return this.appService.healthCheck();
   }
+
+  @Get('/version')
+  getVersion(): string {
+    return this.appService.getVersion();
+  }
 }

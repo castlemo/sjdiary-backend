@@ -15,6 +15,9 @@ let AppService = class AppService {
     healthCheck() {
         return 'Server Live';
     }
+    getVersion() {
+        return '0.0.1';
+    }
 };
 AppService = __decorate([
     (0, common_1.Injectable)()

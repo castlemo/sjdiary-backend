@@ -22,6 +22,9 @@ let AppController = class AppController {
     healthCheck() {
         return this.appService.healthCheck();
     }
+    getVersion() {
+        return this.appService.getVersion();
+    }
 };
 __decorate([
     (0, common_1.Get)(),
@@ -35,6 +38,12 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", String)
 ], AppController.prototype, "healthCheck", null);
+__decorate([
+    (0, common_1.Get)('/version'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", String)
+], AppController.prototype, "getVersion", null);
 AppController = __decorate([
     (0, common_1.Controller)(),
     __metadata("design:paramtypes", [app_service_1.AppService])
