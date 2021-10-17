@@ -20,7 +20,7 @@ import { TestModule } from './test/test.module';
       debug: true,
       playground: true,
       cors: {
-        origin: ['https://tiry.vercel.app', 'http://localhost:3000'],
+        origin: ['https://tiry.vercel.app/', 'http://localhost:3000/'],
         credentials: true,
       },
     }),
