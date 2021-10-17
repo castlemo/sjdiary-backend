@@ -19,10 +19,10 @@ import { TestModule } from './test/test.module';
       // sortSchema: true,
       debug: true,
       playground: true,
-      // cors: {
-      //   origin: [],
-      //   credentials: true,
-      // },
+      cors: {
+        origin: ['https://tiry.vercel.app', 'http://localhost:3000'],
+        credentials: true,
+      },
     }),
     TypeOrmModule.forRoot(ormconfig),
     UserModule,

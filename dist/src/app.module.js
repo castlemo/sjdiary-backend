@@ -29,6 +29,10 @@ AppModule = __decorate([
                 autoSchemaFile: 'schema.gql',
                 debug: true,
                 playground: true,
+                cors: {
+                    origin: ['https://tiry.vercel.app', 'http://localhost:3000'],
+                    credentials: true,
+                },
             }),
             typeorm_1.TypeOrmModule.forRoot(ormconfig_1.ormconfig),
             user_module_1.UserModule,
