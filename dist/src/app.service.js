@@ -16,7 +16,7 @@ let AppService = class AppService {
         return 'Server Live';
     }
     getVersion() {
-        return '0.0.1';
+        return '0.0.2';
     }
 };
 AppService = __decorate([

@@ -1,5 +1,5 @@
 import { UseGuards } from '@nestjs/common';
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 
 import {
   Auth0UserInterface,
@@ -62,8 +62,9 @@ export class CategoryResolver {
   @UseGuards(GqlAuthGuard)
   async deleteCategory(
     @CurrentUser() currentUser: Auth0UserInterface,
-    @Args('categoryId') categoryId: number,
+    @Args('categoryId', { type: () => Int }) categoryId: number,
   ): Promise<boolean> {
+    console.log({ categoryId });
     return await this.categoryService.deleteCategory(currentUser, categoryId);
   }
 }

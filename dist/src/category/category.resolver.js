@@ -36,6 +36,7 @@ let CategoryResolver = class CategoryResolver {
         return await this.categoryService.updateCategory(currentUser, categoryId, updateCategoryInput);
     }
     async deleteCategory(currentUser, categoryId) {
+        console.log({ categoryId });
         return await this.categoryService.deleteCategory(currentUser, categoryId);
     }
 };
@@ -79,7 +80,7 @@ __decorate([
     (0, graphql_1.Mutation)(() => Boolean),
     (0, common_1.UseGuards)(auth_guard_1.GqlAuthGuard),
     __param(0, (0, auth_guard_1.CurrentUser)()),
-    __param(1, (0, graphql_1.Args)('categoryId')),
+    __param(1, (0, graphql_1.Args)('categoryId', { type: () => graphql_1.Int })),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, Number]),
     __metadata("design:returntype", Promise)

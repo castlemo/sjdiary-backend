@@ -73,6 +73,7 @@ type User {
 }
 
 type Query {
+  version: String!
   me: User!
 
   """Returns true if user with given Auth0 token, and false otherwise."""
@@ -104,7 +105,7 @@ type Mutation {
   deleteTodo(todoId: Float!): Boolean!
   createCategory(input: CreateCategoryInput!): Category!
   updateCategory(input: UpdateCategoryInput!, categoryId: Float!): Category!
-  deleteCategory(categoryId: Float!): Boolean!
+  deleteCategory(categoryId: Int!): Boolean!
 }
 
 input RegisterUserInput {
