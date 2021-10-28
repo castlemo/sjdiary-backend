@@ -126,7 +126,6 @@ export class TodoService {
 
   async updateTodo(
     currentUser: Auth0UserInterface,
-    todoId: number,
     updateTodoInput: UpdateTodoInput,
   ): Promise<Todo> {
     const queryRunner: QueryRunner = this.connection.createQueryRunner();
@@ -147,7 +146,7 @@ export class TodoService {
       const _todo = await this.todoRepo.findOne({
         where: {
           User: user,
-          id: todoId,
+          id: updateTodoInput.todoId,
           deletedAt: null,
         },
       });

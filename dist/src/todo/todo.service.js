@@ -97,7 +97,7 @@ let TodoService = class TodoService {
             await queryRunner.release();
         }
     }
-    async updateTodo(currentUser, todoId, updateTodoInput) {
+    async updateTodo(currentUser, updateTodoInput) {
         const queryRunner = this.connection.createQueryRunner();
         await queryRunner.connect();
         await queryRunner.startTransaction();
@@ -112,7 +112,7 @@ let TodoService = class TodoService {
             const _todo = await this.todoRepo.findOne({
                 where: {
                     User: user,
-                    id: todoId,
+                    id: updateTodoInput.todoId,
                     deletedAt: null,
                 },
             });

@@ -66,8 +66,6 @@ export class UserService {
       throw new ApolloError('[me] this queryResult Not Exist');
     }
 
-    console.log('queryResult: ', queryResult);
-
     return queryResult[0];
   }
 

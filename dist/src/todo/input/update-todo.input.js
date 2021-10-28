@@ -14,6 +14,10 @@ const graphql_1 = require("@nestjs/graphql");
 let UpdateTodoInput = class UpdateTodoInput {
 };
 __decorate([
+    (0, graphql_1.Field)(() => graphql_1.Int),
+    __metadata("design:type", Number)
+], UpdateTodoInput.prototype, "todoId", void 0);
+__decorate([
     (0, graphql_1.Field)({ nullable: true }),
     __metadata("design:type", String)
 ], UpdateTodoInput.prototype, "contents", void 0);

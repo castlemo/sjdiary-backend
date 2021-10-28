@@ -101,7 +101,7 @@ type Mutation {
   deleteUser: Boolean!
   updateUser(input: UpdateUserInput!): User!
   createTodo(input: CreateTodoInput!): Todo!
-  updateTodo(input: UpdateTodoInput!, todoId: Float!): Todo!
+  updateTodo(input: UpdateTodoInput!): Todo!
   deleteTodo(todoId: Float!): Boolean!
   createCategory(input: CreateCategoryInput!): Category!
   updateCategory(input: UpdateCategoryInput!, categoryId: Float!): Category!
@@ -137,6 +137,7 @@ input CreateTodoInput {
 }
 
 input UpdateTodoInput {
+  todoId: Int!
   contents: String
   categoryId: Int
   todoPeriodId: Int

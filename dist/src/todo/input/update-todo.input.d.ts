@@ -1,4 +1,5 @@
 export declare class UpdateTodoInput {
+    todoId: number;
     contents: string;
     categoryId: number;
     todoPeriodId: number;

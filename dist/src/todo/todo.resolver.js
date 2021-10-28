@@ -32,8 +32,8 @@ let TodoResolver = class TodoResolver {
     async createTodo(currentUser, input) {
         return await this.todoService.createTodo(currentUser, input);
     }
-    async updateTodo(currentUser, todoId, input) {
-        return await this.todoService.updateTodo(currentUser, todoId, input);
+    async updateTodo(currentUser, input) {
+        return await this.todoService.updateTodo(currentUser, input);
     }
     async deleteTodo(currentUser, todoId) {
         return await this.todoService.deleteTodo(currentUser, todoId);
@@ -70,10 +70,9 @@ __decorate([
     (0, graphql_1.Mutation)(() => todo_entity_1.Todo),
     (0, common_1.UseGuards)(auth_guard_1.GqlAuthGuard),
     __param(0, (0, auth_guard_1.CurrentUser)()),
-    __param(1, (0, graphql_1.Args)('todoId')),
-    __param(2, (0, graphql_1.Args)('input')),
+    __param(1, (0, graphql_1.Args)('input')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Number, input_1.UpdateTodoInput]),
+    __metadata("design:paramtypes", [Object, input_1.UpdateTodoInput]),
     __metadata("design:returntype", Promise)
 ], TodoResolver.prototype, "updateTodo", null);
 __decorate([

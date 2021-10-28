@@ -10,7 +10,7 @@ export declare class TodoService {
     private readonly todoPeriodRepo;
     constructor(connection: Connection);
     createTodo(currentUser: Auth0UserInterface, createTodoInput: CreateTodoInput): Promise<Todo>;
-    updateTodo(currentUser: Auth0UserInterface, todoId: number, updateTodoInput: UpdateTodoInput): Promise<Todo>;
+    updateTodo(currentUser: Auth0UserInterface, updateTodoInput: UpdateTodoInput): Promise<Todo>;
     deleteTodo(currentUser: Auth0UserInterface, todoId: number): Promise<boolean>;
     getTodo(currentUser: Auth0UserInterface, todoId: number): Promise<Todo>;
     getTodos(currentUser: Auth0UserInterface, { type, categoryId }: GetTodosInput): Promise<Todo[]>;

@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
@@ -25,6 +25,7 @@ import { AppResolver } from './app.resolver';
         origin: [config.frontendUrl],
         credentials: true,
       },
+      plugins: [],
     }),
     TypeOrmModule.forRoot(ormconfig),
     UserModule,

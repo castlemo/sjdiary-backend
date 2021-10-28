@@ -2,6 +2,9 @@ import { InputType, Field, Int } from '@nestjs/graphql';
 
 @InputType()
 export class UpdateTodoInput {
+  @Field(() => Int)
+  todoId: number;
+
   @Field({ nullable: true })
   contents: string;
 

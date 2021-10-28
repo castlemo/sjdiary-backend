@@ -9,7 +9,7 @@ exports.ormconfig = {
     username: config_1.config.db.username,
     password: config_1.config.db.password,
     database: config_1.config.db.database,
-    logging: process.env.NODE_ENV == 'local' ? true : false,
+    logging: process.env.NODE_ENV == 'local' ? false : false,
     migrations: ['dist/src/migrations/*{.ts,.js}'],
     entities: ['dist/src/**/*.entity{.ts,.js}'],
     cli: {

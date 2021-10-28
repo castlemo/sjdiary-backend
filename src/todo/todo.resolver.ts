@@ -47,10 +47,9 @@ export class TodoResolver {
   @UseGuards(GqlAuthGuard)
   async updateTodo(
     @CurrentUser() currentUser: Auth0UserInterface,
-    @Args('todoId') todoId: number,
     @Args('input') input: UpdateTodoInput,
   ): Promise<Todo> {
-    return await this.todoService.updateTodo(currentUser, todoId, input);
+    return await this.todoService.updateTodo(currentUser, input);
   }
 
   @Mutation(() => Boolean)

@@ -8,6 +8,6 @@ export declare class TodoResolver {
     getTodo(currentUser: Auth0UserInterface, todoId: number): Promise<Todo>;
     getTodos(currentUser: Auth0UserInterface, input: GetTodosInput): Promise<Todo[]>;
     createTodo(currentUser: Auth0UserInterface, input: CreateTodoInput): Promise<Todo>;
-    updateTodo(currentUser: Auth0UserInterface, todoId: number, input: UpdateTodoInput): Promise<Todo>;
+    updateTodo(currentUser: Auth0UserInterface, input: UpdateTodoInput): Promise<Todo>;
     deleteTodo(currentUser: Auth0UserInterface, todoId: number): Promise<boolean>;
 }

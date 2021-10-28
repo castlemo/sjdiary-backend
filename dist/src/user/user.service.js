@@ -49,7 +49,6 @@ let UserService = class UserService {
         if (queryResult.length < 1) {
             throw new apollo_server_errors_1.ApolloError('[me] this queryResult Not Exist');
         }
-        console.log('queryResult: ', queryResult);
         return queryResult[0];
     }
     async verifyUser(currentUser) {
