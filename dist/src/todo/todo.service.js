@@ -115,6 +115,12 @@ let TodoService = class TodoService {
                     id: updateTodoInput.todoId,
                     deletedAt: null,
                 },
+                join: {
+                    alias: 'todo',
+                    leftJoinAndSelect: {
+                        TodoPeriod: 'todo.TodoPeriod',
+                    },
+                },
             });
             if (!_todo) {
                 throw new apollo_server_express_1.ApolloError('[updateTodo] this todo Not Exist');
@@ -132,13 +138,21 @@ let TodoService = class TodoService {
                 });
                 _todo.Category = category;
             }
-            if (updateTodoInput.todoPeriodId) {
-                const _todoPeriod = await this.todoPeriodRepo.findOne({
-                    Todo: _todo,
-                    id: updateTodoInput.todoPeriodId,
-                });
-                if (!!updateTodoInput.isTime) {
-                    _todoPeriod.isTime = updateTodoInput.isTime;
+            if (updateTodoInput.isTime ||
+                !!updateTodoInput.startedAt ||
+                !!updateTodoInput.endedAt) {
+                let _todoPeriod;
+                if (_todo.TodoPeriod) {
+                    _todoPeriod = await this.todoPeriodRepo.findOne({
+                        Todo: _todo,
+                        id: _todo.TodoPeriod.id,
+                    });
+                }
+                else {
+                    _todoPeriod = this.todoPeriodRepo.create({
+                        Todo: _todo,
+                        isTime: updateTodoInput.isTime,
+                    });
                 }
                 if (!!updateTodoInput.startedAt) {
                     _todoPeriod.startedAt = updateTodoInput.startedAt;
@@ -231,6 +245,7 @@ let TodoService = class TodoService {
                     alias: 'todo',
                     leftJoinAndSelect: {
                         TodoPeriod: 'todo.TodoPeriod',
+                        Category: 'todo.Category',
                     },
                 },
                 order: {
@@ -272,6 +287,7 @@ let TodoService = class TodoService {
                     alias: 'todo',
                     leftJoinAndSelect: {
                         TodoPeriod: 'todo.TodoPeriod',
+                        Category: 'todo.Category',
                     },
                 },
                 order: {

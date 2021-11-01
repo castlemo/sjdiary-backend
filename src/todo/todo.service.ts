@@ -149,6 +149,12 @@ export class TodoService {
           id: updateTodoInput.todoId,
           deletedAt: null,
         },
+        join: {
+          alias: 'todo',
+          leftJoinAndSelect: {
+            TodoPeriod: 'todo.TodoPeriod',
+          },
+        },
       });
 
       if (!_todo) {
@@ -170,14 +176,22 @@ export class TodoService {
         _todo.Category = category;
       }
 
-      if (updateTodoInput.todoPeriodId) {
-        const _todoPeriod = await this.todoPeriodRepo.findOne({
-          Todo: _todo,
-          id: updateTodoInput.todoPeriodId,
-        });
-
-        if (!!updateTodoInput.isTime) {
-          _todoPeriod.isTime = updateTodoInput.isTime;
+      if (
+        updateTodoInput.isTime ||
+        !!updateTodoInput.startedAt ||
+        !!updateTodoInput.endedAt
+      ) {
+        let _todoPeriod: TodoPeriod;
+        if (_todo.TodoPeriod) {
+          _todoPeriod = await this.todoPeriodRepo.findOne({
+            Todo: _todo,
+            id: _todo.TodoPeriod.id,
+          });
+        } else {
+          _todoPeriod = this.todoPeriodRepo.create({
+            Todo: _todo,
+            isTime: updateTodoInput.isTime,
+          });
         }
 
         if (!!updateTodoInput.startedAt) {
@@ -299,6 +313,7 @@ export class TodoService {
           alias: 'todo',
           leftJoinAndSelect: {
             TodoPeriod: 'todo.TodoPeriod',
+            Category: 'todo.Category',
           },
         },
         order: {
@@ -344,6 +359,7 @@ export class TodoService {
           alias: 'todo',
           leftJoinAndSelect: {
             TodoPeriod: 'todo.TodoPeriod',
+            Category: 'todo.Category',
           },
         },
         order: {

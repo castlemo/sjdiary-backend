@@ -31,6 +31,7 @@ export class TodoResolver {
     @CurrentUser() currentUser: Auth0UserInterface,
     @Args('input') input: GetTodosInput,
   ): Promise<Todo[]> {
+    console.log(input);
     return await this.todoService.getTodos(currentUser, input);
   }
 

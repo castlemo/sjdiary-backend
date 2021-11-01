@@ -27,6 +27,7 @@ let TodoResolver = class TodoResolver {
         return await this.todoService.getTodo(currentUser, todoId);
     }
     async getTodos(currentUser, input) {
+        console.log(input);
         return await this.todoService.getTodos(currentUser, input);
     }
     async createTodo(currentUser, input) {
