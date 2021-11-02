@@ -31,8 +31,6 @@ let UserResolver = class UserResolver {
         return await this.userService.verifyUser(currentUser);
     }
     async registerUser(currentUser, input) {
-        console.log('registerUser');
-        console.log({ currentUser, input });
         return await this.userService.registerUser(currentUser, input);
     }
     async deleteUser(currentUser) {

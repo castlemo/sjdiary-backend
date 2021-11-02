@@ -109,8 +109,6 @@ export class TodoService {
 
       await queryRunner.commitTransaction();
 
-      console.log({ todo });
-
       return todo;
     } catch (err) {
       await queryRunner.rollbackTransaction();

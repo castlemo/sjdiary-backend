@@ -27,7 +27,6 @@ let TodoResolver = class TodoResolver {
         return await this.todoService.getTodo(currentUser, todoId);
     }
     async getTodos(currentUser, input) {
-        console.log(input);
         return await this.todoService.getTodos(currentUser, input);
     }
     async createTodo(currentUser, input) {
@@ -80,7 +79,7 @@ __decorate([
     (0, graphql_1.Mutation)(() => Boolean),
     (0, common_1.UseGuards)(auth_guard_1.GqlAuthGuard),
     __param(0, (0, auth_guard_1.CurrentUser)()),
-    __param(1, (0, graphql_1.Args)('todoId')),
+    __param(1, (0, graphql_1.Args)('todoId', { type: () => graphql_1.Int })),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, Number]),
     __metadata("design:returntype", Promise)

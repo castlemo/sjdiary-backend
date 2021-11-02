@@ -39,8 +39,6 @@ export class UserResolver {
     @CurrentUser() currentUser: Auth0UserInterface,
     @Args('input') input: RegisterUserInput,
   ): Promise<User> {
-    console.log('registerUser');
-    console.log({ currentUser, input });
     return await this.userService.registerUser(currentUser, input);
   }
 

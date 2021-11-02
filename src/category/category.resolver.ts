@@ -64,7 +64,6 @@ export class CategoryResolver {
     @CurrentUser() currentUser: Auth0UserInterface,
     @Args('categoryId', { type: () => Int }) categoryId: number,
   ): Promise<boolean> {
-    console.log({ categoryId });
     return await this.categoryService.deleteCategory(currentUser, categoryId);
   }
 }

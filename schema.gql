@@ -102,7 +102,7 @@ type Mutation {
   updateUser(input: UpdateUserInput!): User!
   createTodo(input: CreateTodoInput!): Todo!
   updateTodo(input: UpdateTodoInput!): Todo!
-  deleteTodo(todoId: Float!): Boolean!
+  deleteTodo(todoId: Int!): Boolean!
   createCategory(input: CreateCategoryInput!): Category!
   updateCategory(input: UpdateCategoryInput!, categoryId: Float!): Category!
   deleteCategory(categoryId: Int!): Boolean!

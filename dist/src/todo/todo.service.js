@@ -81,7 +81,6 @@ let TodoService = class TodoService {
                 todo.TodoPeriod = todoPeriod;
             }
             await queryRunner.commitTransaction();
-            console.log({ todo });
             return todo;
         }
         catch (err) {

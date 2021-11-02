@@ -1,4 +1,4 @@
-import { Args, Mutation, Resolver, Query } from '@nestjs/graphql';
+import { Args, Mutation, Resolver, Query, Int } from '@nestjs/graphql';
 import { UseGuards } from '@nestjs/common';
 
 import {
@@ -31,7 +31,6 @@ export class TodoResolver {
     @CurrentUser() currentUser: Auth0UserInterface,
     @Args('input') input: GetTodosInput,
   ): Promise<Todo[]> {
-    console.log(input);
     return await this.todoService.getTodos(currentUser, input);
   }
 
@@ -57,7 +56,7 @@ export class TodoResolver {
   @UseGuards(GqlAuthGuard)
   async deleteTodo(
     @CurrentUser() currentUser: Auth0UserInterface,
-    @Args('todoId') todoId: number,
+    @Args('todoId', { type: () => Int }) todoId: number,
   ): Promise<boolean> {
     return await this.todoService.deleteTodo(currentUser, todoId);
   }

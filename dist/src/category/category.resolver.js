@@ -36,7 +36,6 @@ let CategoryResolver = class CategoryResolver {
         return await this.categoryService.updateCategory(currentUser, categoryId, updateCategoryInput);
     }
     async deleteCategory(currentUser, categoryId) {
-        console.log({ categoryId });
         return await this.categoryService.deleteCategory(currentUser, categoryId);
     }
 };
