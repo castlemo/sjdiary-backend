@@ -1,11 +1,15 @@
 import { NestFactory } from '@nestjs/core';
+import { ConfigService } from '@nestjs/config';
 
 import { AppModule } from './app.module';
-import { config } from './config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  await app.listen(config.port);
-  console.log(`Tiry Server Start. Port: ${config.port}`);
+
+  const port = app.get(ConfigService).get('PORT');
+
+  await app.listen(port);
+
+  console.log(`Tiry Server Start. Port: ${port}`);
 }
 bootstrap();
