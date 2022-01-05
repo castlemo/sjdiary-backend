@@ -17,6 +17,7 @@ const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const auth_module_1 = require("./auth/auth.module");
 const app_resolver_1 = require("./app.resolver");
+const NODE_ENV = process.env.NODE_ENV;
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -24,10 +25,10 @@ AppModule = __decorate([
         imports: [
             config_1.ConfigModule.forRoot({
                 isGlobal: true,
-                envFilePath: '.env.local',
-                ignoreEnvFile: process.env.NODE_ENV === 'prod',
+                envFilePath: `.env.${NODE_ENV}`,
+                ignoreEnvFile: NODE_ENV === 'prod',
                 validationSchema: Joi.object({
-                    NODE_ENV: Joi.string().valid('local', 'prod').required(),
+                    NODE_ENV: Joi.string().valid('local', 'dev', 'prod').required(),
                     DB_HOST: Joi.string().required(),
                     DB_PORT: Joi.string().required(),
                     DB_USERNAME: Joi.string().required(),

@@ -17,14 +17,16 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { AppResolver } from './app.resolver';
+
+const NODE_ENV = process.env.NODE_ENV;
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: '.env.local',
-      ignoreEnvFile: process.env.NODE_ENV === 'prod',
+      envFilePath: `.env.${NODE_ENV}`,
+      ignoreEnvFile: NODE_ENV === 'prod',
       validationSchema: Joi.object({
-        NODE_ENV: Joi.string().valid('local', 'prod').required(),
+        NODE_ENV: Joi.string().valid('local', 'dev', 'prod').required(),
         DB_HOST: Joi.string().required(),
         DB_PORT: Joi.string().required(),
         DB_USERNAME: Joi.string().required(),
