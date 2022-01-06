@@ -19,6 +19,7 @@ import { AuthModule } from './auth/auth.module';
 import { AppResolver } from './app.resolver';
 
 const NODE_ENV = process.env.NODE_ENV;
+// TODO Module Options Class로 분리
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -62,14 +63,14 @@ const NODE_ENV = process.env.NODE_ENV;
         username: configService.get(DB_USERNAME),
         password: configService.get(DB_PASSWORD),
         database: configService.get(DB_DATABASE),
-        logging: process.env.NODE_ENV == 'local' ? false : false,
+        logging: NODE_ENV == 'local' ? false : false,
         migrations: ['dist/src/migrations/*{.ts,.js}'],
         entities: ['dist/src/**/*.entity{.ts,.js}'],
         cli: {
           migrationsDir: './src/migrations',
         },
-        // synchronize: process.env.NODE_ENV == 'development' ? true : false,
-        // dropSchema: process.env.NODE_ENV == 'development' ? true : false,
+        // synchronize: NODE_ENV == 'development' ? true : false,
+        // dropSchema: NODE_ENV == 'development' ? true : false,
       }),
     }),
     AuthModule,
