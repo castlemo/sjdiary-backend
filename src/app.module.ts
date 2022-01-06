@@ -11,7 +11,7 @@ import {
   DB_PORT,
   DB_USERNAME,
   FRONTEND_URL,
-} from './common/constants';
+} from './config/constants';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -24,7 +24,7 @@ const NODE_ENV = process.env.NODE_ENV;
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: `.env.${NODE_ENV}`,
-      ignoreEnvFile: NODE_ENV === 'prod',
+      ignoreEnvFile: NODE_ENV !== 'local',
       validationSchema: Joi.object({
         NODE_ENV: Joi.string().valid('local', 'dev', 'prod').required(),
         DB_HOST: Joi.string().required(),
@@ -40,9 +40,9 @@ const NODE_ENV = process.env.NODE_ENV;
     GraphQLModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: async (configService: ConfigService) => ({
-        autoSchemaFile: 'schema.gql',
-        debug: true,
+      useFactory: (configService: ConfigService) => ({
+        autoSchemaFile: true,
+        debug: configService.get(NODE_ENV) === 'local',
         playground: true,
         sortSchema: true,
         cors: {

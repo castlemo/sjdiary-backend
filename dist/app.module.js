@@ -12,7 +12,7 @@ const graphql_1 = require("@nestjs/graphql");
 const typeorm_1 = require("@nestjs/typeorm");
 const config_1 = require("@nestjs/config");
 const Joi = require("joi");
-const constants_1 = require("./common/constants");
+const constants_1 = require("./config/constants");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const auth_module_1 = require("./auth/auth.module");
@@ -26,7 +26,7 @@ AppModule = __decorate([
             config_1.ConfigModule.forRoot({
                 isGlobal: true,
                 envFilePath: `.env.${NODE_ENV}`,
-                ignoreEnvFile: NODE_ENV === 'prod',
+                ignoreEnvFile: NODE_ENV !== 'local',
                 validationSchema: Joi.object({
                     NODE_ENV: Joi.string().valid('local', 'dev', 'prod').required(),
                     DB_HOST: Joi.string().required(),
@@ -42,9 +42,9 @@ AppModule = __decorate([
             graphql_1.GraphQLModule.forRootAsync({
                 imports: [config_1.ConfigModule],
                 inject: [config_1.ConfigService],
-                useFactory: async (configService) => ({
-                    autoSchemaFile: 'schema.gql',
-                    debug: true,
+                useFactory: (configService) => ({
+                    autoSchemaFile: true,
+                    debug: configService.get(NODE_ENV) === 'local',
                     playground: true,
                     sortSchema: true,
                     cors: {

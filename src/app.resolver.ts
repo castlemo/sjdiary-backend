@@ -6,7 +6,7 @@ export class AppResolver {
   constructor(private readonly appService: AppService) {}
 
   @Query(() => String)
-  version() {
+  version(): string {
     return this.appService.getVersion();
   }
 }

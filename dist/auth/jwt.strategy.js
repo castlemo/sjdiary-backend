@@ -15,6 +15,7 @@ const passport_jwt_1 = require("passport-jwt");
 const passport_1 = require("@nestjs/passport");
 const common_1 = require("@nestjs/common");
 const jwks_rsa_1 = require("jwks-rsa");
+const constants_1 = require("../config/constants");
 let JwtStrategy = class JwtStrategy extends (0, passport_1.PassportStrategy)(passport_jwt_1.Strategy) {
     constructor(configService) {
         super({
@@ -22,11 +23,11 @@ let JwtStrategy = class JwtStrategy extends (0, passport_1.PassportStrategy)(pas
                 cache: true,
                 rateLimit: true,
                 jwksRequestsPerMinute: 5,
-                jwksUri: `https://${configService.get('AUTH0_DOMAIN')}/.well-known/jwks.json`,
+                jwksUri: `https://${configService.get(constants_1.AUTH0_DOMAIN)}/.well-known/jwks.json`,
             }),
             jwtFromRequest: passport_jwt_1.ExtractJwt.fromAuthHeaderAsBearerToken(),
-            audience: `https://${configService.get('AUTH0_AUDIENCE')}`,
-            issuer: `https://${configService.get('AUTH0_DOMAIN')}/`,
+            audience: `https://${configService.get(constants_1.AUTH0_AUDIENCE)}`,
+            issuer: `https://${configService.get(constants_1.AUTH0_DOMAIN)}/`,
             algorithms: ['RS256'],
         });
     }

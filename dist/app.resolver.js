@@ -24,7 +24,7 @@ __decorate([
     (0, graphql_1.Query)(() => String),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", String)
 ], AppResolver.prototype, "version", null);
 AppResolver = __decorate([
     (0, graphql_1.Resolver)(),
