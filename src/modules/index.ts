@@ -1,3 +1,3 @@
-export * from './review/review.module';
-export * from './todo/todo.module';
-export * from './user/user.module';
+export { ReviewModule } from './review';
+export { TodoModule } from './todo';
+export { UserModule } from './user';
