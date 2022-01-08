@@ -2,6 +2,25 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input CreateUserInput {
+  email: String!
+  name: String!
+  profileImageUrl: String!
+}
+
+type Mutation {
+  createUser(input: CreateUserInput!): User!
+}
+
 type Query {
+  me: User!
+  users: User!
   version: String!
+}
+
+type User {
+  auth0Id: String!
+  email: String!
+  name: String!
+  profileImageUrl: String!
 }

@@ -8,16 +8,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
-const graphql_1 = require("@nestjs/graphql");
-const typeorm_1 = require("@nestjs/typeorm");
 const config_1 = require("@nestjs/config");
-const Joi = require("joi");
-const constants_1 = require("./config/constants");
+const modules_1 = require("./modules");
+const auth_1 = require("./auth");
+const database_1 = require("./database");
+const config_2 = require("./config");
+const graphql_1 = require("./graphql");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
-const auth_module_1 = require("./auth/auth.module");
 const app_resolver_1 = require("./app.resolver");
-const NODE_ENV = process.env.NODE_ENV;
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -25,54 +24,15 @@ AppModule = __decorate([
         imports: [
             config_1.ConfigModule.forRoot({
                 isGlobal: true,
-                envFilePath: `.env.${NODE_ENV}`,
-                ignoreEnvFile: NODE_ENV !== 'local',
-                validationSchema: Joi.object({
-                    NODE_ENV: Joi.string().valid('local', 'dev', 'prod').required(),
-                    DB_HOST: Joi.string().required(),
-                    DB_PORT: Joi.string().required(),
-                    DB_USERNAME: Joi.string().required(),
-                    DB_PASSWORD: Joi.string().required(),
-                    DB_DATABASE: Joi.string().required(),
-                    AUTH0_DOMAIN: Joi.string().required(),
-                    AUTH0_AUDIENCE: Joi.string().required(),
-                    FRONTEND_URL: Joi.string().required(),
-                }),
+                load: [config_2.getConfig],
             }),
-            graphql_1.GraphQLModule.forRootAsync({
-                imports: [config_1.ConfigModule],
-                inject: [config_1.ConfigService],
-                useFactory: (configService) => ({
-                    autoSchemaFile: true,
-                    debug: configService.get(NODE_ENV) === 'local',
-                    playground: true,
-                    sortSchema: true,
-                    cors: {
-                        origin: [configService.get(constants_1.FRONTEND_URL)],
-                        credentials: true,
-                    },
-                    plugins: [],
-                }),
-            }),
-            typeorm_1.TypeOrmModule.forRootAsync({
-                imports: [config_1.ConfigModule],
-                inject: [config_1.ConfigService],
-                useFactory: (configService) => ({
-                    type: 'mysql',
-                    host: configService.get(constants_1.DB_HOST),
-                    port: configService.get(constants_1.DB_PORT),
-                    username: configService.get(constants_1.DB_USERNAME),
-                    password: configService.get(constants_1.DB_PASSWORD),
-                    database: configService.get(constants_1.DB_DATABASE),
-                    logging: process.env.NODE_ENV == 'local' ? false : false,
-                    migrations: ['dist/src/migrations/*{.ts,.js}'],
-                    entities: ['dist/src/**/*.entity{.ts,.js}'],
-                    cli: {
-                        migrationsDir: './src/migrations',
-                    },
-                }),
-            }),
-            auth_module_1.AuthModule,
+            graphql_1.GqlModule,
+            database_1.DatabaseModule,
+            auth_1.AuthModule,
+            modules_1.UserModule,
+            modules_1.TodoModule,
+            modules_1.ReviewModule,
+            modules_1.UtilModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService, app_resolver_1.AppResolver],

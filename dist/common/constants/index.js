@@ -1,15 +1,16 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(require("./database"), exports);
-__exportStar(require("./graphql"), exports);
+exports.DB = exports.GQL = exports.NODE_ENV = exports.AUTH0_DOMAIN = exports.AUTH0_AUDIENCE = exports.DB_DATABASE = exports.DB_PASSWORD = exports.DB_USERNAME = exports.DB_PORT = exports.DB_HOST = exports.IS_PLAYGROUND = exports.FRONTEND_URL = void 0;
+exports.FRONTEND_URL = 'FRONTEND_URL';
+exports.IS_PLAYGROUND = 'IS_PLAYGROUND';
+exports.DB_HOST = 'DB_HOST';
+exports.DB_PORT = 'DB_PORT';
+exports.DB_USERNAME = 'DB_USERNAME';
+exports.DB_PASSWORD = 'DB_PASSWORD';
+exports.DB_DATABASE = 'DB_DATABASE';
+exports.AUTH0_AUDIENCE = 'AUTH0_AUDIENCE';
+exports.AUTH0_DOMAIN = 'AUTH0_DOMAIN';
+exports.NODE_ENV = 'NODE_ENV';
+exports.GQL = 'gql';
+exports.DB = 'db';
 //# sourceMappingURL=index.js.map

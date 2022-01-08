@@ -15,7 +15,7 @@ const passport_jwt_1 = require("passport-jwt");
 const passport_1 = require("@nestjs/passport");
 const common_1 = require("@nestjs/common");
 const jwks_rsa_1 = require("jwks-rsa");
-const constants_1 = require("../config/constants");
+const constants_1 = require("../common/constants");
 let JwtStrategy = class JwtStrategy extends (0, passport_1.PassportStrategy)(passport_jwt_1.Strategy) {
     constructor(configService) {
         super({
