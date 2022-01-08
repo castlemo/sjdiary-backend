@@ -24,13 +24,13 @@ let UserResolver = class UserResolver {
         this.userService = userService;
     }
     async users() {
-        return this.userService.getUsers();
+        return this.userService.users();
     }
-    async me(user) {
-        return await this.userService.getMe(user);
+    async me(authUser) {
+        return await this.userService.me(authUser);
     }
-    async createUser(user, input) {
-        return await this.userService.createUser(user, input);
+    async createUser(authUser, input) {
+        return await this.userService.createUser(authUser, input);
     }
 };
 __decorate([

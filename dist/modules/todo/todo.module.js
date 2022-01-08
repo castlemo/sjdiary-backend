@@ -9,6 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TodoModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
+const user_1 = require("../user");
 const todo_repository_1 = require("./todo.repository");
 const todo_resolver_1 = require("./todo.resolver");
 const todo_service_1 = require("./todo.service");
@@ -16,7 +17,7 @@ let TodoModule = class TodoModule {
 };
 TodoModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([todo_repository_1.TodoRepository])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([todo_repository_1.TodoRepository, user_1.UserRepository])],
         providers: [todo_resolver_1.TodoResolver, todo_service_1.TodoService],
     })
 ], TodoModule);

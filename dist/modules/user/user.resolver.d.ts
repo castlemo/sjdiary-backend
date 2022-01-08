@@ -5,8 +5,8 @@ export declare class UserResolver {
     private readonly userService;
     constructor(userService: UserService);
     users(): Promise<import("../../entities").UserEntity[]>;
-    me(user: IAuthUser): Promise<import("../../entities").UserEntity>;
-    createUser(user: IAuthUser, input: CreateUserInput): Promise<{
+    me(authUser: IAuthUser): Promise<import("../../entities").UserEntity>;
+    createUser(authUser: IAuthUser, input: CreateUserInput): Promise<{
         email: string;
         name: string;
         profileImageUrl: string;

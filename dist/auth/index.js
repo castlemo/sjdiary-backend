@@ -13,4 +13,5 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./auth.guard"), exports);
 __exportStar(require("./auth.module"), exports);
 __exportStar(require("./auth.interface"), exports);
+__exportStar(require("./auth.decorator"), exports);
 //# sourceMappingURL=index.js.map

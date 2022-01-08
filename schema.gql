@@ -2,20 +2,50 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input CreateTodoInput {
+  contents: String!
+  finishedAt: Int!
+  startedAt: Int!
+}
+
 input CreateUserInput {
   email: String!
   name: String!
   profileImageUrl: String!
 }
 
+input DeleteTodoInput {
+  todoId: ID!
+}
+
 type Mutation {
+  createTodo(input: CreateTodoInput!): Todo!
   createUser(input: CreateUserInput!): User!
+  deleteTodo(input: DeleteTodoInput!): Boolean!
+  updateTodo(input: UpdateTodoInput!): Todo!
 }
 
 type Query {
   me: User!
+  todos(input: TodosInput!): [Todo!]!
   users: User!
   version: String!
+}
+
+type Todo {
+  completedAt: Int
+  contents: String!
+  finishedAt: Int!
+  startedAt: Int!
+}
+
+input TodosInput {
+  endDate: Int!
+  startDate: Int!
+}
+
+input UpdateTodoInput {
+  completedAt: Int
 }
 
 type User {

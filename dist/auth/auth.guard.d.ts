@@ -3,5 +3,4 @@ declare const GqlAuthGuard_base: import("@nestjs/passport").Type<import("@nestjs
 export declare class GqlAuthGuard extends GqlAuthGuard_base {
     getRequest(context: ExecutionContext): any;
 }
-export declare const AuthUser: (...dataOrPipes: unknown[]) => ParameterDecorator;
 export {};

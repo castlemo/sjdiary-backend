@@ -13,6 +13,7 @@ let UserRepository = class UserRepository extends typeorm_1.Repository {
     async findByAuth0Id(auth0Id) {
         return await this.findOne({
             auth0Id,
+            deletedAt: (0, typeorm_1.IsNull)(),
         });
     }
 };

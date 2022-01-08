@@ -6,7 +6,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AuthUser = exports.GqlAuthGuard = void 0;
+exports.GqlAuthGuard = void 0;
 const common_1 = require("@nestjs/common");
 const graphql_1 = require("@nestjs/graphql");
 const passport_1 = require("@nestjs/passport");
@@ -20,5 +20,4 @@ GqlAuthGuard = __decorate([
     (0, common_1.Injectable)()
 ], GqlAuthGuard);
 exports.GqlAuthGuard = GqlAuthGuard;
-exports.AuthUser = (0, common_1.createParamDecorator)((data, context) => graphql_1.GqlExecutionContext.create(context).getContext().req.user);
 //# sourceMappingURL=auth.guard.js.map

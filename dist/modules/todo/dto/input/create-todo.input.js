@@ -9,27 +9,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateUserInput = void 0;
+exports.CreateTodoInput = void 0;
 const graphql_1 = require("@nestjs/graphql");
 const class_validator_1 = require("class-validator");
-let CreateUserInput = class CreateUserInput {
+let CreateTodoInput = class CreateTodoInput {
 };
 __decorate([
     (0, graphql_1.Field)(() => String),
-    (0, class_validator_1.IsEmail)(),
+    (0, class_validator_1.MinLength)(1, {
+        message: 'contents is too short',
+    }),
+    (0, class_validator_1.MaxLength)(23, {
+        message: 'contents is too long',
+    }),
     __metadata("design:type", String)
-], CreateUserInput.prototype, "email", void 0);
+], CreateTodoInput.prototype, "contents", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String),
-    __metadata("design:type", String)
-], CreateUserInput.prototype, "name", void 0);
+    (0, graphql_1.Field)(() => graphql_1.Int),
+    (0, class_validator_1.Min)(1),
+    __metadata("design:type", Number)
+], CreateTodoInput.prototype, "startedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String),
-    (0, class_validator_1.IsUrl)(),
-    __metadata("design:type", String)
-], CreateUserInput.prototype, "profileImageUrl", void 0);
-CreateUserInput = __decorate([
+    (0, graphql_1.Field)(() => graphql_1.Int),
+    (0, class_validator_1.Min)(1),
+    __metadata("design:type", Number)
+], CreateTodoInput.prototype, "finishedAt", void 0);
+CreateTodoInput = __decorate([
     (0, graphql_1.InputType)()
-], CreateUserInput);
-exports.CreateUserInput = CreateUserInput;
-//# sourceMappingURL=create-user.input.js.map
+], CreateTodoInput);
+exports.CreateTodoInput = CreateTodoInput;
+//# sourceMappingURL=create-todo.input.js.map
