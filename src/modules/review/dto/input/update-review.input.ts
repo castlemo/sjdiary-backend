@@ -2,7 +2,7 @@ import { Field, InputType, Int } from '@nestjs/graphql';
 import { MaxLength, Min, MinLength } from 'class-validator';
 
 @InputType()
-export class UpdateTodoInput {
+export class UpdateReviewInput {
   @Field(() => String, { nullable: true })
   @MinLength(1, {
     message: 'contents is too short',
@@ -19,7 +19,4 @@ export class UpdateTodoInput {
   @Field(() => Int, { nullable: true })
   @Min(1)
   finishedAt?: number;
-
-  @Field(() => Int, { nullable: true })
-  completedAt?: number;
 }

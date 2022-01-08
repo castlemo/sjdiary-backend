@@ -1,6 +1,5 @@
-export declare class UpdateTodoInput {
+export declare class UpdateReviewInput {
     contents?: string;
     startedAt?: number;
     finishedAt?: number;
-    completedAt?: number;
 }

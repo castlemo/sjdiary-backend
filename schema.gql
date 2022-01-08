@@ -2,6 +2,12 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input CreateReviewInput {
+  contents: String!
+  finishedAt: Int!
+  startedAt: Int!
+}
+
 input CreateTodoInput {
   contents: String!
   finishedAt: Int!
@@ -14,22 +20,41 @@ input CreateUserInput {
   profileImageUrl: String!
 }
 
+input DeleteReviewInput {
+  reviewId: ID!
+}
+
 input DeleteTodoInput {
   todoId: ID!
 }
 
 type Mutation {
+  createReview(input: CreateReviewInput!): Review!
   createTodo(input: CreateTodoInput!): Todo!
   createUser(input: CreateUserInput!): User!
+  deleteReview(input: DeleteReviewInput!): Boolean!
   deleteTodo(input: DeleteTodoInput!): Boolean!
+  updateReview(input: UpdateReviewInput!): Review!
   updateTodo(input: UpdateTodoInput!): Todo!
 }
 
 type Query {
   me: User!
+  reviews(input: ReviewsInput!): [Review!]!
   todos(input: TodosInput!): [Todo!]!
   users: User!
   version: String!
+}
+
+type Review {
+  contents: String!
+  finishedAt: Int!
+  startedAt: Int!
+}
+
+input ReviewsInput {
+  endDate: Int!
+  startDate: Int!
 }
 
 type Todo {
@@ -44,8 +69,17 @@ input TodosInput {
   startDate: Int!
 }
 
+input UpdateReviewInput {
+  contents: String
+  finishedAt: Int
+  startedAt: Int
+}
+
 input UpdateTodoInput {
   completedAt: Int
+  contents: String
+  finishedAt: Int
+  startedAt: Int
 }
 
 type User {

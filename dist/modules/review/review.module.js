@@ -9,6 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ReviewModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
+const user_1 = require("../user");
 const review_repository_1 = require("./review.repository");
 const review_resolver_1 = require("./review.resolver");
 const review_service_1 = require("./review.service");
@@ -16,7 +17,7 @@ let ReviewModule = class ReviewModule {
 };
 ReviewModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([review_repository_1.ReviewRepository])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([review_repository_1.ReviewRepository, user_1.UserRepository])],
         providers: [review_resolver_1.ReviewResolver, review_service_1.ReviewService],
     })
 ], ReviewModule);

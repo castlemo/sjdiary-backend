@@ -11,7 +11,10 @@ export declare class TodoService {
         user: import("../../entities").UserEntity;
     } & import("../../entities").TodoEntity>;
     updateTodo(authUser: IAuthUser, input: UpdateTodoInput): Promise<{
-        completedAt: number;
+        contents?: string;
+        startedAt?: number;
+        finishedAt?: number;
+        completedAt?: number;
         user: import("../../entities").UserEntity;
     } & import("../../entities").TodoEntity>;
     deleteTodo(authUser: IAuthUser, { todoId }: DeleteTodoInput): Promise<boolean>;

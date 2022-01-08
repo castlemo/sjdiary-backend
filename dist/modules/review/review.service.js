@@ -12,13 +12,45 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ReviewService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
+const typeorm_2 = require("typeorm");
+const user_1 = require("../user");
 const review_repository_1 = require("./review.repository");
 let ReviewService = class ReviewService {
+    async reviews(authUser, { startDate, endDate }) {
+        const user = await this.userRepo.findByAuth0Id(authUser.sub);
+        return this.reviewRepo.find({
+            where: {
+                user,
+                startedAt: (0, typeorm_2.MoreThanOrEqual)(startDate),
+                endedAt: (0, typeorm_2.LessThanOrEqual)(endDate),
+                deletedAt: (0, typeorm_2.IsNull)(),
+            },
+            order: {
+                startedAt: 'ASC',
+            },
+        });
+    }
+    async createReview(authUser, input) {
+        const user = await this.userRepo.findByAuth0Id(authUser.sub);
+        return await this.reviewRepo.save(Object.assign({ user }, input));
+    }
+    async updateReview(authUser, input) {
+        const user = await this.userRepo.findByAuth0Id(authUser.sub);
+        return await this.reviewRepo.save(Object.assign({ user }, input));
+    }
+    async deleteReview(authUser, { reviewId }) {
+        const user = await this.userRepo.findByAuth0Id(authUser.sub);
+        return await this.reviewRepo.softDelete({ user, id: reviewId });
+    }
 };
 __decorate([
     (0, typeorm_1.InjectRepository)(review_repository_1.ReviewRepository),
     __metadata("design:type", review_repository_1.ReviewRepository)
-], ReviewService.prototype, "reviewRepository", void 0);
+], ReviewService.prototype, "reviewRepo", void 0);
+__decorate([
+    (0, typeorm_1.InjectRepository)(user_1.UserRepository),
+    __metadata("design:type", user_1.UserRepository)
+], ReviewService.prototype, "userRepo", void 0);
 ReviewService = __decorate([
     (0, common_1.Injectable)()
 ], ReviewService);
