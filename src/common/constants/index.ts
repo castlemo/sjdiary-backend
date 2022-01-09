@@ -19,3 +19,5 @@ export const GQL = 'gql';
 export const DB = 'db';
 export const PORT = 'port';
 export const AUTH0 = 'auth0';
+
+export const JWT = 'jwt';

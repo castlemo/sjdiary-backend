@@ -43,13 +43,18 @@ type Query {
   reviews(input: ReviewsInput!): [Review!]!
   todos(input: TodosInput!): [Todo!]!
   users: User!
+  verifyUser: Boolean!
   version: String!
 }
 
 type Review {
   contents: String!
+  createdAt: Int!
+  deletedAt: Int
   finishedAt: Int!
+  id: ID!
   startedAt: Int!
+  updatedAt: Int!
 }
 
 input ReviewsInput {
@@ -60,8 +65,12 @@ input ReviewsInput {
 type Todo {
   completedAt: Int
   contents: String!
+  createdAt: Int!
+  deletedAt: Int
   finishedAt: Int!
+  id: ID!
   startedAt: Int!
+  updatedAt: Int!
 }
 
 input TodosInput {
@@ -84,7 +93,11 @@ input UpdateTodoInput {
 
 type User {
   auth0Id: String!
+  createdAt: Int!
+  deletedAt: Int
   email: String!
+  id: ID!
   name: String!
   profileImageUrl: String!
+  updatedAt: Int!
 }

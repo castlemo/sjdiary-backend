@@ -12,8 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CommonEntity = void 0;
 const typeorm_1 = require("typeorm");
 const graphql_1 = require("@nestjs/graphql");
-class CommonEntity {
-}
+let CommonEntity = class CommonEntity {
+};
 __decorate([
     (0, graphql_1.Field)(() => graphql_1.ID),
     (0, typeorm_1.PrimaryGeneratedColumn)(),
@@ -34,5 +34,8 @@ __decorate([
     (0, typeorm_1.DeleteDateColumn)({ name: 'deleted_at', type: 'timestamp', nullable: true }),
     __metadata("design:type", Number)
 ], CommonEntity.prototype, "deletedAt", void 0);
+CommonEntity = __decorate([
+    (0, graphql_1.ObjectType)()
+], CommonEntity);
 exports.CommonEntity = CommonEntity;
 //# sourceMappingURL=common.entity.js.map

@@ -10,10 +10,15 @@ import { UserRepository } from './user.repository';
 @Injectable()
 export class UserService {
   @InjectRepository(UserRepository)
-  private readonly userRepository: UserRepository;
+  private readonly userRepo: UserRepository;
+
+  async verifyUser(authUser: IAuthUser) {
+    const user = await this.userRepo.findByAuth0Id(authUser.sub);
+    return !!user;
+  }
 
   async users() {
-    return await this.userRepository.find({
+    return await this.userRepo.find({
       where: {
         deletedAt: IsNull(),
       },
@@ -21,11 +26,11 @@ export class UserService {
   }
 
   async me(authUser: IAuthUser) {
-    return await this.userRepository.findByAuth0Id(authUser.sub);
+    return await this.userRepo.findByAuth0Id(authUser.sub);
   }
 
   async createUser(authUser: IAuthUser, input: CreateUserInput) {
-    return await this.userRepository.save({
+    return await this.userRepo.save({
       auth0Id: authUser.sub,
       ...input,
     });

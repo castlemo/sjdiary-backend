@@ -4,6 +4,7 @@ import { CreateUserInput } from './dto/input';
 export declare class UserResolver {
     private readonly userService;
     constructor(userService: UserService);
+    verifyUser(authUser: IAuthUser): Promise<boolean>;
     users(): Promise<import("../../entities").UserEntity[]>;
     me(authUser: IAuthUser): Promise<import("../../entities").UserEntity>;
     createUser(authUser: IAuthUser, input: CreateUserInput): Promise<{

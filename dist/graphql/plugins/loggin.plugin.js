@@ -6,18 +6,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GqlAuthGuard = void 0;
-const common_1 = require("@nestjs/common");
+exports.LoggingPlugin = void 0;
 const graphql_1 = require("@nestjs/graphql");
-const passport_1 = require("@nestjs/passport");
-const constants_1 = require("../common/constants");
-let GqlAuthGuard = class GqlAuthGuard extends (0, passport_1.AuthGuard)(constants_1.JWT) {
-    getRequest(context) {
-        return graphql_1.GqlExecutionContext.create(context).getContext().req;
-    }
+let LoggingPlugin = class LoggingPlugin {
 };
-GqlAuthGuard = __decorate([
-    (0, common_1.Injectable)()
-], GqlAuthGuard);
-exports.GqlAuthGuard = GqlAuthGuard;
-//# sourceMappingURL=auth.guard.js.map
+LoggingPlugin = __decorate([
+    (0, graphql_1.Plugin)()
+], LoggingPlugin);
+exports.LoggingPlugin = LoggingPlugin;
+//# sourceMappingURL=loggin.plugin.js.map

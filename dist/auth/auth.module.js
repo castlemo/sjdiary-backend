@@ -9,12 +9,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthModule = void 0;
 const common_1 = require("@nestjs/common");
 const passport_1 = require("@nestjs/passport");
+const constants_1 = require("../common/constants");
 const jwt_strategy_1 = require("./jwt.strategy");
 let AuthModule = class AuthModule {
 };
 AuthModule = __decorate([
     (0, common_1.Module)({
-        imports: [passport_1.PassportModule.register({ defaultStrategy: 'jwt' })],
+        imports: [passport_1.PassportModule.register({ defaultStrategy: constants_1.JWT })],
         providers: [jwt_strategy_1.JwtStrategy],
         exports: [passport_1.PassportModule],
     })

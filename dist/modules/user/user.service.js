@@ -15,24 +15,28 @@ const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const user_repository_1 = require("./user.repository");
 let UserService = class UserService {
+    async verifyUser(authUser) {
+        const user = await this.userRepo.findByAuth0Id(authUser.sub);
+        return !!user;
+    }
     async users() {
-        return await this.userRepository.find({
+        return await this.userRepo.find({
             where: {
                 deletedAt: (0, typeorm_2.IsNull)(),
             },
         });
     }
     async me(authUser) {
-        return await this.userRepository.findByAuth0Id(authUser.sub);
+        return await this.userRepo.findByAuth0Id(authUser.sub);
     }
     async createUser(authUser, input) {
-        return await this.userRepository.save(Object.assign({ auth0Id: authUser.sub }, input));
+        return await this.userRepo.save(Object.assign({ auth0Id: authUser.sub }, input));
     }
 };
 __decorate([
     (0, typeorm_1.InjectRepository)(user_repository_1.UserRepository),
     __metadata("design:type", user_repository_1.UserRepository)
-], UserService.prototype, "userRepository", void 0);
+], UserService.prototype, "userRepo", void 0);
 UserService = __decorate([
     (0, common_1.Injectable)()
 ], UserService);

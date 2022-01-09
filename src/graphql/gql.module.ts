@@ -3,6 +3,7 @@ import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 
 import { GQL } from '../common/constants';
+import { LoggingPlugin } from './plugins';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { GQL } from '../common/constants';
       }),
     }),
   ],
-  exports: [GraphQLModule],
+  providers: [LoggingPlugin],
+  exports: [GraphQLModule, LoggingPlugin],
 })
 export class GqlModule {}

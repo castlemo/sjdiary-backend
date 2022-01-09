@@ -11,6 +11,7 @@ const config_1 = require("@nestjs/config");
 const common_1 = require("@nestjs/common");
 const graphql_1 = require("@nestjs/graphql");
 const constants_1 = require("../common/constants");
+const plugins_1 = require("./plugins");
 let GqlModule = class GqlModule {
 };
 GqlModule = __decorate([
@@ -21,7 +22,8 @@ GqlModule = __decorate([
                 useFactory: (configService) => (Object.assign({}, configService.get(constants_1.GQL))),
             }),
         ],
-        exports: [graphql_1.GraphQLModule],
+        providers: [plugins_1.LoggingPlugin],
+        exports: [graphql_1.GraphQLModule, plugins_1.LoggingPlugin],
     })
 ], GqlModule);
 exports.GqlModule = GqlModule;

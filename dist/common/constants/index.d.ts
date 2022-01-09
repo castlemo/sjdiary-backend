@@ -12,3 +12,4 @@ export declare const GQL = "gql";
 export declare const DB = "db";
 export declare const PORT = "port";
 export declare const AUTH0 = "auth0";
+export declare const JWT = "jwt";

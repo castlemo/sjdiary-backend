@@ -1,7 +1,8 @@
 import { IAuthUser } from 'src/auth';
 import { CreateUserInput } from './dto/input';
 export declare class UserService {
-    private readonly userRepository;
+    private readonly userRepo;
+    verifyUser(authUser: IAuthUser): Promise<boolean>;
     users(): Promise<import("../../entities").UserEntity[]>;
     me(authUser: IAuthUser): Promise<import("../../entities").UserEntity>;
     createUser(authUser: IAuthUser, input: CreateUserInput): Promise<{

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AUTH0 = exports.PORT = exports.DB = exports.GQL = exports.NODE_ENV = exports.AUTH0_DOMAIN = exports.AUTH0_AUDIENCE = exports.DB_DATABASE = exports.DB_PASSWORD = exports.DB_USERNAME = exports.DB_PORT = exports.DB_HOST = exports.IS_PLAYGROUND = exports.FRONTEND_URL = void 0;
+exports.JWT = exports.AUTH0 = exports.PORT = exports.DB = exports.GQL = exports.NODE_ENV = exports.AUTH0_DOMAIN = exports.AUTH0_AUDIENCE = exports.DB_DATABASE = exports.DB_PASSWORD = exports.DB_USERNAME = exports.DB_PORT = exports.DB_HOST = exports.IS_PLAYGROUND = exports.FRONTEND_URL = void 0;
 exports.FRONTEND_URL = 'FRONTEND_URL';
 exports.IS_PLAYGROUND = 'IS_PLAYGROUND';
 exports.DB_HOST = 'DB_HOST';
@@ -15,4 +15,5 @@ exports.GQL = 'gql';
 exports.DB = 'db';
 exports.PORT = 'port';
 exports.AUTH0 = 'auth0';
+exports.JWT = 'jwt';
 //# sourceMappingURL=index.js.map

@@ -4,8 +4,8 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Field, ID, Int } from '@nestjs/graphql';
-
+import { Field, ID, Int, ObjectType } from '@nestjs/graphql';
+@ObjectType()
 export abstract class CommonEntity {
   @Field(() => ID)
   @PrimaryGeneratedColumn()

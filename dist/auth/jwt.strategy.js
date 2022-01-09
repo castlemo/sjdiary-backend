@@ -24,11 +24,11 @@ let JwtStrategy = class JwtStrategy extends (0, passport_1.PassportStrategy)(pas
                 cache: true,
                 rateLimit: true,
                 jwksRequestsPerMinute: 5,
-                jwksUri: `https://${auth0Config.domain}/.well-known/jwks.json`,
+                jwksUri: `${auth0Config.domain}.well-known/jwks.json`,
             }),
             jwtFromRequest: passport_jwt_1.ExtractJwt.fromAuthHeaderAsBearerToken(),
-            audience: `https://${auth0Config.audience}`,
-            issuer: `https://${auth0Config.domain}/`,
+            audience: auth0Config.audience,
+            issuer: auth0Config.domain,
             algorithms: ['RS256'],
         });
     }

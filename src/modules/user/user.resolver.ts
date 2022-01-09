@@ -12,7 +12,14 @@ import { User } from './dto/output';
 export class UserResolver {
   constructor(private readonly userService: UserService) {}
 
+  @Query(() => Boolean)
+  @UseGuards(GqlAuthGuard)
+  async verifyUser(@AuthUser() authUser: IAuthUser) {
+    return this.userService.verifyUser(authUser);
+  }
+
   @Query(() => User)
+  @UseGuards(GqlAuthGuard)
   async users() {
     return this.userService.users();
   }
@@ -24,6 +31,7 @@ export class UserResolver {
   }
 
   @Mutation(() => User)
+  @UseGuards(GqlAuthGuard)
   async createUser(
     @AuthUser() authUser: IAuthUser,
     @Args('input') input: CreateUserInput,
