@@ -17,8 +17,9 @@ let ReviewModule = class ReviewModule {
 };
 ReviewModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([review_repository_1.ReviewRepository, user_1.UserRepository])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([review_repository_1.ReviewRepository]), user_1.UserModule],
         providers: [review_resolver_1.ReviewResolver, review_service_1.ReviewService],
+        exports: [typeorm_1.TypeOrmModule],
     })
 ], ReviewModule);
 exports.ReviewModule = ReviewModule;

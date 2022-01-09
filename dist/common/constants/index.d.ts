@@ -10,3 +10,5 @@ export declare const AUTH0_DOMAIN = "AUTH0_DOMAIN";
 export declare const NODE_ENV = "NODE_ENV";
 export declare const GQL = "gql";
 export declare const DB = "db";
+export declare const PORT = "port";
+export declare const AUTH0 = "auth0";

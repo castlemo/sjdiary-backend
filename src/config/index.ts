@@ -1,4 +1,3 @@
-import { registerAs } from '@nestjs/config';
 import * as dotenv from 'dotenv';
 import {
   AUTH0_AUDIENCE,

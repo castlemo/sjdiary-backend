@@ -18,6 +18,7 @@ UserModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([user_repository_1.UserRepository])],
         providers: [user_resolver_1.UserResolver, user_service_1.UserService],
+        exports: [typeorm_1.TypeOrmModule],
     })
 ], UserModule);
 exports.UserModule = UserModule;

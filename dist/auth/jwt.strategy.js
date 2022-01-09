@@ -18,16 +18,17 @@ const jwks_rsa_1 = require("jwks-rsa");
 const constants_1 = require("../common/constants");
 let JwtStrategy = class JwtStrategy extends (0, passport_1.PassportStrategy)(passport_jwt_1.Strategy) {
     constructor(configService) {
+        const auth0Config = configService.get(constants_1.AUTH0);
         super({
             secretOrKeyProvider: (0, jwks_rsa_1.passportJwtSecret)({
                 cache: true,
                 rateLimit: true,
                 jwksRequestsPerMinute: 5,
-                jwksUri: `https://${configService.get(constants_1.AUTH0_DOMAIN)}/.well-known/jwks.json`,
+                jwksUri: `https://${auth0Config.domain}/.well-known/jwks.json`,
             }),
             jwtFromRequest: passport_jwt_1.ExtractJwt.fromAuthHeaderAsBearerToken(),
-            audience: `https://${configService.get(constants_1.AUTH0_AUDIENCE)}`,
-            issuer: `https://${configService.get(constants_1.AUTH0_DOMAIN)}/`,
+            audience: `https://${auth0Config.audience}`,
+            issuer: `https://${auth0Config.domain}/`,
             algorithms: ['RS256'],
         });
     }

@@ -17,8 +17,9 @@ let TodoModule = class TodoModule {
 };
 TodoModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([todo_repository_1.TodoRepository, user_1.UserRepository])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([todo_repository_1.TodoRepository]), user_1.UserModule],
         providers: [todo_resolver_1.TodoResolver, todo_service_1.TodoService],
+        exports: [typeorm_1.TypeOrmModule],
     })
 ], TodoModule);
 exports.TodoModule = TodoModule;

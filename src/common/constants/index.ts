@@ -17,3 +17,5 @@ export const NODE_ENV = 'NODE_ENV';
 
 export const GQL = 'gql';
 export const DB = 'db';
+export const PORT = 'port';
+export const AUTH0 = 'auth0';
