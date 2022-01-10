@@ -25,17 +25,17 @@ __decorate([
     __metadata("design:type", String)
 ], UpdateTodoInput.prototype, "contents", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_1.Int, { nullable: true }),
+    (0, graphql_1.Field)(() => Date, { nullable: true }),
     (0, class_validator_1.Min)(1),
     __metadata("design:type", Number)
 ], UpdateTodoInput.prototype, "startedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_1.Int, { nullable: true }),
+    (0, graphql_1.Field)(() => Date, { nullable: true }),
     (0, class_validator_1.Min)(1),
     __metadata("design:type", Number)
 ], UpdateTodoInput.prototype, "finishedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_1.Int, { nullable: true }),
+    (0, graphql_1.Field)(() => Date, { nullable: true }),
     __metadata("design:type", Number)
 ], UpdateTodoInput.prototype, "completedAt", void 0);
 UpdateTodoInput = __decorate([

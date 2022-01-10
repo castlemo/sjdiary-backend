@@ -11,6 +11,9 @@ import { LoggingPlugin } from './plugins';
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         ...configService.get(GQL),
+        buildSchemaOptions: {
+          dateScalarMode: 'timestamp',
+        },
       }),
     }),
   ],

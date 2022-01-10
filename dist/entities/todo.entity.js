@@ -25,17 +25,17 @@ __decorate([
     __metadata("design:type", String)
 ], TodoEntity.prototype, "contents", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_1.Int),
+    (0, graphql_1.Field)(() => Date),
     (0, typeorm_1.Column)({ name: 'started_at', type: 'timestamp' }),
     __metadata("design:type", Number)
 ], TodoEntity.prototype, "startedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_1.Int),
+    (0, graphql_1.Field)(() => Date),
     (0, typeorm_1.Column)({ name: 'finished_at', type: 'timestamp' }),
     __metadata("design:type", Number)
 ], TodoEntity.prototype, "finishedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_1.Int, { nullable: true }),
+    (0, graphql_1.Field)(() => Date, { nullable: true }),
     (0, typeorm_1.Column)({ name: 'completed_at', type: 'timestamp', nullable: true }),
     __metadata("design:type", Number)
 ], TodoEntity.prototype, "completedAt", void 0);

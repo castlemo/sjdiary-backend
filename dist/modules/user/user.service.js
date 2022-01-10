@@ -27,6 +27,7 @@ let UserService = class UserService {
         });
     }
     async me(authUser) {
+        console.log(await this.userRepo.findByAuth0Id(authUser.sub));
         return await this.userRepo.findByAuth0Id(authUser.sub);
     }
     async createUser(authUser, input) {

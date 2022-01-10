@@ -1,4 +1,4 @@
-import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { Field, ObjectType } from '@nestjs/graphql';
 import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 
 import { UserEntity } from '../entities';
@@ -18,15 +18,15 @@ export class TodoEntity extends CommonEntity {
   })
   contents: string;
 
-  @Field(() => Int)
+  @Field(() => Date)
   @Column({ name: 'started_at', type: 'timestamp' })
   startedAt: number;
 
-  @Field(() => Int)
+  @Field(() => Date)
   @Column({ name: 'finished_at', type: 'timestamp' })
   finishedAt: number;
 
-  @Field(() => Int, { nullable: true })
+  @Field(() => Date, { nullable: true })
   @Column({ name: 'completed_at', type: 'timestamp', nullable: true })
   completedAt: number;
 

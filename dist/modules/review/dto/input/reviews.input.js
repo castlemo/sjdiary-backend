@@ -15,12 +15,12 @@ const class_validator_1 = require("class-validator");
 let ReviewsInput = class ReviewsInput {
 };
 __decorate([
-    (0, graphql_1.Field)(() => graphql_1.Int),
+    (0, graphql_1.Field)(() => Date),
     (0, class_validator_1.Min)(1),
     __metadata("design:type", Number)
 ], ReviewsInput.prototype, "startDate", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_1.Int),
+    (0, graphql_1.Field)(() => Date),
     (0, class_validator_1.Min)(1),
     __metadata("design:type", Number)
 ], ReviewsInput.prototype, "endDate", void 0);

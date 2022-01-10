@@ -1,13 +1,13 @@
-import { Field, InputType, Int } from '@nestjs/graphql';
+import { Field, InputType } from '@nestjs/graphql';
 import { Min } from 'class-validator';
 
 @InputType()
 export class TodosInput {
-  @Field(() => Int)
+  @Field(() => Date)
   @Min(1)
   startDate: number;
 
-  @Field(() => Int)
+  @Field(() => Date)
   @Min(1)
   endDate: number;
 }

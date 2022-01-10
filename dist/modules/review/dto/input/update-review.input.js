@@ -25,12 +25,12 @@ __decorate([
     __metadata("design:type", String)
 ], UpdateReviewInput.prototype, "contents", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_1.Int, { nullable: true }),
+    (0, graphql_1.Field)(() => Date, { nullable: true }),
     (0, class_validator_1.Min)(1),
     __metadata("design:type", Number)
 ], UpdateReviewInput.prototype, "startedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_1.Int, { nullable: true }),
+    (0, graphql_1.Field)(() => Date, { nullable: true }),
     (0, class_validator_1.Min)(1),
     __metadata("design:type", Number)
 ], UpdateReviewInput.prototype, "finishedAt", void 0);

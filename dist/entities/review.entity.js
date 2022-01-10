@@ -25,12 +25,12 @@ __decorate([
     __metadata("design:type", String)
 ], ReviewEntity.prototype, "contents", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_1.Int),
+    (0, graphql_1.Field)(() => Date),
     (0, typeorm_1.Column)({ name: 'started_at', type: 'timestamp' }),
     __metadata("design:type", Number)
 ], ReviewEntity.prototype, "startedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_1.Int),
+    (0, graphql_1.Field)(() => Date),
     (0, typeorm_1.Column)({ name: 'finished_at', type: 'timestamp' }),
     __metadata("design:type", Number)
 ], ReviewEntity.prototype, "finishedAt", void 0);

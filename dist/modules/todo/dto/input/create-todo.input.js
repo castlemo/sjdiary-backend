@@ -25,12 +25,12 @@ __decorate([
     __metadata("design:type", String)
 ], CreateTodoInput.prototype, "contents", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_1.Int),
+    (0, graphql_1.Field)(() => Date),
     (0, class_validator_1.Min)(1),
     __metadata("design:type", Number)
 ], CreateTodoInput.prototype, "startedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_1.Int),
+    (0, graphql_1.Field)(() => Date),
     (0, class_validator_1.Min)(1),
     __metadata("design:type", Number)
 ], CreateTodoInput.prototype, "finishedAt", void 0);

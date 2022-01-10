@@ -1,4 +1,4 @@
-import { Field, InputType, Int } from '@nestjs/graphql';
+import { Field, InputType } from '@nestjs/graphql';
 import { MinLength, MaxLength, Min } from 'class-validator';
 
 @InputType()
@@ -12,11 +12,11 @@ export class CreateTodoInput {
   })
   contents: string;
 
-  @Field(() => Int)
+  @Field(() => Date)
   @Min(1)
   startedAt: number;
 
-  @Field(() => Int)
+  @Field(() => Date)
   @Min(1)
   finishedAt: number;
 }

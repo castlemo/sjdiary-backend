@@ -4,14 +4,14 @@
 
 input CreateReviewInput {
   contents: String!
-  finishedAt: Int!
-  startedAt: Int!
+  finishedAt: Timestamp!
+  startedAt: Timestamp!
 }
 
 input CreateTodoInput {
   contents: String!
-  finishedAt: Int!
-  startedAt: Int!
+  finishedAt: Timestamp!
+  startedAt: Timestamp!
 }
 
 input CreateUserInput {
@@ -49,55 +49,59 @@ type Query {
 
 type Review {
   contents: String!
-  createdAt: Int!
-  deletedAt: Int
-  finishedAt: Int!
+  createdAt: Timestamp!
+  deletedAt: Timestamp
+  finishedAt: Timestamp!
   id: ID!
-  startedAt: Int!
-  updatedAt: Int!
+  startedAt: Timestamp!
+  updatedAt: Timestamp!
 }
 
 input ReviewsInput {
-  endDate: Int!
-  startDate: Int!
+  endDate: Timestamp!
+  startDate: Timestamp!
 }
 
+"""
+`Date` type as integer. Type represents date and time as number of milliseconds from start of UNIX epoch.
+"""
+scalar Timestamp
+
 type Todo {
-  completedAt: Int
+  completedAt: Timestamp
   contents: String!
-  createdAt: Int!
-  deletedAt: Int
-  finishedAt: Int!
+  createdAt: Timestamp!
+  deletedAt: Timestamp
+  finishedAt: Timestamp!
   id: ID!
-  startedAt: Int!
-  updatedAt: Int!
+  startedAt: Timestamp!
+  updatedAt: Timestamp!
 }
 
 input TodosInput {
-  endDate: Int!
-  startDate: Int!
+  endDate: Timestamp!
+  startDate: Timestamp!
 }
 
 input UpdateReviewInput {
   contents: String
-  finishedAt: Int
-  startedAt: Int
+  finishedAt: Timestamp
+  startedAt: Timestamp
 }
 
 input UpdateTodoInput {
-  completedAt: Int
+  completedAt: Timestamp
   contents: String
-  finishedAt: Int
-  startedAt: Int
+  finishedAt: Timestamp
+  startedAt: Timestamp
 }
 
 type User {
-  auth0Id: String!
-  createdAt: Int!
-  deletedAt: Int
+  createdAt: Timestamp!
+  deletedAt: Timestamp
   email: String!
   id: ID!
   name: String!
   profileImageUrl: String!
-  updatedAt: Int!
+  updatedAt: Timestamp!
 }

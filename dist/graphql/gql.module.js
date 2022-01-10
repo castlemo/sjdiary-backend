@@ -19,7 +19,9 @@ GqlModule = __decorate([
         imports: [
             graphql_1.GraphQLModule.forRootAsync({
                 inject: [config_1.ConfigService],
-                useFactory: (configService) => (Object.assign({}, configService.get(constants_1.GQL))),
+                useFactory: (configService) => (Object.assign(Object.assign({}, configService.get(constants_1.GQL)), { buildSchemaOptions: {
+                        dateScalarMode: 'timestamp',
+                    } })),
             }),
         ],
         providers: [plugins_1.LoggingPlugin],

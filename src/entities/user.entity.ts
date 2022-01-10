@@ -12,7 +12,6 @@ const USER = 'user';
   name: USER,
 })
 export class UserEntity extends CommonEntity {
-  @Field(() => String)
   @Column({ name: 'auth0_id' })
   auth0Id: string;
 

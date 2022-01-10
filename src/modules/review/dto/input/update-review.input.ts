@@ -1,4 +1,4 @@
-import { Field, InputType, Int } from '@nestjs/graphql';
+import { Field, InputType } from '@nestjs/graphql';
 import { MaxLength, Min, MinLength } from 'class-validator';
 
 @InputType()
@@ -12,11 +12,11 @@ export class UpdateReviewInput {
   })
   contents?: string;
 
-  @Field(() => Int, { nullable: true })
+  @Field(() => Date, { nullable: true })
   @Min(1)
   startedAt?: number;
 
-  @Field(() => Int, { nullable: true })
+  @Field(() => Date, { nullable: true })
   @Min(1)
   finishedAt?: number;
 }

@@ -4,22 +4,22 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Field, ID, Int, ObjectType } from '@nestjs/graphql';
+import { Field, ID, ObjectType } from '@nestjs/graphql';
 @ObjectType()
 export abstract class CommonEntity {
   @Field(() => ID)
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Field(() => Int)
+  @Field(() => Date)
   @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
   createdAt: number;
 
-  @Field(() => Int)
+  @Field(() => Date)
   @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
   updatedAt: number;
 
-  @Field(() => Int, { nullable: true })
+  @Field(() => Date, { nullable: true })
   @DeleteDateColumn({ name: 'deleted_at', type: 'timestamp', nullable: true })
   deletedAt: number;
 }

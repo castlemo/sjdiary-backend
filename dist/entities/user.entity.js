@@ -18,7 +18,6 @@ const USER = 'user';
 let UserEntity = class UserEntity extends common_entity_1.CommonEntity {
 };
 __decorate([
-    (0, graphql_1.Field)(() => String),
     (0, typeorm_1.Column)({ name: 'auth0_id' }),
     __metadata("design:type", String)
 ], UserEntity.prototype, "auth0Id", void 0);
