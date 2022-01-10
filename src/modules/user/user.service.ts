@@ -26,7 +26,6 @@ export class UserService {
   }
 
   async me(authUser: IAuthUser) {
-    console.log(await this.userRepo.findByAuth0Id(authUser.sub));
     return await this.userRepo.findByAuth0Id(authUser.sub);
   }
 
