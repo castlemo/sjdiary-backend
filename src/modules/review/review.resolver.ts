@@ -8,7 +8,7 @@ import {
   ReviewsInput,
   UpdateReviewInput,
 } from './dto/input';
-import { Review } from './dto/output';
+import { Review } from './review.model';
 import { ReviewService } from './review.service';
 
 @Resolver(() => Review)

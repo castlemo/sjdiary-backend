@@ -1,8 +1,11 @@
 import { Field, InputType } from '@nestjs/graphql';
 import { MinLength, MaxLength, Min } from 'class-validator';
+import { Todo } from '../../todo.model';
 
 @InputType()
-export class CreateTodoInput {
+export class CreateTodoInput
+  implements Pick<Todo, 'contents' | 'startedAt' | 'finishedAt'>
+{
   @Field(() => String)
   @MinLength(1, {
     message: 'contents is too short',

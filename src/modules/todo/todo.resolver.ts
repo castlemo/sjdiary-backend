@@ -2,7 +2,7 @@ import { IAuth0User } from './../../auth/auth.interface';
 import { Resolver, Query, Args, Mutation } from '@nestjs/graphql';
 import { Auth0User } from 'src/auth';
 
-import { Todo } from './dto/output';
+import { Todo } from './todo.model';
 import { TodoService } from './todo.service';
 import {
   CreateTodoInput,

@@ -6,7 +6,7 @@ import { Auth0User, GqlAuthGuard } from 'src/auth';
 
 import { UserService } from './user.service';
 import { CreateUserInput } from './dto/input';
-import { User } from './dto/output';
+import { User } from './user.model';
 
 @Resolver(() => User)
 export class UserResolver {

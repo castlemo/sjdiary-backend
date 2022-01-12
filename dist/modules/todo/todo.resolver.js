@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TodoResolver = void 0;
 const graphql_1 = require("@nestjs/graphql");
 const auth_1 = require("../../auth");
-const output_1 = require("./dto/output");
+const todo_model_1 = require("./todo.model");
 const todo_service_1 = require("./todo.service");
 const input_1 = require("./dto/input");
 let TodoResolver = class TodoResolver {
@@ -36,7 +36,7 @@ let TodoResolver = class TodoResolver {
     }
 };
 __decorate([
-    (0, graphql_1.Query)(() => [output_1.Todo]),
+    (0, graphql_1.Query)(() => [todo_model_1.Todo]),
     __param(0, (0, auth_1.Auth0User)()),
     __param(1, (0, graphql_1.Args)('input')),
     __metadata("design:type", Function),
@@ -44,7 +44,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], TodoResolver.prototype, "todos", null);
 __decorate([
-    (0, graphql_1.Mutation)(() => output_1.Todo),
+    (0, graphql_1.Mutation)(() => todo_model_1.Todo),
     __param(0, (0, auth_1.Auth0User)()),
     __param(1, (0, graphql_1.Args)('input')),
     __metadata("design:type", Function),
@@ -52,7 +52,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], TodoResolver.prototype, "createTodo", null);
 __decorate([
-    (0, graphql_1.Mutation)(() => output_1.Todo),
+    (0, graphql_1.Mutation)(() => todo_model_1.Todo),
     __param(0, (0, auth_1.Auth0User)()),
     __param(1, (0, graphql_1.Args)('input')),
     __metadata("design:type", Function),
@@ -68,7 +68,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], TodoResolver.prototype, "deleteTodo", null);
 TodoResolver = __decorate([
-    (0, graphql_1.Resolver)(() => output_1.Todo),
+    (0, graphql_1.Resolver)(() => todo_model_1.Todo),
     __metadata("design:paramtypes", [todo_service_1.TodoService])
 ], TodoResolver);
 exports.TodoResolver = TodoResolver;

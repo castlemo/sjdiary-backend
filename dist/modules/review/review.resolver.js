@@ -16,7 +16,7 @@ exports.ReviewResolver = void 0;
 const graphql_1 = require("@nestjs/graphql");
 const auth_1 = require("../../auth");
 const input_1 = require("./dto/input");
-const output_1 = require("./dto/output");
+const review_model_1 = require("./review.model");
 const review_service_1 = require("./review.service");
 let ReviewResolver = class ReviewResolver {
     constructor(reviewService) {
@@ -36,7 +36,7 @@ let ReviewResolver = class ReviewResolver {
     }
 };
 __decorate([
-    (0, graphql_1.Query)(() => [output_1.Review]),
+    (0, graphql_1.Query)(() => [review_model_1.Review]),
     __param(0, (0, auth_1.Auth0User)()),
     __param(1, (0, graphql_1.Args)('input')),
     __metadata("design:type", Function),
@@ -44,7 +44,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ReviewResolver.prototype, "reviews", null);
 __decorate([
-    (0, graphql_1.Mutation)(() => output_1.Review),
+    (0, graphql_1.Mutation)(() => review_model_1.Review),
     __param(0, (0, auth_1.Auth0User)()),
     __param(1, (0, graphql_1.Args)('input')),
     __metadata("design:type", Function),
@@ -52,7 +52,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ReviewResolver.prototype, "createReview", null);
 __decorate([
-    (0, graphql_1.Mutation)(() => output_1.Review),
+    (0, graphql_1.Mutation)(() => review_model_1.Review),
     __param(0, (0, auth_1.Auth0User)()),
     __param(1, (0, graphql_1.Args)('input')),
     __metadata("design:type", Function),
@@ -68,7 +68,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ReviewResolver.prototype, "deleteReview", null);
 ReviewResolver = __decorate([
-    (0, graphql_1.Resolver)(() => output_1.Review),
+    (0, graphql_1.Resolver)(() => review_model_1.Review),
     __metadata("design:paramtypes", [review_service_1.ReviewService])
 ], ReviewResolver);
 exports.ReviewResolver = ReviewResolver;

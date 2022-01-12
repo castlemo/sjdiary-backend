@@ -18,7 +18,7 @@ const graphql_1 = require("@nestjs/graphql");
 const auth_1 = require("../../auth");
 const user_service_1 = require("./user.service");
 const input_1 = require("./dto/input");
-const output_1 = require("./dto/output");
+const user_model_1 = require("./user.model");
 let UserResolver = class UserResolver {
     constructor(userService) {
         this.userService = userService;
@@ -45,14 +45,14 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserResolver.prototype, "verifyUser", null);
 __decorate([
-    (0, graphql_1.Query)(() => output_1.User),
+    (0, graphql_1.Query)(() => user_model_1.User),
     (0, common_1.UseGuards)(auth_1.GqlAuthGuard),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], UserResolver.prototype, "users", null);
 __decorate([
-    (0, graphql_1.Query)(() => output_1.User),
+    (0, graphql_1.Query)(() => user_model_1.User),
     (0, common_1.UseGuards)(auth_1.GqlAuthGuard),
     __param(0, (0, auth_1.Auth0User)()),
     __metadata("design:type", Function),
@@ -60,7 +60,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserResolver.prototype, "me", null);
 __decorate([
-    (0, graphql_1.Mutation)(() => output_1.User),
+    (0, graphql_1.Mutation)(() => user_model_1.User),
     (0, common_1.UseGuards)(auth_1.GqlAuthGuard),
     __param(0, (0, auth_1.Auth0User)()),
     __param(1, (0, graphql_1.Args)('input')),
@@ -69,7 +69,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserResolver.prototype, "createUser", null);
 UserResolver = __decorate([
-    (0, graphql_1.Resolver)(() => output_1.User),
+    (0, graphql_1.Resolver)(() => user_model_1.User),
     __metadata("design:paramtypes", [user_service_1.UserService])
 ], UserResolver);
 exports.UserResolver = UserResolver;
