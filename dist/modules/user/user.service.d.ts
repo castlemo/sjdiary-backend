@@ -1,11 +1,11 @@
-import { IAuthUser } from 'src/auth';
+import { IAuth0User } from 'src/auth';
 import { CreateUserInput } from './dto/input';
 export declare class UserService {
     private readonly userRepo;
-    verifyUser(authUser: IAuthUser): Promise<boolean>;
+    verifyUser(authUser: IAuth0User): Promise<boolean>;
     users(): Promise<import("../../entities").UserEntity[]>;
-    me(authUser: IAuthUser): Promise<import("../../entities").UserEntity>;
-    createUser(authUser: IAuthUser, input: CreateUserInput): Promise<{
+    me(authUser: IAuth0User): Promise<import("../../entities").UserEntity>;
+    createUser(authUser: IAuth0User, input: CreateUserInput): Promise<{
         email: string;
         name: string;
         profileImageUrl: string;

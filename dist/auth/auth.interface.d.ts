@@ -1,4 +1,4 @@
-export interface IAuthUser {
+export interface IAuth0User {
     iss: string;
     sub: string;
     aud: any;

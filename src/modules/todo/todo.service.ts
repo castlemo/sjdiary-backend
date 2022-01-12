@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { IsNull, LessThanOrEqual, MoreThanOrEqual } from 'typeorm';
 
-import { IAuthUser } from 'src/auth';
+import { IAuth0User } from 'src/auth';
 import { UserRepository } from '../user';
 
 import {
@@ -21,7 +21,7 @@ export class TodoService {
   @InjectRepository(UserRepository)
   private readonly userRepo: UserRepository;
 
-  async todos(authUser: IAuthUser, { startDate, endDate }: TodosInput) {
+  async todos(authUser: IAuth0User, { startDate, endDate }: TodosInput) {
     const user = await this.userRepo.findByAuth0Id(authUser.sub);
 
     return this.todoRepo.find({
@@ -37,7 +37,7 @@ export class TodoService {
     });
   }
 
-  async createTodo(authUser: IAuthUser, input: CreateTodoInput) {
+  async createTodo(authUser: IAuth0User, input: CreateTodoInput) {
     const user = await this.userRepo.findByAuth0Id(authUser.sub);
 
     return await this.todoRepo.save({
@@ -46,7 +46,7 @@ export class TodoService {
     });
   }
 
-  async updateTodo(authUser: IAuthUser, input: UpdateTodoInput) {
+  async updateTodo(authUser: IAuth0User, input: UpdateTodoInput) {
     const user = await this.userRepo.findByAuth0Id(authUser.sub);
 
     if (Object.keys(input).length < 1) {
@@ -59,7 +59,7 @@ export class TodoService {
     });
   }
 
-  async deleteTodo(authUser: IAuthUser, { todoId }: DeleteTodoInput) {
+  async deleteTodo(authUser: IAuth0User, { todoId }: DeleteTodoInput) {
     try {
       const user = await this.userRepo.findByAuth0Id(authUser.sub);
 

@@ -1,13 +1,13 @@
-import { IAuthUser } from './../../auth/auth.interface';
+import { IAuth0User } from './../../auth/auth.interface';
 import { UserService } from './user.service';
 import { CreateUserInput } from './dto/input';
 export declare class UserResolver {
     private readonly userService;
     constructor(userService: UserService);
-    verifyUser(authUser: IAuthUser): Promise<boolean>;
+    verifyUser(authUser: IAuth0User): Promise<boolean>;
     users(): Promise<import("../../entities").UserEntity[]>;
-    me(authUser: IAuthUser): Promise<import("../../entities").UserEntity>;
-    createUser(authUser: IAuthUser, input: CreateUserInput): Promise<{
+    me(authUser: IAuth0User): Promise<import("../../entities").UserEntity>;
+    createUser(authUser: IAuth0User, input: CreateUserInput): Promise<{
         email: string;
         name: string;
         profileImageUrl: string;

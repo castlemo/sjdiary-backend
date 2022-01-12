@@ -39,7 +39,7 @@ let UserResolver = class UserResolver {
 __decorate([
     (0, graphql_1.Query)(() => Boolean),
     (0, common_1.UseGuards)(auth_1.GqlAuthGuard),
-    __param(0, (0, auth_1.AuthUser)()),
+    __param(0, (0, auth_1.Auth0User)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
@@ -54,7 +54,7 @@ __decorate([
 __decorate([
     (0, graphql_1.Query)(() => output_1.User),
     (0, common_1.UseGuards)(auth_1.GqlAuthGuard),
-    __param(0, (0, auth_1.AuthUser)()),
+    __param(0, (0, auth_1.Auth0User)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
@@ -62,7 +62,7 @@ __decorate([
 __decorate([
     (0, graphql_1.Mutation)(() => output_1.User),
     (0, common_1.UseGuards)(auth_1.GqlAuthGuard),
-    __param(0, (0, auth_1.AuthUser)()),
+    __param(0, (0, auth_1.Auth0User)()),
     __param(1, (0, graphql_1.Args)('input')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, input_1.CreateUserInput]),

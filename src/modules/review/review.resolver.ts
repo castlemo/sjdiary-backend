@@ -1,6 +1,6 @@
-import { IAuthUser } from './../../auth/auth.interface';
+import { IAuth0User } from './../../auth/auth.interface';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { AuthUser } from 'src/auth';
+import { Auth0User } from 'src/auth';
 
 import {
   CreateReviewInput,
@@ -17,7 +17,7 @@ export class ReviewResolver {
 
   @Query(() => [Review])
   async reviews(
-    @AuthUser() authUser: IAuthUser,
+    @Auth0User() authUser: IAuth0User,
     @Args('input') input: ReviewsInput,
   ) {
     return this.reviewService.reviews(authUser, input);
@@ -25,7 +25,7 @@ export class ReviewResolver {
 
   @Mutation(() => Review)
   async createReview(
-    @AuthUser() authUser: IAuthUser,
+    @Auth0User() authUser: IAuth0User,
     @Args('input') input: CreateReviewInput,
   ) {
     return this.reviewService.createReview(authUser, input);
@@ -33,7 +33,7 @@ export class ReviewResolver {
 
   @Mutation(() => Review)
   async updateReview(
-    @AuthUser() authUser: IAuthUser,
+    @Auth0User() authUser: IAuth0User,
     @Args('input') input: UpdateReviewInput,
   ) {
     return this.reviewService.updateReview(authUser, input);
@@ -41,7 +41,7 @@ export class ReviewResolver {
 
   @Mutation(() => Boolean)
   async deleteReview(
-    @AuthUser() authUser: IAuthUser,
+    @Auth0User() authUser: IAuth0User,
     @Args('input') input: DeleteReviewInput,
   ) {
     return this.reviewService.deleteReview(authUser, input);

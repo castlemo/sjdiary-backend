@@ -1,8 +1,8 @@
-import { IAuthUser } from './../../auth/auth.interface';
+import { IAuth0User } from './../../auth/auth.interface';
 import { UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 
-import { AuthUser, GqlAuthGuard } from 'src/auth';
+import { Auth0User, GqlAuthGuard } from 'src/auth';
 
 import { UserService } from './user.service';
 import { CreateUserInput } from './dto/input';
@@ -14,7 +14,7 @@ export class UserResolver {
 
   @Query(() => Boolean)
   @UseGuards(GqlAuthGuard)
-  async verifyUser(@AuthUser() authUser: IAuthUser) {
+  async verifyUser(@Auth0User() authUser: IAuth0User) {
     return this.userService.verifyUser(authUser);
   }
 
@@ -26,14 +26,14 @@ export class UserResolver {
 
   @Query(() => User)
   @UseGuards(GqlAuthGuard)
-  async me(@AuthUser() authUser: IAuthUser) {
+  async me(@Auth0User() authUser: IAuth0User) {
     return await this.userService.me(authUser);
   }
 
   @Mutation(() => User)
   @UseGuards(GqlAuthGuard)
   async createUser(
-    @AuthUser() authUser: IAuthUser,
+    @Auth0User() authUser: IAuth0User,
     @Args('input') input: CreateUserInput,
   ) {
     return await this.userService.createUser(authUser, input);

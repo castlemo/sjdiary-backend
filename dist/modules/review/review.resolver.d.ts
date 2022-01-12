@@ -1,21 +1,21 @@
-import { IAuthUser } from './../../auth/auth.interface';
+import { IAuth0User } from './../../auth/auth.interface';
 import { CreateReviewInput, DeleteReviewInput, ReviewsInput, UpdateReviewInput } from './dto/input';
 import { ReviewService } from './review.service';
 export declare class ReviewResolver {
     private readonly reviewService;
     constructor(reviewService: ReviewService);
-    reviews(authUser: IAuthUser, input: ReviewsInput): Promise<import("../../entities").ReviewEntity[]>;
-    createReview(authUser: IAuthUser, input: CreateReviewInput): Promise<{
+    reviews(authUser: IAuth0User, input: ReviewsInput): Promise<import("../../entities").ReviewEntity[]>;
+    createReview(authUser: IAuth0User, input: CreateReviewInput): Promise<{
         contents: string;
         startedAt: number;
         finishedAt: number;
         user: import("../../entities").UserEntity;
     } & import("../../entities").ReviewEntity>;
-    updateReview(authUser: IAuthUser, input: UpdateReviewInput): Promise<{
+    updateReview(authUser: IAuth0User, input: UpdateReviewInput): Promise<{
         contents?: string;
         startedAt?: number;
         finishedAt?: number;
         user: import("../../entities").UserEntity;
     } & import("../../entities").ReviewEntity>;
-    deleteReview(authUser: IAuthUser, input: DeleteReviewInput): Promise<import("typeorm").UpdateResult>;
+    deleteReview(authUser: IAuth0User, input: DeleteReviewInput): Promise<import("typeorm").UpdateResult>;
 }

@@ -37,7 +37,7 @@ let ReviewResolver = class ReviewResolver {
 };
 __decorate([
     (0, graphql_1.Query)(() => [output_1.Review]),
-    __param(0, (0, auth_1.AuthUser)()),
+    __param(0, (0, auth_1.Auth0User)()),
     __param(1, (0, graphql_1.Args)('input')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, input_1.ReviewsInput]),
@@ -45,7 +45,7 @@ __decorate([
 ], ReviewResolver.prototype, "reviews", null);
 __decorate([
     (0, graphql_1.Mutation)(() => output_1.Review),
-    __param(0, (0, auth_1.AuthUser)()),
+    __param(0, (0, auth_1.Auth0User)()),
     __param(1, (0, graphql_1.Args)('input')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, input_1.CreateReviewInput]),
@@ -53,7 +53,7 @@ __decorate([
 ], ReviewResolver.prototype, "createReview", null);
 __decorate([
     (0, graphql_1.Mutation)(() => output_1.Review),
-    __param(0, (0, auth_1.AuthUser)()),
+    __param(0, (0, auth_1.Auth0User)()),
     __param(1, (0, graphql_1.Args)('input')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, input_1.UpdateReviewInput]),
@@ -61,7 +61,7 @@ __decorate([
 ], ReviewResolver.prototype, "updateReview", null);
 __decorate([
     (0, graphql_1.Mutation)(() => Boolean),
-    __param(0, (0, auth_1.AuthUser)()),
+    __param(0, (0, auth_1.Auth0User)()),
     __param(1, (0, graphql_1.Args)('input')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, input_1.DeleteReviewInput]),

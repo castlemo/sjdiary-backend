@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { IsNull, LessThanOrEqual, MoreThanOrEqual } from 'typeorm';
 
-import { IAuthUser } from 'src/auth';
+import { IAuth0User } from 'src/auth';
 import { UserRepository } from '../user';
 
 import {
@@ -20,7 +20,7 @@ export class ReviewService {
   @InjectRepository(UserRepository)
   private readonly userRepo: UserRepository;
 
-  async reviews(authUser: IAuthUser, { startDate, endDate }: ReviewsInput) {
+  async reviews(authUser: IAuth0User, { startDate, endDate }: ReviewsInput) {
     const user = await this.userRepo.findByAuth0Id(authUser.sub);
 
     return this.reviewRepo.find({
@@ -36,7 +36,7 @@ export class ReviewService {
     });
   }
 
-  async createReview(authUser: IAuthUser, input: CreateReviewInput) {
+  async createReview(authUser: IAuth0User, input: CreateReviewInput) {
     const user = await this.userRepo.findByAuth0Id(authUser.sub);
 
     return await this.reviewRepo.save({
@@ -45,7 +45,7 @@ export class ReviewService {
     });
   }
 
-  async updateReview(authUser: IAuthUser, input: UpdateReviewInput) {
+  async updateReview(authUser: IAuth0User, input: UpdateReviewInput) {
     const user = await this.userRepo.findByAuth0Id(authUser.sub);
 
     return await this.reviewRepo.save({
@@ -54,7 +54,7 @@ export class ReviewService {
     });
   }
 
-  async deleteReview(authUser: IAuthUser, { reviewId }: DeleteReviewInput) {
+  async deleteReview(authUser: IAuth0User, { reviewId }: DeleteReviewInput) {
     const user = await this.userRepo.findByAuth0Id(authUser.sub);
 
     return await this.reviewRepo.softDelete({ user, id: reviewId });

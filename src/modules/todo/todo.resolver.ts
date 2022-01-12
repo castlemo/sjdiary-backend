@@ -1,6 +1,6 @@
-import { IAuthUser } from './../../auth/auth.interface';
+import { IAuth0User } from './../../auth/auth.interface';
 import { Resolver, Query, Args, Mutation } from '@nestjs/graphql';
-import { AuthUser } from 'src/auth';
+import { Auth0User } from 'src/auth';
 
 import { Todo } from './dto/output';
 import { TodoService } from './todo.service';
@@ -17,7 +17,7 @@ export class TodoResolver {
 
   @Query(() => [Todo])
   async todos(
-    @AuthUser() authUser: IAuthUser,
+    @Auth0User() authUser: IAuth0User,
     @Args('input') input: TodosInput,
   ) {
     return this.todoService.todos(authUser, input);
@@ -25,7 +25,7 @@ export class TodoResolver {
 
   @Mutation(() => Todo)
   async createTodo(
-    @AuthUser() authUser: IAuthUser,
+    @Auth0User() authUser: IAuth0User,
     @Args('input') input: CreateTodoInput,
   ) {
     return this.todoService.createTodo(authUser, input);
@@ -33,7 +33,7 @@ export class TodoResolver {
 
   @Mutation(() => Todo)
   async updateTodo(
-    @AuthUser() authUser: IAuthUser,
+    @Auth0User() authUser: IAuth0User,
     @Args('input') input: UpdateTodoInput,
   ) {
     return this.todoService.updateTodo(authUser, input);
@@ -41,7 +41,7 @@ export class TodoResolver {
 
   @Mutation(() => Boolean)
   async deleteTodo(
-    @AuthUser() authUser: IAuthUser,
+    @Auth0User() authUser: IAuth0User,
     @Args('input') input: DeleteTodoInput,
   ) {
     return this.todoService.deleteTodo(authUser, input);

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
-import { IAuthUser } from 'src/auth';
+import { IAuth0User } from 'src/auth';
 import { IsNull } from 'typeorm';
 
 import { CreateUserInput } from './dto/input';
@@ -12,7 +12,7 @@ export class UserService {
   @InjectRepository(UserRepository)
   private readonly userRepo: UserRepository;
 
-  async verifyUser(authUser: IAuthUser) {
+  async verifyUser(authUser: IAuth0User) {
     const user = await this.userRepo.findByAuth0Id(authUser.sub);
     return !!user;
   }
@@ -25,11 +25,11 @@ export class UserService {
     });
   }
 
-  async me(authUser: IAuthUser) {
+  async me(authUser: IAuth0User) {
     return await this.userRepo.findByAuth0Id(authUser.sub);
   }
 
-  async createUser(authUser: IAuthUser, input: CreateUserInput) {
+  async createUser(authUser: IAuth0User, input: CreateUserInput) {
     return await this.userRepo.save({
       auth0Id: authUser.sub,
       ...input,
