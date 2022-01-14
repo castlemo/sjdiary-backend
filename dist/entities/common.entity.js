@@ -30,7 +30,6 @@ __decorate([
     __metadata("design:type", Number)
 ], CommonEntity.prototype, "updatedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Date, { nullable: true }),
     (0, typeorm_1.DeleteDateColumn)({ name: 'deleted_at', type: 'timestamp', nullable: true }),
     __metadata("design:type", Number)
 ], CommonEntity.prototype, "deletedAt", void 0);

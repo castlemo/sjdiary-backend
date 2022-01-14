@@ -3,7 +3,10 @@ import { Field, ObjectType } from '@nestjs/graphql';
 import { CommonEntity, ReviewEntity } from 'src/entities';
 
 @ObjectType()
-export class Review extends CommonEntity implements Omit<ReviewEntity, 'user'> {
+export class Review
+  extends CommonEntity
+  implements Omit<ReviewEntity, 'user' | 'deletedAt'>
+{
   @Field(() => String)
   contents: string;
 

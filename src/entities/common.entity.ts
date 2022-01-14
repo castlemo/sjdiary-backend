@@ -19,7 +19,6 @@ export abstract class CommonEntity {
   @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
   updatedAt: number;
 
-  @Field(() => Date, { nullable: true })
   @DeleteDateColumn({ name: 'deleted_at', type: 'timestamp', nullable: true })
   deletedAt: number;
 }

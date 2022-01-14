@@ -10,27 +10,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ReviewEntity = void 0;
-const graphql_1 = require("@nestjs/graphql");
 const typeorm_1 = require("typeorm");
 const entities_1 = require("../entities");
 const common_entity_1 = require("./common.entity");
-const REVIEW = 'review';
 let ReviewEntity = class ReviewEntity extends common_entity_1.CommonEntity {
 };
 __decorate([
-    (0, graphql_1.Field)(() => String),
     (0, typeorm_1.Column)({
         type: 'text',
     }),
     __metadata("design:type", String)
 ], ReviewEntity.prototype, "contents", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Date),
     (0, typeorm_1.Column)({ name: 'started_at', type: 'timestamp' }),
     __metadata("design:type", Number)
 ], ReviewEntity.prototype, "startedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Date),
     (0, typeorm_1.Column)({ name: 'finished_at', type: 'timestamp' }),
     __metadata("design:type", Number)
 ], ReviewEntity.prototype, "finishedAt", void 0);
@@ -40,9 +35,8 @@ __decorate([
     __metadata("design:type", entities_1.UserEntity)
 ], ReviewEntity.prototype, "user", void 0);
 ReviewEntity = __decorate([
-    (0, graphql_1.ObjectType)(REVIEW),
     (0, typeorm_1.Entity)({
-        name: REVIEW,
+        name: 'review',
     })
 ], ReviewEntity);
 exports.ReviewEntity = ReviewEntity;

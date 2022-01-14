@@ -50,7 +50,6 @@ type Query {
 type Review {
   contents: String!
   createdAt: Timestamp!
-  deletedAt: Timestamp
   finishedAt: Timestamp!
   id: ID!
   startedAt: Timestamp!
@@ -71,7 +70,6 @@ type Todo {
   completedAt: Timestamp
   contents: String!
   createdAt: Timestamp!
-  deletedAt: Timestamp
   finishedAt: Timestamp!
   id: ID!
   startedAt: Timestamp!
@@ -98,7 +96,6 @@ input UpdateTodoInput {
 
 type User {
   createdAt: Timestamp!
-  deletedAt: Timestamp
   email: String!
   id: ID!
   name: String!
