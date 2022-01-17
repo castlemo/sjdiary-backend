@@ -19,11 +19,11 @@ __decorate([
     __metadata("design:type", String)
 ], Todo.prototype, "contents", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Date),
+    (0, graphql_1.Field)(() => Date, { nullable: true }),
     __metadata("design:type", Number)
 ], Todo.prototype, "startedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Date),
+    (0, graphql_1.Field)(() => Date, { nullable: true }),
     __metadata("design:type", Number)
 ], Todo.prototype, "finishedAt", void 0);
 __decorate([

@@ -7,12 +7,12 @@ export class Todo extends CommonEntity implements Omit<TodoEntity, 'user'> {
   @Field(() => String)
   contents: string;
 
-  @Field(() => Date)
-  startedAt: number;
-
-  @Field(() => Date)
-  finishedAt: number;
+  @Field(() => Date, { nullable: true })
+  startedAt?: number;
 
   @Field(() => Date, { nullable: true })
-  completedAt: number;
+  finishedAt?: number;
+
+  @Field(() => Date, { nullable: true })
+  completedAt?: number;
 }

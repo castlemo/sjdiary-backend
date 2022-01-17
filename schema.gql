@@ -10,8 +10,8 @@ input CreateReviewInput {
 
 input CreateTodoInput {
   contents: String!
-  finishedAt: Timestamp!
-  startedAt: Timestamp!
+  finishedAt: Timestamp
+  startedAt: Timestamp
 }
 
 input CreateUserInput {
@@ -50,9 +50,9 @@ type Query {
 type Review {
   contents: String!
   createdAt: Timestamp!
-  finishedAt: Timestamp!
+  finishedAt: Timestamp
   id: ID!
-  startedAt: Timestamp!
+  startedAt: Timestamp
   updatedAt: Timestamp!
 }
 
@@ -70,9 +70,9 @@ type Todo {
   completedAt: Timestamp
   contents: String!
   createdAt: Timestamp!
-  finishedAt: Timestamp!
+  finishedAt: Timestamp
   id: ID!
-  startedAt: Timestamp!
+  startedAt: Timestamp
   updatedAt: Timestamp!
 }
 

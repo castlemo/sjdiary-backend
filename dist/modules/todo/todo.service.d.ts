@@ -6,8 +6,8 @@ export declare class TodoService {
     todos(authUser: IAuth0User, { startDate, endDate }: TodosInput): Promise<import("../../entities").TodoEntity[]>;
     createTodo(authUser: IAuth0User, input: CreateTodoInput): Promise<{
         contents: string;
-        startedAt: number;
-        finishedAt: number;
+        startedAt?: number;
+        finishedAt?: number;
         user: import("../../entities").UserEntity;
     } & import("../../entities").TodoEntity>;
     updateTodo(authUser: IAuth0User, input: UpdateTodoInput): Promise<{

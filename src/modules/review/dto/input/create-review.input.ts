@@ -1,22 +1,16 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { MaxLength, Min, MinLength } from 'class-validator';
+import { Review } from '../../review.model';
 
 @InputType()
-export class CreateReviewInput {
+export class CreateReviewInput
+  implements Pick<Review, 'contents' | 'startedAt' | 'finishedAt'>
+{
   @Field(() => String)
-  @MinLength(1, {
-    message: 'contents is too short',
-  })
-  @MaxLength(23, {
-    message: 'contents is too long',
-  })
   contents: string;
 
   @Field(() => Date)
-  @Min(1)
-  startedAt: number;
+  startedAt?: number;
 
   @Field(() => Date)
-  @Min(1)
-  finishedAt: number;
+  finishedAt?: number;
 }

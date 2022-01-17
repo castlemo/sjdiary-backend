@@ -11,17 +11,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ReviewsInput = void 0;
 const graphql_1 = require("@nestjs/graphql");
-const class_validator_1 = require("class-validator");
 let ReviewsInput = class ReviewsInput {
 };
 __decorate([
     (0, graphql_1.Field)(() => Date),
-    (0, class_validator_1.Min)(1),
     __metadata("design:type", Number)
 ], ReviewsInput.prototype, "startDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date),
-    (0, class_validator_1.Min)(1),
     __metadata("design:type", Number)
 ], ReviewsInput.prototype, "endDate", void 0);
 ReviewsInput = __decorate([

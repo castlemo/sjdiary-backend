@@ -19,11 +19,11 @@ __decorate([
     __metadata("design:type", String)
 ], Review.prototype, "contents", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Date),
+    (0, graphql_1.Field)(() => Date, { nullable: true }),
     __metadata("design:type", Number)
 ], Review.prototype, "startedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Date),
+    (0, graphql_1.Field)(() => Date, { nullable: true }),
     __metadata("design:type", Number)
 ], Review.prototype, "finishedAt", void 0);
 Review = __decorate([

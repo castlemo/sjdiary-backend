@@ -6,8 +6,8 @@ export declare class ReviewService {
     reviews(authUser: IAuth0User, { startDate, endDate }: ReviewsInput): Promise<import("../../entities").ReviewEntity[]>;
     createReview(authUser: IAuth0User, input: CreateReviewInput): Promise<{
         contents: string;
-        startedAt: number;
-        finishedAt: number;
+        startedAt?: number;
+        finishedAt?: number;
         user: import("../../entities").UserEntity;
     } & import("../../entities").ReviewEntity>;
     updateReview(authUser: IAuth0User, input: UpdateReviewInput): Promise<{

@@ -13,14 +13,14 @@ export class TodoEntity extends CommonEntity {
   })
   contents: string;
 
-  @Column({ name: 'started_at', type: 'timestamp' })
-  startedAt: number;
+  @Column({ name: 'started_at', type: 'timestamp', nullable: true })
+  startedAt?: number;
 
-  @Column({ name: 'finished_at', type: 'timestamp' })
-  finishedAt: number;
+  @Column({ name: 'finished_at', type: 'timestamp', nullable: true })
+  finishedAt?: number;
 
   @Column({ name: 'completed_at', type: 'timestamp', nullable: true })
-  completedAt: number;
+  completedAt?: number;
 
   @ManyToOne(() => UserEntity, (user) => user.todos)
   @JoinColumn({ name: 'user_id' })

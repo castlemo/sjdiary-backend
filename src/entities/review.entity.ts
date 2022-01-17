@@ -13,11 +13,11 @@ export class ReviewEntity extends CommonEntity {
   })
   contents: string;
 
-  @Column({ name: 'started_at', type: 'timestamp' })
-  startedAt: number;
+  @Column({ name: 'started_at', type: 'timestamp', nullable: true })
+  startedAt?: number;
 
-  @Column({ name: 'finished_at', type: 'timestamp' })
-  finishedAt: number;
+  @Column({ name: 'finished_at', type: 'timestamp', nullable: true })
+  finishedAt?: number;
 
   @ManyToOne(() => UserEntity, (user) => user.reviews)
   @JoinColumn({ name: 'user_id' })

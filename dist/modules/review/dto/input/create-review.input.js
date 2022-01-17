@@ -11,27 +11,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateReviewInput = void 0;
 const graphql_1 = require("@nestjs/graphql");
-const class_validator_1 = require("class-validator");
 let CreateReviewInput = class CreateReviewInput {
 };
 __decorate([
     (0, graphql_1.Field)(() => String),
-    (0, class_validator_1.MinLength)(1, {
-        message: 'contents is too short',
-    }),
-    (0, class_validator_1.MaxLength)(23, {
-        message: 'contents is too long',
-    }),
     __metadata("design:type", String)
 ], CreateReviewInput.prototype, "contents", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date),
-    (0, class_validator_1.Min)(1),
     __metadata("design:type", Number)
 ], CreateReviewInput.prototype, "startedAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date),
-    (0, class_validator_1.Min)(1),
     __metadata("design:type", Number)
 ], CreateReviewInput.prototype, "finishedAt", void 0);
 CreateReviewInput = __decorate([

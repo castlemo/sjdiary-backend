@@ -22,11 +22,11 @@ __decorate([
     __metadata("design:type", String)
 ], ReviewEntity.prototype, "contents", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'started_at', type: 'timestamp' }),
+    (0, typeorm_1.Column)({ name: 'started_at', type: 'timestamp', nullable: true }),
     __metadata("design:type", Number)
 ], ReviewEntity.prototype, "startedAt", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'finished_at', type: 'timestamp' }),
+    (0, typeorm_1.Column)({ name: 'finished_at', type: 'timestamp', nullable: true }),
     __metadata("design:type", Number)
 ], ReviewEntity.prototype, "finishedAt", void 0);
 __decorate([
