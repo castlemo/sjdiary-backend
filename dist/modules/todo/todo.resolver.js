@@ -18,6 +18,7 @@ const auth_1 = require("../../auth");
 const todo_model_1 = require("./todo.model");
 const todo_service_1 = require("./todo.service");
 const input_1 = require("./dto/input");
+const common_1 = require("@nestjs/common");
 let TodoResolver = class TodoResolver {
     constructor(todoService) {
         this.todoService = todoService;
@@ -37,6 +38,7 @@ let TodoResolver = class TodoResolver {
 };
 __decorate([
     (0, graphql_1.Query)(() => [todo_model_1.Todo]),
+    (0, common_1.UseGuards)(auth_1.GqlAuthGuard),
     __param(0, (0, auth_1.Auth0User)()),
     __param(1, (0, graphql_1.Args)('input')),
     __metadata("design:type", Function),
@@ -45,6 +47,7 @@ __decorate([
 ], TodoResolver.prototype, "todos", null);
 __decorate([
     (0, graphql_1.Mutation)(() => todo_model_1.Todo),
+    (0, common_1.UseGuards)(auth_1.GqlAuthGuard),
     __param(0, (0, auth_1.Auth0User)()),
     __param(1, (0, graphql_1.Args)('input')),
     __metadata("design:type", Function),
@@ -53,6 +56,7 @@ __decorate([
 ], TodoResolver.prototype, "createTodo", null);
 __decorate([
     (0, graphql_1.Mutation)(() => todo_model_1.Todo),
+    (0, common_1.UseGuards)(auth_1.GqlAuthGuard),
     __param(0, (0, auth_1.Auth0User)()),
     __param(1, (0, graphql_1.Args)('input')),
     __metadata("design:type", Function),
@@ -61,6 +65,7 @@ __decorate([
 ], TodoResolver.prototype, "updateTodo", null);
 __decorate([
     (0, graphql_1.Mutation)(() => Boolean),
+    (0, common_1.UseGuards)(auth_1.GqlAuthGuard),
     __param(0, (0, auth_1.Auth0User)()),
     __param(1, (0, graphql_1.Args)('input')),
     __metadata("design:type", Function),

@@ -31,7 +31,6 @@ const config = {
     gql: {
         autoSchemaFile: 'schema.gql',
         debug: env[constants_1.NODE_ENV] === 'local',
-        playground: env[constants_1.IS_PLAYGROUND] === 'true',
         sortSchema: true,
         cors: {
             origin: [env[constants_1.FRONTEND_URL]],

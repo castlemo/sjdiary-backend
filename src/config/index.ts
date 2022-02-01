@@ -45,7 +45,6 @@ const config: IConfig = {
   gql: {
     autoSchemaFile: 'schema.gql',
     debug: env[NODE_ENV] === 'local',
-    playground: env[IS_PLAYGROUND] === 'true',
     sortSchema: true,
     cors: {
       origin: [env[FRONTEND_URL]],

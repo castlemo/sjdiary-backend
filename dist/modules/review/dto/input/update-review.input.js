@@ -14,6 +14,10 @@ const graphql_1 = require("@nestjs/graphql");
 let UpdateReviewInput = class UpdateReviewInput {
 };
 __decorate([
+    (0, graphql_1.Field)(() => graphql_1.ID),
+    __metadata("design:type", Number)
+], UpdateReviewInput.prototype, "id", void 0);
+__decorate([
     (0, graphql_1.Field)(() => String, { nullable: true }),
     __metadata("design:type", String)
 ], UpdateReviewInput.prototype, "contents", void 0);

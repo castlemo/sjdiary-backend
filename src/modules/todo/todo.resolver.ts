@@ -1,6 +1,6 @@
 import { IAuth0User } from './../../auth/auth.interface';
-import { Resolver, Query, Args, Mutation } from '@nestjs/graphql';
-import { Auth0User } from 'src/auth';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Auth0User, GqlAuthGuard } from 'src/auth';
 
 import { Todo } from './todo.model';
 import { TodoService } from './todo.service';
@@ -10,12 +10,14 @@ import {
   TodosInput,
   UpdateTodoInput,
 } from './dto/input';
+import { UseGuards } from '@nestjs/common';
 
 @Resolver(() => Todo)
 export class TodoResolver {
   constructor(private readonly todoService: TodoService) {}
 
   @Query(() => [Todo])
+  @UseGuards(GqlAuthGuard)
   async todos(
     @Auth0User() authUser: IAuth0User,
     @Args('input') input: TodosInput,
@@ -24,6 +26,7 @@ export class TodoResolver {
   }
 
   @Mutation(() => Todo)
+  @UseGuards(GqlAuthGuard)
   async createTodo(
     @Auth0User() authUser: IAuth0User,
     @Args('input') input: CreateTodoInput,
@@ -32,6 +35,7 @@ export class TodoResolver {
   }
 
   @Mutation(() => Todo)
+  @UseGuards(GqlAuthGuard)
   async updateTodo(
     @Auth0User() authUser: IAuth0User,
     @Args('input') input: UpdateTodoInput,
@@ -40,6 +44,7 @@ export class TodoResolver {
   }
 
   @Mutation(() => Boolean)
+  @UseGuards(GqlAuthGuard)
   async deleteTodo(
     @Auth0User() authUser: IAuth0User,
     @Args('input') input: DeleteTodoInput,

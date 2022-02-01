@@ -23,7 +23,7 @@ let TodoService = class TodoService {
             where: {
                 user,
                 startedAt: (0, typeorm_2.MoreThanOrEqual)(startDate),
-                endedAt: (0, typeorm_2.LessThanOrEqual)(endDate),
+                finishedAt: (0, typeorm_2.LessThanOrEqual)(endDate),
                 deletedAt: (0, typeorm_2.IsNull)(),
             },
             order: {

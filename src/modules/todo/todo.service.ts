@@ -6,10 +6,10 @@ import { IAuth0User } from 'src/auth';
 import { UserRepository } from '../user';
 
 import {
-  TodosInput,
   CreateTodoInput,
-  UpdateTodoInput,
   DeleteTodoInput,
+  TodosInput,
+  UpdateTodoInput,
 } from './dto/input';
 import { TodoRepository } from './todo.repository';
 import { ApolloError } from 'apollo-server-express';
@@ -28,7 +28,7 @@ export class TodoService {
       where: {
         user,
         startedAt: MoreThanOrEqual(startDate),
-        endedAt: LessThanOrEqual(endDate),
+        finishedAt: LessThanOrEqual(endDate),
         deletedAt: IsNull(),
       },
       order: {

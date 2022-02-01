@@ -15,6 +15,7 @@ const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const user_1 = require("../user");
 const review_repository_1 = require("./review.repository");
+const apollo_server_express_1 = require("apollo-server-express");
 let ReviewService = class ReviewService {
     async reviews(authUser, { startDate, endDate }) {
         const user = await this.userRepo.findByAuth0Id(authUser.sub);
@@ -22,11 +23,8 @@ let ReviewService = class ReviewService {
             where: {
                 user,
                 startedAt: (0, typeorm_2.MoreThanOrEqual)(startDate),
-                endedAt: (0, typeorm_2.LessThanOrEqual)(endDate),
+                finishedAt: (0, typeorm_2.LessThanOrEqual)(endDate),
                 deletedAt: (0, typeorm_2.IsNull)(),
-            },
-            order: {
-                startedAt: 'ASC',
             },
         });
     }
@@ -36,6 +34,9 @@ let ReviewService = class ReviewService {
     }
     async updateReview(authUser, input) {
         const user = await this.userRepo.findByAuth0Id(authUser.sub);
+        if (Object.keys(input).length < 1) {
+            throw new apollo_server_express_1.ApolloError('This input is empty');
+        }
         return await this.reviewRepo.save(Object.assign({ user }, input));
     }
     async deleteReview(authUser, { reviewId }) {

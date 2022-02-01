@@ -1,5 +1,5 @@
 import { IAuth0User } from 'src/auth';
-import { TodosInput, CreateTodoInput, UpdateTodoInput, DeleteTodoInput } from './dto/input';
+import { CreateTodoInput, DeleteTodoInput, TodosInput, UpdateTodoInput } from './dto/input';
 export declare class TodoService {
     private readonly todoRepo;
     private readonly userRepo;
@@ -11,6 +11,7 @@ export declare class TodoService {
         user: import("../../entities").UserEntity;
     } & import("../../entities").TodoEntity>;
     updateTodo(authUser: IAuth0User, input: UpdateTodoInput): Promise<{
+        id: number;
         contents?: string;
         startedAt?: number;
         finishedAt?: number;

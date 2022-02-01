@@ -12,6 +12,7 @@ import {
   UpdateReviewInput,
 } from './dto/input';
 import { ReviewRepository } from './review.repository';
+import { ApolloError } from 'apollo-server-express';
 
 @Injectable()
 export class ReviewService {
@@ -27,11 +28,8 @@ export class ReviewService {
       where: {
         user,
         startedAt: MoreThanOrEqual(startDate),
-        endedAt: LessThanOrEqual(endDate),
+        finishedAt: LessThanOrEqual(endDate),
         deletedAt: IsNull(),
-      },
-      order: {
-        startedAt: 'ASC',
       },
     });
   }
@@ -47,6 +45,10 @@ export class ReviewService {
 
   async updateReview(authUser: IAuth0User, input: UpdateReviewInput) {
     const user = await this.userRepo.findByAuth0Id(authUser.sub);
+
+    if (Object.keys(input).length < 1) {
+      throw new ApolloError('This input is empty');
+    }
 
     return await this.reviewRepo.save({
       user,

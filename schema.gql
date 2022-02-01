@@ -84,6 +84,7 @@ input TodosInput {
 input UpdateReviewInput {
   contents: String
   finishedAt: Timestamp
+  id: ID!
   startedAt: Timestamp
 }
 
@@ -91,6 +92,7 @@ input UpdateTodoInput {
   completedAt: Timestamp
   contents: String
   finishedAt: Timestamp
+  id: ID!
   startedAt: Timestamp
 }
 

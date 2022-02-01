@@ -12,6 +12,7 @@ export declare class TodoResolver {
         user: import("../../entities").UserEntity;
     } & import("../../entities").TodoEntity>;
     updateTodo(authUser: IAuth0User, input: UpdateTodoInput): Promise<{
+        id: number;
         contents?: string;
         startedAt?: number;
         finishedAt?: number;

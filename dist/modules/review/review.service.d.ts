@@ -11,6 +11,7 @@ export declare class ReviewService {
         user: import("../../entities").UserEntity;
     } & import("../../entities").ReviewEntity>;
     updateReview(authUser: IAuth0User, input: UpdateReviewInput): Promise<{
+        id: number;
         contents?: string;
         startedAt?: number;
         finishedAt?: number;

@@ -16,7 +16,7 @@ const common_entity_1 = require("./common.entity");
 let UserEntity = class UserEntity extends common_entity_1.CommonEntity {
 };
 __decorate([
-    (0, typeorm_1.Column)({ name: 'auth0_id' }),
+    (0, typeorm_1.Column)({ name: 'auth0_id', unique: true }),
     __metadata("design:type", String)
 ], UserEntity.prototype, "auth0Id", void 0);
 __decorate([
@@ -28,7 +28,7 @@ __decorate([
     __metadata("design:type", String)
 ], UserEntity.prototype, "name", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ name: 'profile_image_url' }),
     __metadata("design:type", String)
 ], UserEntity.prototype, "profileImageUrl", void 0);
 __decorate([

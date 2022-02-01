@@ -13,6 +13,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ReviewResolver = void 0;
+const common_1 = require("@nestjs/common");
 const graphql_1 = require("@nestjs/graphql");
 const auth_1 = require("../../auth");
 const input_1 = require("./dto/input");
@@ -37,6 +38,7 @@ let ReviewResolver = class ReviewResolver {
 };
 __decorate([
     (0, graphql_1.Query)(() => [review_model_1.Review]),
+    (0, common_1.UseGuards)(auth_1.GqlAuthGuard),
     __param(0, (0, auth_1.Auth0User)()),
     __param(1, (0, graphql_1.Args)('input')),
     __metadata("design:type", Function),
@@ -45,6 +47,7 @@ __decorate([
 ], ReviewResolver.prototype, "reviews", null);
 __decorate([
     (0, graphql_1.Mutation)(() => review_model_1.Review),
+    (0, common_1.UseGuards)(auth_1.GqlAuthGuard),
     __param(0, (0, auth_1.Auth0User)()),
     __param(1, (0, graphql_1.Args)('input')),
     __metadata("design:type", Function),
@@ -53,6 +56,7 @@ __decorate([
 ], ReviewResolver.prototype, "createReview", null);
 __decorate([
     (0, graphql_1.Mutation)(() => review_model_1.Review),
+    (0, common_1.UseGuards)(auth_1.GqlAuthGuard),
     __param(0, (0, auth_1.Auth0User)()),
     __param(1, (0, graphql_1.Args)('input')),
     __metadata("design:type", Function),
@@ -61,6 +65,7 @@ __decorate([
 ], ReviewResolver.prototype, "updateReview", null);
 __decorate([
     (0, graphql_1.Mutation)(() => Boolean),
+    (0, common_1.UseGuards)(auth_1.GqlAuthGuard),
     __param(0, (0, auth_1.Auth0User)()),
     __param(1, (0, graphql_1.Args)('input')),
     __metadata("design:type", Function),

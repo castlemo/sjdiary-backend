@@ -1,6 +1,7 @@
-import { IAuth0User } from './../../auth/auth.interface';
+import { UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { Auth0User } from 'src/auth';
+import { IAuth0User } from './../../auth/auth.interface';
+import { Auth0User, GqlAuthGuard } from 'src/auth';
 
 import {
   CreateReviewInput,
@@ -16,6 +17,7 @@ export class ReviewResolver {
   constructor(private readonly reviewService: ReviewService) {}
 
   @Query(() => [Review])
+  @UseGuards(GqlAuthGuard)
   async reviews(
     @Auth0User() authUser: IAuth0User,
     @Args('input') input: ReviewsInput,
@@ -24,6 +26,7 @@ export class ReviewResolver {
   }
 
   @Mutation(() => Review)
+  @UseGuards(GqlAuthGuard)
   async createReview(
     @Auth0User() authUser: IAuth0User,
     @Args('input') input: CreateReviewInput,
@@ -32,6 +35,7 @@ export class ReviewResolver {
   }
 
   @Mutation(() => Review)
+  @UseGuards(GqlAuthGuard)
   async updateReview(
     @Auth0User() authUser: IAuth0User,
     @Args('input') input: UpdateReviewInput,
@@ -40,6 +44,7 @@ export class ReviewResolver {
   }
 
   @Mutation(() => Boolean)
+  @UseGuards(GqlAuthGuard)
   async deleteReview(
     @Auth0User() authUser: IAuth0User,
     @Args('input') input: DeleteReviewInput,

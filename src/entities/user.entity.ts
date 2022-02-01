@@ -8,7 +8,7 @@ import { CommonEntity } from './common.entity';
   name: 'user',
 })
 export class UserEntity extends CommonEntity {
-  @Column({ name: 'auth0_id' })
+  @Column({ name: 'auth0_id', unique: true })
   auth0Id: string;
 
   @Column()
@@ -17,7 +17,7 @@ export class UserEntity extends CommonEntity {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ name: 'profile_image_url' })
   profileImageUrl: string;
 
   @OneToMany(() => TodoEntity, (todo) => todo.user)
