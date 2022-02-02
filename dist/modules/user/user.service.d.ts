@@ -1,4 +1,4 @@
-import { IAuth0User } from 'src/auth';
+import { IAuth0User } from '../../auth';
 import { CreateUserInput } from './dto/input';
 export declare class UserService {
     private readonly userRepo;

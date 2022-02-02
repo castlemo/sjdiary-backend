@@ -9,14 +9,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const config_1 = require("@nestjs/config");
-const modules_1 = require("./modules");
-const auth_1 = require("./auth");
-const database_1 = require("./database");
-const config_2 = require("./config");
-const graphql_1 = require("./graphql");
 const app_controller_1 = require("./app.controller");
-const app_service_1 = require("./app.service");
 const app_resolver_1 = require("./app.resolver");
+const app_service_1 = require("./app.service");
+const auth_1 = require("./auth");
+const config_2 = require("./config");
+const database_1 = require("./database");
+const graphql_1 = require("./graphql");
+const modules_1 = require("./modules");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([

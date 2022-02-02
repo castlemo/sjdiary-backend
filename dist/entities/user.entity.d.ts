@@ -1,4 +1,4 @@
-import { TodoEntity, ReviewEntity } from '../entities';
+import { ReviewEntity, TodoEntity } from '../entities';
 import { CommonEntity } from './common.entity';
 export declare class UserEntity extends CommonEntity {
     auth0Id: string;

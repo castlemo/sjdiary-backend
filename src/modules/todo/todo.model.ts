@@ -1,6 +1,6 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 
-import { TodoEntity, CommonEntity } from 'src/entities';
+import { CommonEntity, TodoEntity } from '../../entities';
 
 @ObjectType()
 export class Todo extends CommonEntity implements Omit<TodoEntity, 'user'> {

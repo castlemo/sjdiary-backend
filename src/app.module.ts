@@ -1,15 +1,14 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 
-import { UserModule, TodoModule, ReviewModule, UtilModule } from './modules';
-import { AuthModule } from './auth';
-import { DatabaseModule } from './database';
-import { getConfig as loadConfig } from './config';
-import { GqlModule } from './graphql';
-
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { AppResolver } from './app.resolver';
+import { AppService } from './app.service';
+import { AuthModule } from './auth';
+import { getConfig as loadConfig } from './config';
+import { DatabaseModule } from './database';
+import { GqlModule } from './graphql';
+import { ReviewModule, TodoModule, UserModule, UtilModule } from './modules';
 
 // TODO Module Options Class로 분리
 @Module({

@@ -1,12 +1,11 @@
-import { IAuth0User } from './../../auth/auth.interface';
 import { UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 
-import { Auth0User, GqlAuthGuard } from 'src/auth';
+import { Auth0User, GqlAuthGuard, IAuth0User } from '../../auth';
 
-import { UserService } from './user.service';
 import { CreateUserInput } from './dto/input';
 import { User } from './user.model';
+import { UserService } from './user.service';
 
 @Resolver(() => User)
 export class UserResolver {

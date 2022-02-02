@@ -1,16 +1,17 @@
-import { IAuth0User } from './../../auth/auth.interface';
+import { UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { Auth0User, GqlAuthGuard } from 'src/auth';
 
-import { Todo } from './todo.model';
-import { TodoService } from './todo.service';
+import { Auth0User, GqlAuthGuard } from '../../auth';
+
+import { IAuth0User } from './../../auth/auth.interface';
 import {
   CreateTodoInput,
   DeleteTodoInput,
   TodosInput,
   UpdateTodoInput,
 } from './dto/input';
-import { UseGuards } from '@nestjs/common';
+import { Todo } from './todo.model';
+import { TodoService } from './todo.service';
 
 @Resolver(() => Todo)
 export class TodoResolver {

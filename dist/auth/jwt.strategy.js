@@ -10,11 +10,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.JwtStrategy = void 0;
-const config_1 = require("@nestjs/config");
-const passport_jwt_1 = require("passport-jwt");
-const passport_1 = require("@nestjs/passport");
 const common_1 = require("@nestjs/common");
+const config_1 = require("@nestjs/config");
+const passport_1 = require("@nestjs/passport");
 const jwks_rsa_1 = require("jwks-rsa");
+const passport_jwt_1 = require("passport-jwt");
 const constants_1 = require("../common/constants");
 let JwtStrategy = class JwtStrategy extends (0, passport_1.PassportStrategy)(passport_jwt_1.Strategy) {
     constructor(configService) {

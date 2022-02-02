@@ -10,8 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppResolver = void 0;
-const app_service_1 = require("./app.service");
 const graphql_1 = require("@nestjs/graphql");
+const app_service_1 = require("./app.service");
 let AppResolver = class AppResolver {
     constructor(appService) {
         this.appService = appService;

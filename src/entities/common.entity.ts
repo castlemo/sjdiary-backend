@@ -1,10 +1,10 @@
+import { Field, ID, ObjectType } from '@nestjs/graphql';
 import {
   CreateDateColumn,
   DeleteDateColumn,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Field, ID, ObjectType } from '@nestjs/graphql';
 @ObjectType()
 export abstract class CommonEntity {
   @Field(() => ID)

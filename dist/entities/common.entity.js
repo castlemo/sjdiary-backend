@@ -10,8 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CommonEntity = void 0;
-const typeorm_1 = require("typeorm");
 const graphql_1 = require("@nestjs/graphql");
+const typeorm_1 = require("typeorm");
 let CommonEntity = class CommonEntity {
 };
 __decorate([

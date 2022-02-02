@@ -13,12 +13,12 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TodoResolver = void 0;
+const common_1 = require("@nestjs/common");
 const graphql_1 = require("@nestjs/graphql");
 const auth_1 = require("../../auth");
+const input_1 = require("./dto/input");
 const todo_model_1 = require("./todo.model");
 const todo_service_1 = require("./todo.service");
-const input_1 = require("./dto/input");
-const common_1 = require("@nestjs/common");
 let TodoResolver = class TodoResolver {
     constructor(todoService) {
         this.todoService = todoService;

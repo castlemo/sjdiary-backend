@@ -16,9 +16,9 @@ exports.UserResolver = void 0;
 const common_1 = require("@nestjs/common");
 const graphql_1 = require("@nestjs/graphql");
 const auth_1 = require("../../auth");
-const user_service_1 = require("./user.service");
 const input_1 = require("./dto/input");
 const user_model_1 = require("./user.model");
+const user_service_1 = require("./user.service");
 let UserResolver = class UserResolver {
     constructor(userService) {
         this.userService = userService;

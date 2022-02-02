@@ -1,8 +1,9 @@
-import { ConfigService } from '@nestjs/config';
 import { Module } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 
 import { GQL } from '../common/constants';
+
 import { LoggingPlugin } from './plugins';
 
 @Module({

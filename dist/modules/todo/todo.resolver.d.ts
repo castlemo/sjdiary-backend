@@ -1,6 +1,6 @@
 import { IAuth0User } from './../../auth/auth.interface';
-import { TodoService } from './todo.service';
 import { CreateTodoInput, DeleteTodoInput, TodosInput, UpdateTodoInput } from './dto/input';
+import { TodoService } from './todo.service';
 export declare class TodoResolver {
     private readonly todoService;
     constructor(todoService: TodoService);

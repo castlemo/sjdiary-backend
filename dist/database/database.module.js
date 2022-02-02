@@ -7,8 +7,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DatabaseModule = void 0;
-const config_1 = require("@nestjs/config");
 const common_1 = require("@nestjs/common");
+const config_1 = require("@nestjs/config");
 const typeorm_1 = require("@nestjs/typeorm");
 const constants_1 = require("../common/constants");
 let DatabaseModule = class DatabaseModule {

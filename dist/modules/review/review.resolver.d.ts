@@ -1,4 +1,4 @@
-import { IAuth0User } from './../../auth/auth.interface';
+import { IAuth0User } from '../../auth';
 import { CreateReviewInput, DeleteReviewInput, ReviewsInput, UpdateReviewInput } from './dto/input';
 import { ReviewService } from './review.service';
 export declare class ReviewResolver {

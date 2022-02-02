@@ -1,6 +1,6 @@
 import { Column, Entity, OneToMany } from 'typeorm';
 
-import { TodoEntity, ReviewEntity } from '../entities';
+import { ReviewEntity, TodoEntity } from '../entities';
 
 import { CommonEntity } from './common.entity';
 

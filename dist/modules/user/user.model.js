@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
 const graphql_1 = require("@nestjs/graphql");
-const entities_1 = require("../../entities");
+const entities_1 = require("./../../entities");
 let User = class User extends entities_1.CommonEntity {
 };
 __decorate([

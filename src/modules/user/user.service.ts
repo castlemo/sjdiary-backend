@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-
-import { IAuth0User } from 'src/auth';
 import { IsNull } from 'typeorm';
+
+import { IAuth0User } from '../../auth';
 
 import { CreateUserInput } from './dto/input';
 import { UserRepository } from './user.repository';

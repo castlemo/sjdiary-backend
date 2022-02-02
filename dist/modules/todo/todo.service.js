@@ -12,10 +12,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TodoService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
+const apollo_server_express_1 = require("apollo-server-express");
 const typeorm_2 = require("typeorm");
 const user_1 = require("../user");
 const todo_repository_1 = require("./todo.repository");
-const apollo_server_express_1 = require("apollo-server-express");
 let TodoService = class TodoService {
     async todos(authUser, { startDate, endDate }) {
         const user = await this.userRepo.findByAuth0Id(authUser.sub);

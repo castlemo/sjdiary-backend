@@ -1,4 +1,4 @@
-import { IAuth0User } from 'src/auth';
+import { IAuth0User } from '../../auth';
 import { CreateReviewInput, DeleteReviewInput, ReviewsInput, UpdateReviewInput } from './dto/input';
 export declare class ReviewService {
     private readonly reviewRepo;

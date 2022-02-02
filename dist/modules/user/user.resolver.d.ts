@@ -1,6 +1,6 @@
-import { IAuth0User } from './../../auth/auth.interface';
-import { UserService } from './user.service';
+import { IAuth0User } from '../../auth';
 import { CreateUserInput } from './dto/input';
+import { UserService } from './user.service';
 export declare class UserResolver {
     private readonly userService;
     constructor(userService: UserService);

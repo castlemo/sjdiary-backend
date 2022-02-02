@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { ApolloError } from 'apollo-server-express';
 import { IsNull, LessThanOrEqual, MoreThanOrEqual } from 'typeorm';
 
-import { IAuth0User } from 'src/auth';
+import { IAuth0User } from '../../auth';
 import { UserRepository } from '../user';
 
 import {
@@ -12,7 +13,6 @@ import {
   UpdateReviewInput,
 } from './dto/input';
 import { ReviewRepository } from './review.repository';
-import { ApolloError } from 'apollo-server-express';
 
 @Injectable()
 export class ReviewService {

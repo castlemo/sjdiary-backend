@@ -7,8 +7,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GqlModule = void 0;
-const config_1 = require("@nestjs/config");
 const common_1 = require("@nestjs/common");
+const config_1 = require("@nestjs/config");
 const graphql_1 = require("@nestjs/graphql");
 const constants_1 = require("../common/constants");
 const plugins_1 = require("./plugins");

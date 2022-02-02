@@ -1,4 +1,4 @@
-import { IAuth0User } from 'src/auth';
+import { IAuth0User } from '../../auth';
 import { CreateTodoInput, DeleteTodoInput, TodosInput, UpdateTodoInput } from './dto/input';
 export declare class TodoService {
     private readonly todoRepo;
