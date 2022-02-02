@@ -9,9 +9,9 @@ export class CreateReviewInput
   @Field(() => String)
   contents: string;
 
-  @Field(() => Date)
+  @Field(() => Date, { nullable: true })
   startedAt?: number;
 
-  @Field(() => Date)
+  @Field(() => Date, { nullable: true })
   finishedAt?: number;
 }

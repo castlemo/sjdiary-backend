@@ -10,12 +10,6 @@ export declare class ReviewService {
         finishedAt?: number;
         user: import("../../entities").UserEntity;
     } & import("../../entities").ReviewEntity>;
-    updateReview(authUser: IAuth0User, input: UpdateReviewInput): Promise<{
-        id: number;
-        contents?: string;
-        startedAt?: number;
-        finishedAt?: number;
-        user: import("../../entities").UserEntity;
-    } & import("../../entities").ReviewEntity>;
+    updateReview(authUser: IAuth0User, input: UpdateReviewInput): Promise<import("../../entities").ReviewEntity>;
     deleteReview(authUser: IAuth0User, { reviewId }: DeleteReviewInput): Promise<import("typeorm").UpdateResult>;
 }

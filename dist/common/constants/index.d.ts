@@ -1,4 +1,5 @@
-export declare const FRONTEND_URL = "FRONTEND_URL";
+export declare const LOCAL_FRONTEND_URL = "LOCAL_FRONTEND_URL";
+export declare const VERCEL_FRONTEND_URL = "VERCEL_FRONTEND_URL";
 export declare const IS_PLAYGROUND = "IS_PLAYGROUND";
 export declare const DB_HOST = "DB_HOST";
 export declare const DB_PORT = "DB_PORT";

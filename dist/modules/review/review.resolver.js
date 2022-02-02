@@ -24,16 +24,16 @@ let ReviewResolver = class ReviewResolver {
         this.reviewService = reviewService;
     }
     async reviews(authUser, input) {
-        return this.reviewService.reviews(authUser, input);
+        return await this.reviewService.reviews(authUser, input);
     }
     async createReview(authUser, input) {
-        return this.reviewService.createReview(authUser, input);
+        return await this.reviewService.createReview(authUser, input);
     }
     async updateReview(authUser, input) {
-        return this.reviewService.updateReview(authUser, input);
+        return await this.reviewService.updateReview(authUser, input);
     }
     async deleteReview(authUser, input) {
-        return this.reviewService.deleteReview(authUser, input);
+        return await this.reviewService.deleteReview(authUser, input);
     }
 };
 __decorate([

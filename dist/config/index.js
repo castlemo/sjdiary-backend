@@ -33,7 +33,7 @@ const config = {
         debug: env[constants_1.NODE_ENV] === 'local',
         sortSchema: true,
         cors: {
-            origin: [env[constants_1.FRONTEND_URL]],
+            origin: [env[constants_1.LOCAL_FRONTEND_URL], env[constants_1.VERCEL_FRONTEND_URL]],
             credentials: true,
         },
     },

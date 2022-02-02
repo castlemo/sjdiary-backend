@@ -8,9 +8,9 @@ import {
   DB_PASSWORD,
   DB_PORT,
   DB_USERNAME,
-  FRONTEND_URL,
-  IS_PLAYGROUND,
+  LOCAL_FRONTEND_URL,
   NODE_ENV,
+  VERCEL_FRONTEND_URL,
 } from '../common/constants';
 
 import { IConfig } from './config.interface';
@@ -48,7 +48,7 @@ const config: IConfig = {
     debug: env[NODE_ENV] === 'local',
     sortSchema: true,
     cors: {
-      origin: [env[FRONTEND_URL]],
+      origin: [env[LOCAL_FRONTEND_URL], env[VERCEL_FRONTEND_URL]],
       credentials: true,
     },
   },

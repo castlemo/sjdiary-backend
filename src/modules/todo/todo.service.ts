@@ -24,21 +24,45 @@ export class TodoService {
   async todos(authUser: IAuth0User, { startDate, endDate }: TodosInput) {
     const user = await this.userRepo.findByAuth0Id(authUser.sub);
 
-    return this.todoRepo.find({
-      where: {
-        user,
-        startedAt: MoreThanOrEqual(startDate),
-        finishedAt: LessThanOrEqual(endDate),
-        deletedAt: IsNull(),
-      },
-      order: {
-        startedAt: 'ASC',
-      },
+    return await this.todoRepo.find({
+      where: [
+        {
+          user,
+          startedAt: MoreThanOrEqual(startDate),
+          deletedAt: IsNull(),
+        },
+        {
+          user,
+          finishedAt: LessThanOrEqual(endDate),
+          deletedAt: IsNull(),
+        },
+        {
+          user,
+          startedAt: IsNull(),
+          finishedAt: IsNull(),
+          deletedAt: IsNull(),
+        },
+      ],
     });
   }
 
   async createTodo(authUser: IAuth0User, input: CreateTodoInput) {
     const user = await this.userRepo.findByAuth0Id(authUser.sub);
+
+    const pendingTimeTodos = await this.todoRepo.find({
+      where: [
+        {
+          user,
+          startedAt: IsNull(),
+          finishedAt: IsNull(),
+          deletedAt: IsNull(),
+        },
+      ],
+    });
+
+    if (3 < pendingTimeTodos.length) {
+      throw new ApolloError('does not create todo');
+    }
 
     return await this.todoRepo.save({
       user,
@@ -50,13 +74,31 @@ export class TodoService {
     const user = await this.userRepo.findByAuth0Id(authUser.sub);
 
     if (Object.keys(input).length < 1) {
-      throw new ApolloError('This input is empty');
+      throw new ApolloError('input is empty');
     }
 
-    return await this.todoRepo.save({
+    const todo = await this.todoRepo.findOne({
       user,
-      ...input,
+      id: input.id,
     });
+
+    if (input.contents) {
+      todo.contents = input.contents;
+    }
+
+    if (input.completedAt) {
+      todo.completedAt = input.completedAt;
+    }
+
+    if (input.startedAt) {
+      todo.startedAt = input.startedAt;
+    }
+
+    if (input.finishedAt) {
+      todo.finishedAt = input.finishedAt;
+    }
+
+    return await this.todoRepo.save(todo);
   }
 
   async deleteTodo(authUser: IAuth0User, { todoId }: DeleteTodoInput) {

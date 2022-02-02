@@ -11,13 +11,6 @@ export declare class TodoResolver {
         finishedAt?: number;
         user: import("../../entities").UserEntity;
     } & import("../../entities").TodoEntity>;
-    updateTodo(authUser: IAuth0User, input: UpdateTodoInput): Promise<{
-        id: number;
-        contents?: string;
-        startedAt?: number;
-        finishedAt?: number;
-        completedAt?: number;
-        user: import("../../entities").UserEntity;
-    } & import("../../entities").TodoEntity>;
+    updateTodo(authUser: IAuth0User, input: UpdateTodoInput): Promise<import("../../entities").TodoEntity>;
     deleteTodo(authUser: IAuth0User, input: DeleteTodoInput): Promise<boolean>;
 }

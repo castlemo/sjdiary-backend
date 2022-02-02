@@ -23,7 +23,7 @@ export class TodoResolver {
     @Auth0User() authUser: IAuth0User,
     @Args('input') input: TodosInput,
   ) {
-    return this.todoService.todos(authUser, input);
+    return await this.todoService.todos(authUser, input);
   }
 
   @Mutation(() => Todo)
@@ -32,7 +32,9 @@ export class TodoResolver {
     @Auth0User() authUser: IAuth0User,
     @Args('input') input: CreateTodoInput,
   ) {
-    return this.todoService.createTodo(authUser, input);
+    const newTodo = await this.todoService.createTodo(authUser, input);
+    console.log({ newTodo });
+    return newTodo;
   }
 
   @Mutation(() => Todo)
@@ -41,7 +43,7 @@ export class TodoResolver {
     @Auth0User() authUser: IAuth0User,
     @Args('input') input: UpdateTodoInput,
   ) {
-    return this.todoService.updateTodo(authUser, input);
+    return await this.todoService.updateTodo(authUser, input);
   }
 
   @Mutation(() => Boolean)
@@ -50,6 +52,6 @@ export class TodoResolver {
     @Auth0User() authUser: IAuth0User,
     @Args('input') input: DeleteTodoInput,
   ) {
-    return this.todoService.deleteTodo(authUser, input);
+    return await this.todoService.deleteTodo(authUser, input);
   }
 }

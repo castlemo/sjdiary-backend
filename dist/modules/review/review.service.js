@@ -19,17 +19,42 @@ const review_repository_1 = require("./review.repository");
 let ReviewService = class ReviewService {
     async reviews(authUser, { startDate, endDate }) {
         const user = await this.userRepo.findByAuth0Id(authUser.sub);
-        return this.reviewRepo.find({
-            where: {
-                user,
-                startedAt: (0, typeorm_2.MoreThanOrEqual)(startDate),
-                finishedAt: (0, typeorm_2.LessThanOrEqual)(endDate),
-                deletedAt: (0, typeorm_2.IsNull)(),
-            },
+        return await this.reviewRepo.find({
+            where: [
+                {
+                    user,
+                    startedAt: (0, typeorm_2.MoreThanOrEqual)(startDate),
+                    deletedAt: (0, typeorm_2.IsNull)(),
+                },
+                {
+                    user,
+                    finishedAt: (0, typeorm_2.LessThanOrEqual)(endDate),
+                    deletedAt: (0, typeorm_2.IsNull)(),
+                },
+                {
+                    user,
+                    startedAt: (0, typeorm_2.IsNull)(),
+                    finishedAt: (0, typeorm_2.IsNull)(),
+                    deletedAt: (0, typeorm_2.IsNull)(),
+                },
+            ],
         });
     }
     async createReview(authUser, input) {
         const user = await this.userRepo.findByAuth0Id(authUser.sub);
+        const pendingTimeReviews = await this.reviewRepo.find({
+            where: [
+                {
+                    user,
+                    startedAt: (0, typeorm_2.IsNull)(),
+                    finishedAt: (0, typeorm_2.IsNull)(),
+                    deletedAt: (0, typeorm_2.IsNull)(),
+                },
+            ],
+        });
+        if (3 < pendingTimeReviews.length) {
+            throw new apollo_server_express_1.ApolloError('does not create review');
+        }
         return await this.reviewRepo.save(Object.assign({ user }, input));
     }
     async updateReview(authUser, input) {
@@ -37,7 +62,20 @@ let ReviewService = class ReviewService {
         if (Object.keys(input).length < 1) {
             throw new apollo_server_express_1.ApolloError('This input is empty');
         }
-        return await this.reviewRepo.save(Object.assign({ user }, input));
+        const review = await this.reviewRepo.findOne({
+            user,
+            id: input.id,
+        });
+        if (input.contents) {
+            review.contents = input.contents;
+        }
+        if (input.startedAt) {
+            review.startedAt = input.startedAt;
+        }
+        if (input.finishedAt) {
+            review.finishedAt = input.finishedAt;
+        }
+        return await this.reviewRepo.save(review);
     }
     async deleteReview(authUser, { reviewId }) {
         const user = await this.userRepo.findByAuth0Id(authUser.sub);

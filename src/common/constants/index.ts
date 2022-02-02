@@ -1,5 +1,6 @@
 // graphql
-export const FRONTEND_URL = 'FRONTEND_URL';
+export const LOCAL_FRONTEND_URL = 'LOCAL_FRONTEND_URL';
+export const VERCEL_FRONTEND_URL = 'VERCEL_FRONTEND_URL';
 export const IS_PLAYGROUND = 'IS_PLAYGROUND';
 
 // database

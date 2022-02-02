@@ -22,7 +22,7 @@ export class ReviewResolver {
     @Auth0User() authUser: IAuth0User,
     @Args('input') input: ReviewsInput,
   ) {
-    return this.reviewService.reviews(authUser, input);
+    return await this.reviewService.reviews(authUser, input);
   }
 
   @Mutation(() => Review)
@@ -31,7 +31,7 @@ export class ReviewResolver {
     @Auth0User() authUser: IAuth0User,
     @Args('input') input: CreateReviewInput,
   ) {
-    return this.reviewService.createReview(authUser, input);
+    return await this.reviewService.createReview(authUser, input);
   }
 
   @Mutation(() => Review)
@@ -40,7 +40,7 @@ export class ReviewResolver {
     @Auth0User() authUser: IAuth0User,
     @Args('input') input: UpdateReviewInput,
   ) {
-    return this.reviewService.updateReview(authUser, input);
+    return await this.reviewService.updateReview(authUser, input);
   }
 
   @Mutation(() => Boolean)
@@ -49,6 +49,6 @@ export class ReviewResolver {
     @Auth0User() authUser: IAuth0User,
     @Args('input') input: DeleteReviewInput,
   ) {
-    return this.reviewService.deleteReview(authUser, input);
+    return await this.reviewService.deleteReview(authUser, input);
   }
 }

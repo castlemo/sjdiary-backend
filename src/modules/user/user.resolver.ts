@@ -14,13 +14,13 @@ export class UserResolver {
   @Query(() => Boolean)
   @UseGuards(GqlAuthGuard)
   async verifyUser(@Auth0User() authUser: IAuth0User) {
-    return this.userService.verifyUser(authUser);
+    return await this.userService.verifyUser(authUser);
   }
 
   @Query(() => User)
   @UseGuards(GqlAuthGuard)
   async users() {
-    return this.userService.users();
+    return await this.userService.users();
   }
 
   @Query(() => User)

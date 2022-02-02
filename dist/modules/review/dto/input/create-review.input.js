@@ -18,11 +18,11 @@ __decorate([
     __metadata("design:type", String)
 ], CreateReviewInput.prototype, "contents", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Date),
+    (0, graphql_1.Field)(() => Date, { nullable: true }),
     __metadata("design:type", Number)
 ], CreateReviewInput.prototype, "startedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Date),
+    (0, graphql_1.Field)(() => Date, { nullable: true }),
     __metadata("design:type", Number)
 ], CreateReviewInput.prototype, "finishedAt", void 0);
 CreateReviewInput = __decorate([

@@ -24,16 +24,18 @@ let TodoResolver = class TodoResolver {
         this.todoService = todoService;
     }
     async todos(authUser, input) {
-        return this.todoService.todos(authUser, input);
+        return await this.todoService.todos(authUser, input);
     }
     async createTodo(authUser, input) {
-        return this.todoService.createTodo(authUser, input);
+        const newTodo = await this.todoService.createTodo(authUser, input);
+        console.log({ newTodo });
+        return newTodo;
     }
     async updateTodo(authUser, input) {
-        return this.todoService.updateTodo(authUser, input);
+        return await this.todoService.updateTodo(authUser, input);
     }
     async deleteTodo(authUser, input) {
-        return this.todoService.deleteTodo(authUser, input);
+        return await this.todoService.deleteTodo(authUser, input);
     }
 };
 __decorate([

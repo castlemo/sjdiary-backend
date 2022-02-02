@@ -4,8 +4,8 @@
 
 input CreateReviewInput {
   contents: String!
-  finishedAt: Timestamp!
-  startedAt: Timestamp!
+  finishedAt: Timestamp
+  startedAt: Timestamp
 }
 
 input CreateTodoInput {

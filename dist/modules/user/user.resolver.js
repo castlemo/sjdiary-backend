@@ -24,10 +24,10 @@ let UserResolver = class UserResolver {
         this.userService = userService;
     }
     async verifyUser(authUser) {
-        return this.userService.verifyUser(authUser);
+        return await this.userService.verifyUser(authUser);
     }
     async users() {
-        return this.userService.users();
+        return await this.userService.users();
     }
     async me(authUser) {
         return await this.userService.me(authUser);
