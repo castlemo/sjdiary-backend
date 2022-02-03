@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { ApolloError } from 'apollo-server-express';
 import { IsNull, LessThanOrEqual, MoreThanOrEqual } from 'typeorm';
 
-import { IAuth0User } from '../../auth';
+import { IAuth0User } from '../auth';
 import { UserRepository } from '../user';
 
 import {

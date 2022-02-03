@@ -1,6 +1,6 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 
-import { CommonEntity, UserEntity } from './../../entities';
+import { CommonEntity, UserEntity } from '../entities';
 
 @ObjectType()
 export class User

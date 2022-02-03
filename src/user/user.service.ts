@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { IsNull } from 'typeorm';
 
-import { IAuth0User } from '../../auth';
+import { IAuth0User } from '../auth';
 
 import { CreateUserInput } from './dto/input';
 import { UserRepository } from './user.repository';

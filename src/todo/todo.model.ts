@@ -1,12 +1,9 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 
-import { CommonEntity, ReviewEntity } from '../../entities';
+import { CommonEntity, TodoEntity } from '../entities';
 
 @ObjectType()
-export class Review
-  extends CommonEntity
-  implements Omit<ReviewEntity, 'user' | 'deletedAt'>
-{
+export class Todo extends CommonEntity implements Omit<TodoEntity, 'user'> {
   @Field(() => String)
   contents: string;
 
@@ -15,4 +12,7 @@ export class Review
 
   @Field(() => Date, { nullable: true })
   finishedAt?: number;
+
+  @Field(() => Date, { nullable: true })
+  completedAt?: number;
 }

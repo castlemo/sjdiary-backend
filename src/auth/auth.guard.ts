@@ -2,7 +2,7 @@ import { ExecutionContext, Injectable } from '@nestjs/common';
 import { GqlExecutionContext } from '@nestjs/graphql';
 import { AuthGuard } from '@nestjs/passport';
 
-import { JWT } from '../common/constants';
+export const JWT = 'jwt';
 
 @Injectable()
 export class GqlAuthGuard extends AuthGuard(JWT) {

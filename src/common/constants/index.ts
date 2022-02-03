@@ -15,10 +15,4 @@ export const AUTH0_AUDIENCE = 'AUTH0_AUDIENCE';
 export const AUTH0_DOMAIN = 'AUTH0_DOMAIN';
 
 export const NODE_ENV = 'NODE_ENV';
-
-export const GQL = 'gql';
-export const DB = 'db';
 export const PORT = 'port';
-export const AUTH0 = 'auth0';
-
-export const JWT = 'jwt';

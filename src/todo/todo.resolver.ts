@@ -1,9 +1,8 @@
 import { UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 
-import { Auth0User, GqlAuthGuard } from '../../auth';
+import { Auth0User, GqlAuthGuard, IAuth0User } from '../auth';
 
-import { IAuth0User } from './../../auth/auth.interface';
 import {
   CreateTodoInput,
   DeleteTodoInput,
