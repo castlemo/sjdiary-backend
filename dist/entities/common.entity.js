@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CommonEntity = void 0;
 const graphql_1 = require("@nestjs/graphql");
 const typeorm_1 = require("typeorm");
+const utils_1 = require("../utils");
 let CommonEntity = class CommonEntity {
 };
 __decorate([
@@ -21,16 +22,29 @@ __decorate([
 ], CommonEntity.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date),
-    (0, typeorm_1.CreateDateColumn)({ name: 'created_at', type: 'timestamp' }),
+    (0, typeorm_1.CreateDateColumn)({
+        name: 'created_at',
+        type: 'timestamp',
+        transformer: utils_1.dateTransformer,
+    }),
     __metadata("design:type", Number)
 ], CommonEntity.prototype, "createdAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date),
-    (0, typeorm_1.UpdateDateColumn)({ name: 'updated_at', type: 'timestamp' }),
+    (0, typeorm_1.UpdateDateColumn)({
+        name: 'updated_at',
+        type: 'timestamp',
+        transformer: utils_1.dateTransformer,
+    }),
     __metadata("design:type", Number)
 ], CommonEntity.prototype, "updatedAt", void 0);
 __decorate([
-    (0, typeorm_1.DeleteDateColumn)({ name: 'deleted_at', type: 'timestamp', nullable: true }),
+    (0, typeorm_1.DeleteDateColumn)({
+        name: 'deleted_at',
+        type: 'timestamp',
+        nullable: true,
+        transformer: utils_1.dateTransformer,
+    }),
     __metadata("design:type", Number)
 ], CommonEntity.prototype, "deletedAt", void 0);
 CommonEntity = __decorate([

@@ -5,6 +5,8 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+
+import { dateTransformer } from '../utils';
 @ObjectType()
 export abstract class CommonEntity {
   @Field(() => ID)
@@ -12,13 +14,26 @@ export abstract class CommonEntity {
   id: number;
 
   @Field(() => Date)
-  @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
+  @CreateDateColumn({
+    name: 'created_at',
+    type: 'timestamp',
+    transformer: dateTransformer,
+  })
   createdAt: number;
 
   @Field(() => Date)
-  @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
+  @UpdateDateColumn({
+    name: 'updated_at',
+    type: 'timestamp',
+    transformer: dateTransformer,
+  })
   updatedAt: number;
 
-  @DeleteDateColumn({ name: 'deleted_at', type: 'timestamp', nullable: true })
+  @DeleteDateColumn({
+    name: 'deleted_at',
+    type: 'timestamp',
+    nullable: true,
+    transformer: dateTransformer,
+  })
   deletedAt: number;
 }

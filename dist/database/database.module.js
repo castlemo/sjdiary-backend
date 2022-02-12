@@ -6,11 +6,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DatabaseModule = void 0;
+exports.DatabaseModule = exports.DB = void 0;
 const common_1 = require("@nestjs/common");
 const config_1 = require("@nestjs/config");
 const typeorm_1 = require("@nestjs/typeorm");
-const constants_1 = require("../common/constants");
+exports.DB = 'db';
 let DatabaseModule = class DatabaseModule {
 };
 DatabaseModule = __decorate([
@@ -18,7 +18,7 @@ DatabaseModule = __decorate([
         imports: [
             typeorm_1.TypeOrmModule.forRootAsync({
                 inject: [config_1.ConfigService],
-                useFactory: (configService) => (Object.assign({}, configService.get(constants_1.DB))),
+                useFactory: (configService) => (Object.assign({}, configService.get(exports.DB))),
             }),
         ],
         exports: [typeorm_1.TypeOrmModule],

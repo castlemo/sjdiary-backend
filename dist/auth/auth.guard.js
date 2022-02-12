@@ -6,12 +6,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GqlAuthGuard = void 0;
+exports.GqlAuthGuard = exports.JWT = void 0;
 const common_1 = require("@nestjs/common");
 const graphql_1 = require("@nestjs/graphql");
 const passport_1 = require("@nestjs/passport");
-const constants_1 = require("../common/constants");
-let GqlAuthGuard = class GqlAuthGuard extends (0, passport_1.AuthGuard)(constants_1.JWT) {
+exports.JWT = 'jwt';
+let GqlAuthGuard = class GqlAuthGuard extends (0, passport_1.AuthGuard)(exports.JWT) {
     getRequest(context) {
         return graphql_1.GqlExecutionContext.create(context).getContext().req;
     }

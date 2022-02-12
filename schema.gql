@@ -3,13 +3,13 @@
 # ------------------------------------------------------
 
 input CreateReviewInput {
-  contents: String!
+  content: String!
   finishedAt: Timestamp
   startedAt: Timestamp
 }
 
 input CreateTodoInput {
-  contents: String!
+  content: String!
   finishedAt: Timestamp
   startedAt: Timestamp
 }
@@ -48,7 +48,7 @@ type Query {
 }
 
 type Review {
-  contents: String!
+  content: String!
   createdAt: Timestamp!
   finishedAt: Timestamp
   id: ID!
@@ -68,7 +68,7 @@ scalar Timestamp
 
 type Todo {
   completedAt: Timestamp
-  contents: String!
+  content: String!
   createdAt: Timestamp!
   finishedAt: Timestamp
   id: ID!
@@ -82,7 +82,7 @@ input TodosInput {
 }
 
 input UpdateReviewInput {
-  contents: String
+  content: String
   finishedAt: Timestamp
   id: ID!
   startedAt: Timestamp
@@ -90,7 +90,7 @@ input UpdateReviewInput {
 
 input UpdateTodoInput {
   completedAt: Timestamp
-  contents: String
+  content: String
   finishedAt: Timestamp
   id: ID!
   startedAt: Timestamp

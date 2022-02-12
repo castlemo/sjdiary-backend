@@ -6,12 +6,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GqlModule = void 0;
+exports.GqlModule = exports.GQL = void 0;
 const common_1 = require("@nestjs/common");
 const config_1 = require("@nestjs/config");
 const graphql_1 = require("@nestjs/graphql");
-const constants_1 = require("../common/constants");
 const plugins_1 = require("./plugins");
+exports.GQL = 'gql';
 let GqlModule = class GqlModule {
 };
 GqlModule = __decorate([
@@ -19,7 +19,7 @@ GqlModule = __decorate([
         imports: [
             graphql_1.GraphQLModule.forRootAsync({
                 inject: [config_1.ConfigService],
-                useFactory: (configService) => (Object.assign(Object.assign({}, configService.get(constants_1.GQL)), { buildSchemaOptions: {
+                useFactory: (configService) => (Object.assign(Object.assign({}, configService.get(exports.GQL)), { buildSchemaOptions: {
                         dateScalarMode: 'timestamp',
                     } })),
             }),

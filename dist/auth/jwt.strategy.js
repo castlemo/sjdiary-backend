@@ -9,16 +9,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.JwtStrategy = void 0;
+exports.JwtStrategy = exports.AUTH0 = void 0;
 const common_1 = require("@nestjs/common");
 const config_1 = require("@nestjs/config");
 const passport_1 = require("@nestjs/passport");
 const jwks_rsa_1 = require("jwks-rsa");
 const passport_jwt_1 = require("passport-jwt");
-const constants_1 = require("../common/constants");
+exports.AUTH0 = 'auth0';
 let JwtStrategy = class JwtStrategy extends (0, passport_1.PassportStrategy)(passport_jwt_1.Strategy) {
     constructor(configService) {
-        const auth0Config = configService.get(constants_1.AUTH0);
+        const auth0Config = configService.get(exports.AUTH0);
         super({
             secretOrKeyProvider: (0, jwks_rsa_1.passportJwtSecret)({
                 cache: true,

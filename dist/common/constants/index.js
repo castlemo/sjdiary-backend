@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.JWT = exports.AUTH0 = exports.PORT = exports.DB = exports.GQL = exports.NODE_ENV = exports.AUTH0_DOMAIN = exports.AUTH0_AUDIENCE = exports.DB_DATABASE = exports.DB_PASSWORD = exports.DB_USERNAME = exports.DB_PORT = exports.DB_HOST = exports.IS_PLAYGROUND = exports.VERCEL_FRONTEND_URL = exports.LOCAL_FRONTEND_URL = void 0;
+exports.PORT = exports.NODE_ENV = exports.AUTH0_DOMAIN = exports.AUTH0_AUDIENCE = exports.DB_DATABASE = exports.DB_PASSWORD = exports.DB_USERNAME = exports.DB_PORT = exports.DB_HOST = exports.IS_PLAYGROUND = exports.VERCEL_FRONTEND_URL = exports.LOCAL_FRONTEND_URL = void 0;
 exports.LOCAL_FRONTEND_URL = 'LOCAL_FRONTEND_URL';
 exports.VERCEL_FRONTEND_URL = 'VERCEL_FRONTEND_URL';
 exports.IS_PLAYGROUND = 'IS_PLAYGROUND';
@@ -12,9 +12,5 @@ exports.DB_DATABASE = 'DB_DATABASE';
 exports.AUTH0_AUDIENCE = 'AUTH0_AUDIENCE';
 exports.AUTH0_DOMAIN = 'AUTH0_DOMAIN';
 exports.NODE_ENV = 'NODE_ENV';
-exports.GQL = 'gql';
-exports.DB = 'db';
 exports.PORT = 'port';
-exports.AUTH0 = 'auth0';
-exports.JWT = 'jwt';
 //# sourceMappingURL=index.js.map

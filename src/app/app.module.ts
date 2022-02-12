@@ -5,10 +5,10 @@ import { AuthModule } from '../auth';
 import { getConfig as loadConfig } from '../config';
 import { DatabaseModule } from '../database';
 import { GqlModule } from '../graphql';
-import { ReviewModule } from '../review';
-import { TodoModule } from '../todo';
-import { UserModule } from '../user';
-import { UtilModule } from '../util';
+import { ReviewsModule } from '../reviews';
+import { TodosModule } from '../todos';
+import { UsersModule } from '../users';
+import { UtilModule } from '../utils';
 
 import { AppController } from './app.controller';
 import { AppResolver } from './app.resolver';
@@ -23,9 +23,9 @@ import { AppService } from './app.service';
     GqlModule,
     DatabaseModule,
     AuthModule,
-    UserModule,
-    TodoModule,
-    ReviewModule,
+    UsersModule,
+    TodosModule,
+    ReviewsModule,
     UtilModule,
   ],
   controllers: [AppController],
