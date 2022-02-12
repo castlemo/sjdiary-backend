@@ -6,6 +6,7 @@ import { IsNull, LessThanOrEqual, MoreThanOrEqual } from 'typeorm';
 import { IAuth0User } from '../auth';
 import { UsersRepository } from '../users';
 
+import { ReviewModel } from './../models';
 import {
   CreateReviewInput,
   DeleteReviewInput,
@@ -21,10 +22,13 @@ export class ReviewsService {
   @InjectRepository(UsersRepository)
   private readonly userRepo: UsersRepository;
 
-  async reviews(authUser: IAuth0User, { startDate, endDate }: ReviewsInput) {
+  async reviews(
+    authUser: IAuth0User,
+    { startDate, endDate }: ReviewsInput,
+  ): Promise<ReviewModel[]> {
     const user = await this.userRepo.findByAuth0Id(authUser.sub);
 
-    return await this.reviewRepo.find({
+    const reviews = await this.reviewRepo.find({
       where: [
         {
           user,
@@ -44,9 +48,14 @@ export class ReviewsService {
         },
       ],
     });
+
+    return reviews.map((review) => new ReviewModel(review));
   }
 
-  async createReview(authUser: IAuth0User, input: CreateReviewInput) {
+  async createReview(
+    authUser: IAuth0User,
+    { content, startedAt, finishedAt }: CreateReviewInput,
+  ): Promise<ReviewModel> {
     const user = await this.userRepo.findByAuth0Id(authUser.sub);
 
     const pendingTimeReviews = await this.reviewRepo.find({
@@ -64,13 +73,20 @@ export class ReviewsService {
       throw new ApolloError('does not create review');
     }
 
-    return await this.reviewRepo.save({
+    const review = await this.reviewRepo.save({
       user,
-      ...input,
+      content,
+      startedAt: startedAt ? new Date(startedAt).toISOString() : undefined,
+      finishedAt: finishedAt ? new Date(finishedAt).toISOString() : undefined,
     });
+
+    return new ReviewModel(review);
   }
 
-  async updateReview(authUser: IAuth0User, input: UpdateReviewInput) {
+  async updateReview(
+    authUser: IAuth0User,
+    input: UpdateReviewInput,
+  ): Promise<ReviewModel> {
     const user = await this.userRepo.findByAuth0Id(authUser.sub);
 
     if (Object.keys(input).length < 1) {
@@ -87,14 +103,16 @@ export class ReviewsService {
     }
 
     if (input.startedAt) {
-      review.startedAt = input.startedAt;
+      review.startedAt = new Date(input.startedAt).toISOString();
     }
 
     if (input.finishedAt) {
-      review.finishedAt = input.finishedAt;
+      review.finishedAt = new Date(input.finishedAt).toISOString();
     }
 
-    return await this.reviewRepo.save(review);
+    const updatedReview = await this.reviewRepo.save(review);
+
+    return new ReviewModel(updatedReview);
   }
 
   async deleteReview(authUser: IAuth0User, { reviewId }: DeleteReviewInput) {

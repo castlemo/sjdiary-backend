@@ -15,11 +15,12 @@ const typeorm_1 = require("@nestjs/typeorm");
 const apollo_server_express_1 = require("apollo-server-express");
 const typeorm_2 = require("typeorm");
 const users_1 = require("../users");
+const models_1 = require("./../models");
 const todos_repository_1 = require("./todos.repository");
 let TodosService = class TodosService {
     async todos(authUser, { startDate, endDate }) {
         const user = await this.userRepo.findByAuth0Id(authUser.sub);
-        return await this.todoRepo.find({
+        const todos = await this.todoRepo.find({
             where: [
                 {
                     user,
@@ -39,8 +40,9 @@ let TodosService = class TodosService {
                 },
             ],
         });
+        return todos.map((todo) => new models_1.TodoModel(todo));
     }
-    async createTodo(authUser, input) {
+    async createTodo(authUser, { content, startedAt, finishedAt }) {
         const user = await this.userRepo.findByAuth0Id(authUser.sub);
         const unSetTimeTodos = await this.todoRepo.find({
             where: {
@@ -53,14 +55,19 @@ let TodosService = class TodosService {
         if (3 < unSetTimeTodos.length) {
             throw new apollo_server_express_1.ApolloError('does not create todo');
         }
-        return await this.todoRepo.save(Object.assign({ user }, input));
+        const todo = await this.todoRepo.save({
+            user,
+            content,
+            startedAt: startedAt ? new Date(startedAt).toISOString() : undefined,
+            finishedAt: finishedAt ? new Date(finishedAt).toISOString() : undefined,
+        });
+        return new models_1.TodoModel(todo);
     }
     async updateTodo(authUser, input) {
         const user = await this.userRepo.findByAuth0Id(authUser.sub);
         if (Object.keys(input).length < 1) {
             throw new apollo_server_express_1.ApolloError('input is empty');
         }
-        console.log(typeof input.finishedAt);
         const todo = await this.todoRepo.findOne({
             user,
             id: input.id,
@@ -69,15 +76,16 @@ let TodosService = class TodosService {
             todo.content = input.content;
         }
         if (input.completedAt) {
-            todo.completedAt = input.completedAt;
+            todo.completedAt = new Date(input.completedAt).toISOString();
         }
         if (input.startedAt) {
-            todo.startedAt = input.startedAt;
+            todo.startedAt = new Date(input.startedAt).toISOString();
         }
         if (input.finishedAt) {
-            todo.finishedAt = input.finishedAt;
+            todo.finishedAt = new Date(input.finishedAt).toISOString();
         }
-        return await this.todoRepo.save(todo);
+        const updatedTodo = await this.todoRepo.save(todo);
+        return new models_1.TodoModel(updatedTodo);
     }
     async deleteTodo(authUser, { todoId }) {
         try {

@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ReviewEntity = void 0;
 const typeorm_1 = require("typeorm");
 const entities_1 = require("../entities");
-const utils_1 = require("../utils");
 const common_entity_1 = require("./common.entity");
 let ReviewEntity = class ReviewEntity extends common_entity_1.CommonEntity {
 };
@@ -25,18 +24,16 @@ __decorate([
         name: 'started_at',
         type: 'timestamp',
         nullable: true,
-        transformer: utils_1.dateTransformer,
     }),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], ReviewEntity.prototype, "startedAt", void 0);
 __decorate([
     (0, typeorm_1.Column)({
         name: 'finished_at',
         type: 'timestamp',
         nullable: true,
-        transformer: utils_1.dateTransformer,
     }),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], ReviewEntity.prototype, "finishedAt", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => entities_1.UserEntity, (user) => user.reviews),

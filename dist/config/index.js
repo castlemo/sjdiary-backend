@@ -17,7 +17,6 @@ const config = {
         username: env[constants_1.DB_USERNAME],
         password: env[constants_1.DB_PASSWORD],
         database: env[constants_1.DB_DATABASE],
-        logging: env[constants_1.NODE_ENV] === 'local' ? false : false,
         migrations: ['dist/database/migrations/*{.ts,.js}'],
         entities: ['dist/entities/**/*.entity{.ts,.js}'],
         cli: {

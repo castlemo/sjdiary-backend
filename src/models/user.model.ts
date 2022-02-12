@@ -1,12 +1,12 @@
-import { Field, ObjectType } from '@nestjs/graphql';
+import { Field, ID, ObjectType } from '@nestjs/graphql';
 
-import { CommonEntity, UserEntity } from '../entities';
+import { UserEntity } from './../entities';
 
 @ObjectType()
-export class User
-  extends CommonEntity
-  implements Omit<UserEntity, 'auth0Id' | 'todos' | 'reviews'>
-{
+export class UserModel {
+  @Field(() => ID)
+  id: number;
+
   @Field(() => String)
   email: string;
 
@@ -15,4 +15,11 @@ export class User
 
   @Field(() => String)
   profileImageUrl: string;
+
+  constructor(userEntity: UserEntity) {
+    this.id = userEntity.id;
+    this.email = userEntity.email;
+    this.name = userEntity.name;
+    this.profileImageUrl = userEntity.profileImageUrl;
+  }
 }

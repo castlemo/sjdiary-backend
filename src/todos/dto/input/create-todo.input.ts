@@ -1,10 +1,10 @@
 import { Field, Float, InputType } from '@nestjs/graphql';
 
-import { Todo } from '../../../models';
+import { TodoModel } from '../../../models';
 
 @InputType()
 export class CreateTodoInput
-  implements Pick<Todo, 'content' | 'startedAt' | 'finishedAt'>
+  implements Pick<TodoModel, 'content' | 'startedAt' | 'finishedAt'>
 {
   @Field(() => String)
   content: string;

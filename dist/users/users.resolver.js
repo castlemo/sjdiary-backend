@@ -26,9 +26,6 @@ let UsersResolver = class UsersResolver {
     async verifyUser(authUser) {
         return await this.userService.verifyUser(authUser);
     }
-    async users() {
-        return await this.userService.users();
-    }
     async me(authUser) {
         return await this.userService.me(authUser);
     }
@@ -45,14 +42,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsersResolver.prototype, "verifyUser", null);
 __decorate([
-    (0, graphql_1.Query)(() => models_1.User),
-    (0, common_1.UseGuards)(auth_1.GqlAuthGuard),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Promise)
-], UsersResolver.prototype, "users", null);
-__decorate([
-    (0, graphql_1.Query)(() => models_1.User),
+    (0, graphql_1.Query)(() => models_1.UserModel),
     (0, common_1.UseGuards)(auth_1.GqlAuthGuard),
     __param(0, (0, auth_1.Auth0User)()),
     __metadata("design:type", Function),
@@ -60,7 +50,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsersResolver.prototype, "me", null);
 __decorate([
-    (0, graphql_1.Mutation)(() => models_1.User),
+    (0, graphql_1.Mutation)(() => models_1.UserModel),
     (0, common_1.UseGuards)(auth_1.GqlAuthGuard),
     __param(0, (0, auth_1.Auth0User)()),
     __param(1, (0, graphql_1.Args)('input')),
@@ -69,7 +59,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsersResolver.prototype, "createUser", null);
 UsersResolver = __decorate([
-    (0, graphql_1.Resolver)(() => models_1.User),
+    (0, graphql_1.Resolver)(() => models_1.UserModel),
     __metadata("design:paramtypes", [users_service_1.UsersService])
 ], UsersResolver);
 exports.UsersResolver = UsersResolver;

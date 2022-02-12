@@ -1,9 +1,12 @@
-import { Field, Float, ObjectType } from '@nestjs/graphql';
+import { Field, Float, ID, ObjectType } from '@nestjs/graphql';
 
-import { CommonEntity } from '../entities';
+import { TodoEntity } from './../entities/todo.entity';
 
 @ObjectType()
-export class Todo extends CommonEntity {
+export class TodoModel {
+  @Field(() => ID)
+  id: number;
+
   @Field(() => String)
   content: string;
 
@@ -15,4 +18,18 @@ export class Todo extends CommonEntity {
 
   @Field(() => Float, { nullable: true })
   completedAt?: number;
+
+  constructor(todo: TodoEntity) {
+    this.id = todo.id;
+    this.content = todo.content;
+    this.startedAt = todo.startedAt
+      ? new Date(todo.startedAt).getTime()
+      : undefined;
+    this.finishedAt = todo.finishedAt
+      ? new Date(todo.finishedAt).getTime()
+      : undefined;
+    this.completedAt = todo.completedAt
+      ? new Date(todo.completedAt).getTime()
+      : undefined;
+  }
 }

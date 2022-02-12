@@ -30,12 +30,12 @@ const config: IConfig = {
     username: env[DB_USERNAME],
     password: env[DB_PASSWORD],
     database: env[DB_DATABASE],
-    logging: env[NODE_ENV] === 'local' ? false : false,
     migrations: ['dist/database/migrations/*{.ts,.js}'],
     entities: ['dist/entities/**/*.entity{.ts,.js}'],
     cli: {
       migrationsDir: 'src/database/migrations',
     },
+    // logging: env[NODE_ENV] === 'local' ? true : false,
     // synchronize: NODE_ENV == 'development' ? true : false,
     // dropSchema: NODE_ENV == 'development' ? true : false,
   },

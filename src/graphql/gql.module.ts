@@ -12,9 +12,6 @@ export const GQL = 'gql';
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         ...configService.get(GQL),
-        buildSchemaOptions: {
-          dateScalarMode: 'timestamp',
-        },
       }),
     }),
   ],

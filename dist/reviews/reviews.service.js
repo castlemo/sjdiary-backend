@@ -15,11 +15,12 @@ const typeorm_1 = require("@nestjs/typeorm");
 const apollo_server_express_1 = require("apollo-server-express");
 const typeorm_2 = require("typeorm");
 const users_1 = require("../users");
+const models_1 = require("./../models");
 const reviews_repository_1 = require("./reviews.repository");
 let ReviewsService = class ReviewsService {
     async reviews(authUser, { startDate, endDate }) {
         const user = await this.userRepo.findByAuth0Id(authUser.sub);
-        return await this.reviewRepo.find({
+        const reviews = await this.reviewRepo.find({
             where: [
                 {
                     user,
@@ -39,8 +40,9 @@ let ReviewsService = class ReviewsService {
                 },
             ],
         });
+        return reviews.map((review) => new models_1.ReviewModel(review));
     }
-    async createReview(authUser, input) {
+    async createReview(authUser, { content, startedAt, finishedAt }) {
         const user = await this.userRepo.findByAuth0Id(authUser.sub);
         const pendingTimeReviews = await this.reviewRepo.find({
             where: [
@@ -55,7 +57,13 @@ let ReviewsService = class ReviewsService {
         if (3 < pendingTimeReviews.length) {
             throw new apollo_server_express_1.ApolloError('does not create review');
         }
-        return await this.reviewRepo.save(Object.assign({ user }, input));
+        const review = await this.reviewRepo.save({
+            user,
+            content,
+            startedAt: startedAt ? new Date(startedAt).toISOString() : undefined,
+            finishedAt: finishedAt ? new Date(finishedAt).toISOString() : undefined,
+        });
+        return new models_1.ReviewModel(review);
     }
     async updateReview(authUser, input) {
         const user = await this.userRepo.findByAuth0Id(authUser.sub);
@@ -70,12 +78,13 @@ let ReviewsService = class ReviewsService {
             review.content = input.content;
         }
         if (input.startedAt) {
-            review.startedAt = input.startedAt;
+            review.startedAt = new Date(input.startedAt).toISOString();
         }
         if (input.finishedAt) {
-            review.finishedAt = input.finishedAt;
+            review.finishedAt = new Date(input.finishedAt).toISOString();
         }
-        return await this.reviewRepo.save(review);
+        const updatedReview = await this.reviewRepo.save(review);
+        return new models_1.ReviewModel(updatedReview);
     }
     async deleteReview(authUser, { reviewId }) {
         const user = await this.userRepo.findByAuth0Id(authUser.sub);

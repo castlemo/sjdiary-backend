@@ -37,7 +37,7 @@ let ReviewsResolver = class ReviewsResolver {
     }
 };
 __decorate([
-    (0, graphql_1.Query)(() => [models_1.Review]),
+    (0, graphql_1.Query)(() => [models_1.ReviewModel]),
     (0, common_1.UseGuards)(auth_1.GqlAuthGuard),
     __param(0, (0, auth_1.Auth0User)()),
     __param(1, (0, graphql_1.Args)('input')),
@@ -46,7 +46,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ReviewsResolver.prototype, "reviews", null);
 __decorate([
-    (0, graphql_1.Mutation)(() => models_1.Review),
+    (0, graphql_1.Mutation)(() => models_1.ReviewModel),
     (0, common_1.UseGuards)(auth_1.GqlAuthGuard),
     __param(0, (0, auth_1.Auth0User)()),
     __param(1, (0, graphql_1.Args)('input')),
@@ -55,7 +55,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ReviewsResolver.prototype, "createReview", null);
 __decorate([
-    (0, graphql_1.Mutation)(() => models_1.Review),
+    (0, graphql_1.Mutation)(() => models_1.ReviewModel),
     (0, common_1.UseGuards)(auth_1.GqlAuthGuard),
     __param(0, (0, auth_1.Auth0User)()),
     __param(1, (0, graphql_1.Args)('input')),
@@ -73,7 +73,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ReviewsResolver.prototype, "deleteReview", null);
 ReviewsResolver = __decorate([
-    (0, graphql_1.Resolver)(() => models_1.Review),
+    (0, graphql_1.Resolver)(() => models_1.ReviewModel),
     __metadata("design:paramtypes", [reviews_service_1.ReviewsService])
 ], ReviewsResolver);
 exports.ReviewsResolver = ReviewsResolver;

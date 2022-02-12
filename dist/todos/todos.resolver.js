@@ -27,9 +27,7 @@ let TodosResolver = class TodosResolver {
         return await this.todoService.todos(authUser, input);
     }
     async createTodo(authUser, input) {
-        const newTodo = await this.todoService.createTodo(authUser, input);
-        console.log({ newTodo });
-        return newTodo;
+        return await this.todoService.createTodo(authUser, input);
     }
     async updateTodo(authUser, input) {
         return await this.todoService.updateTodo(authUser, input);
@@ -39,7 +37,7 @@ let TodosResolver = class TodosResolver {
     }
 };
 __decorate([
-    (0, graphql_1.Query)(() => [models_1.Todo]),
+    (0, graphql_1.Query)(() => [models_1.TodoModel]),
     (0, common_1.UseGuards)(auth_1.GqlAuthGuard),
     __param(0, (0, auth_1.Auth0User)()),
     __param(1, (0, graphql_1.Args)('input')),
@@ -48,7 +46,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], TodosResolver.prototype, "todos", null);
 __decorate([
-    (0, graphql_1.Mutation)(() => models_1.Todo),
+    (0, graphql_1.Mutation)(() => models_1.TodoModel),
     (0, common_1.UseGuards)(auth_1.GqlAuthGuard),
     __param(0, (0, auth_1.Auth0User)()),
     __param(1, (0, graphql_1.Args)('input')),
@@ -57,7 +55,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], TodosResolver.prototype, "createTodo", null);
 __decorate([
-    (0, graphql_1.Mutation)(() => models_1.Todo),
+    (0, graphql_1.Mutation)(() => models_1.TodoModel),
     (0, common_1.UseGuards)(auth_1.GqlAuthGuard),
     __param(0, (0, auth_1.Auth0User)()),
     __param(1, (0, graphql_1.Args)('input')),
@@ -75,7 +73,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], TodosResolver.prototype, "deleteTodo", null);
 TodosResolver = __decorate([
-    (0, graphql_1.Resolver)(() => models_1.Todo),
+    (0, graphql_1.Resolver)(() => models_1.TodoModel),
     __metadata("design:paramtypes", [todos_service_1.TodosService])
 ], TodosResolver);
 exports.TodosResolver = TodosResolver;

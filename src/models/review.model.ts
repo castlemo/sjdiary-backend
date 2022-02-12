@@ -1,12 +1,12 @@
-import { Field, Float, ObjectType } from '@nestjs/graphql';
+import { Field, Float, ID, ObjectType } from '@nestjs/graphql';
 
-import { CommonEntity, ReviewEntity } from '../entities';
+import { ReviewEntity } from './../entities';
 
 @ObjectType()
-export class Review
-  extends CommonEntity
-  implements Omit<ReviewEntity, 'user' | 'deletedAt'>
-{
+export class ReviewModel {
+  @Field(() => ID)
+  id: number;
+
   @Field(() => String)
   content: string;
 
@@ -15,4 +15,15 @@ export class Review
 
   @Field(() => Float, { nullable: true })
   finishedAt?: number;
+
+  constructor(review: ReviewEntity) {
+    this.id = review.id;
+    this.content = review.content;
+    this.startedAt = review.startedAt
+      ? new Date(review.startedAt).getTime()
+      : undefined;
+    this.finishedAt = review.finishedAt
+      ? new Date(review.finishedAt).getTime()
+      : undefined;
+  }
 }

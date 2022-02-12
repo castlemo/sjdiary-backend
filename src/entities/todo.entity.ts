@@ -1,7 +1,6 @@
 import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 
 import { UserEntity } from '../entities';
-import { dateTransformer } from '../utils';
 
 import { CommonEntity } from './common.entity';
 
@@ -16,25 +15,22 @@ export class TodoEntity extends CommonEntity {
     name: 'started_at',
     type: 'timestamp',
     nullable: true,
-    transformer: dateTransformer,
   })
-  startedAt?: number;
+  startedAt?: string;
 
   @Column({
     name: 'finished_at',
     type: 'timestamp',
     nullable: true,
-    transformer: dateTransformer,
   })
-  finishedAt?: number;
+  finishedAt?: string;
 
   @Column({
     name: 'completed_at',
     type: 'timestamp',
     nullable: true,
-    transformer: dateTransformer,
   })
-  completedAt?: number;
+  completedAt?: string;
 
   @ManyToOne(() => UserEntity, (user) => user.todos)
   @JoinColumn({ name: 'user_id' })

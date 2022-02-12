@@ -12,25 +12,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
-const typeorm_2 = require("typeorm");
+const models_1 = require("../models");
 const users_repository_1 = require("./users.repository");
 let UsersService = class UsersService {
-    async verifyUser(authUser) {
-        const user = await this.userRepo.findByAuth0Id(authUser.sub);
+    async verifyUser({ sub }) {
+        const user = await this.userRepo.findByAuth0Id(sub);
         return !!user;
     }
-    async users() {
-        return await this.userRepo.find({
-            where: {
-                deletedAt: (0, typeorm_2.IsNull)(),
-            },
-        });
-    }
     async me(authUser) {
-        return await this.userRepo.findByAuth0Id(authUser.sub);
+        const user = await this.userRepo.findByAuth0Id(authUser.sub);
+        return new models_1.UserModel(user);
     }
     async createUser(authUser, input) {
-        return await this.userRepo.save(Object.assign({ auth0Id: authUser.sub }, input));
+        const user = await this.userRepo.save(Object.assign({ auth0Id: authUser.sub }, input));
+        return new models_1.UserModel(user);
     }
 };
 __decorate([

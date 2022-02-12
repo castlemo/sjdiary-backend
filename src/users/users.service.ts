@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { IsNull } from 'typeorm';
 
 import { IAuth0User } from '../auth';
+import { UserModel } from '../models';
 
 import { CreateUserInput } from './dto/input';
 import { UsersRepository } from './users.repository';
@@ -12,27 +13,23 @@ export class UsersService {
   @InjectRepository(UsersRepository)
   private readonly userRepo: UsersRepository;
 
-  async verifyUser(authUser: IAuth0User) {
-    const user = await this.userRepo.findByAuth0Id(authUser.sub);
+  async verifyUser({ sub }: IAuth0User): Promise<boolean> {
+    const user = await this.userRepo.findByAuth0Id(sub);
     return !!user;
   }
 
-  async users() {
-    return await this.userRepo.find({
-      where: {
-        deletedAt: IsNull(),
-      },
-    });
-  }
+  async me(authUser: IAuth0User): Promise<UserModel> {
+    const user = await this.userRepo.findByAuth0Id(authUser.sub);
 
-  async me(authUser: IAuth0User) {
-    return await this.userRepo.findByAuth0Id(authUser.sub);
+    return new UserModel(user);
   }
 
   async createUser(authUser: IAuth0User, input: CreateUserInput) {
-    return await this.userRepo.save({
+    const user = await this.userRepo.save({
       auth0Id: authUser.sub,
       ...input,
     });
+
+    return new UserModel(user);
   }
 }

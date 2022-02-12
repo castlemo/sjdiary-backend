@@ -29,31 +29,28 @@ input DeleteTodoInput {
 }
 
 type Mutation {
-  createReview(input: CreateReviewInput!): Review!
-  createTodo(input: CreateTodoInput!): Todo!
-  createUser(input: CreateUserInput!): User!
+  createReview(input: CreateReviewInput!): ReviewModel!
+  createTodo(input: CreateTodoInput!): TodoModel!
+  createUser(input: CreateUserInput!): UserModel!
   deleteReview(input: DeleteReviewInput!): Boolean!
   deleteTodo(input: DeleteTodoInput!): Boolean!
-  updateReview(input: UpdateReviewInput!): Review!
-  updateTodo(input: UpdateTodoInput!): Todo!
+  updateReview(input: UpdateReviewInput!): ReviewModel!
+  updateTodo(input: UpdateTodoInput!): TodoModel!
 }
 
 type Query {
-  me: User!
-  reviews(input: ReviewsInput!): [Review!]!
-  todos(input: TodosInput!): [Todo!]!
-  users: User!
+  me: UserModel!
+  reviews(input: ReviewsInput!): [ReviewModel!]!
+  todos(input: TodosInput!): [TodoModel!]!
   verifyUser: Boolean!
   version: String!
 }
 
-type Review {
+type ReviewModel {
   content: String!
-  createdAt: Float!
   finishedAt: Float
   id: ID!
   startedAt: Float
-  updatedAt: Float!
 }
 
 input ReviewsInput {
@@ -61,14 +58,12 @@ input ReviewsInput {
   startDate: Float!
 }
 
-type Todo {
+type TodoModel {
   completedAt: Float
   content: String!
-  createdAt: Float!
   finishedAt: Float
   id: ID!
   startedAt: Float
-  updatedAt: Float!
 }
 
 input TodosInput {
@@ -91,11 +86,9 @@ input UpdateTodoInput {
   startedAt: Float
 }
 
-type User {
-  createdAt: Float!
+type UserModel {
   email: String!
   id: ID!
   name: String!
   profileImageUrl: String!
-  updatedAt: Float!
 }

@@ -1,10 +1,10 @@
 import { Field, Float, InputType } from '@nestjs/graphql';
 
-import { Review } from '../../../models';
+import { ReviewModel } from '../../../models';
 
 @InputType()
 export class CreateReviewInput
-  implements Pick<Review, 'content' | 'startedAt' | 'finishedAt'>
+  implements Pick<ReviewModel, 'content' | 'startedAt' | 'finishedAt'>
 {
   @Field(() => String)
   content: string;

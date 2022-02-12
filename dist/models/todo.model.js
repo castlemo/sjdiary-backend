@@ -9,29 +9,47 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Todo = void 0;
+exports.TodoModel = void 0;
 const graphql_1 = require("@nestjs/graphql");
-const entities_1 = require("../entities");
-let Todo = class Todo extends entities_1.CommonEntity {
+const todo_entity_1 = require("./../entities/todo.entity");
+let TodoModel = class TodoModel {
+    constructor(todo) {
+        this.id = todo.id;
+        this.content = todo.content;
+        this.startedAt = todo.startedAt
+            ? new Date(todo.startedAt).getTime()
+            : undefined;
+        this.finishedAt = todo.finishedAt
+            ? new Date(todo.finishedAt).getTime()
+            : undefined;
+        this.completedAt = todo.completedAt
+            ? new Date(todo.completedAt).getTime()
+            : undefined;
+    }
 };
+__decorate([
+    (0, graphql_1.Field)(() => graphql_1.ID),
+    __metadata("design:type", Number)
+], TodoModel.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String),
     __metadata("design:type", String)
-], Todo.prototype, "content", void 0);
+], TodoModel.prototype, "content", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_1.Float, { nullable: true }),
     __metadata("design:type", Number)
-], Todo.prototype, "startedAt", void 0);
+], TodoModel.prototype, "startedAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_1.Float, { nullable: true }),
     __metadata("design:type", Number)
-], Todo.prototype, "finishedAt", void 0);
+], TodoModel.prototype, "finishedAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_1.Float, { nullable: true }),
     __metadata("design:type", Number)
-], Todo.prototype, "completedAt", void 0);
-Todo = __decorate([
-    (0, graphql_1.ObjectType)()
-], Todo);
-exports.Todo = Todo;
+], TodoModel.prototype, "completedAt", void 0);
+TodoModel = __decorate([
+    (0, graphql_1.ObjectType)(),
+    __metadata("design:paramtypes", [todo_entity_1.TodoEntity])
+], TodoModel);
+exports.TodoModel = TodoModel;
 //# sourceMappingURL=todo.model.js.map

@@ -1,7 +1,13 @@
-import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
+import {
+  AfterLoad,
+  BeforeInsert,
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+} from 'typeorm';
 
 import { UserEntity } from '../entities';
-import { dateTransformer } from '../utils';
 
 import { CommonEntity } from './common.entity';
 
@@ -16,17 +22,15 @@ export class ReviewEntity extends CommonEntity {
     name: 'started_at',
     type: 'timestamp',
     nullable: true,
-    transformer: dateTransformer,
   })
-  startedAt?: number;
+  startedAt?: string;
 
   @Column({
     name: 'finished_at',
     type: 'timestamp',
     nullable: true,
-    transformer: dateTransformer,
   })
-  finishedAt?: number;
+  finishedAt?: string;
 
   @ManyToOne(() => UserEntity, (user) => user.reviews)
   @JoinColumn({ name: 'user_id' })

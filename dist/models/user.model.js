@@ -9,25 +9,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.User = void 0;
+exports.UserModel = void 0;
 const graphql_1 = require("@nestjs/graphql");
-const entities_1 = require("../entities");
-let User = class User extends entities_1.CommonEntity {
+const entities_1 = require("./../entities");
+let UserModel = class UserModel {
+    constructor(userEntity) {
+        this.id = userEntity.id;
+        this.email = userEntity.email;
+        this.name = userEntity.name;
+        this.profileImageUrl = userEntity.profileImageUrl;
+    }
 };
 __decorate([
-    (0, graphql_1.Field)(() => String),
-    __metadata("design:type", String)
-], User.prototype, "email", void 0);
+    (0, graphql_1.Field)(() => graphql_1.ID),
+    __metadata("design:type", Number)
+], UserModel.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String),
     __metadata("design:type", String)
-], User.prototype, "name", void 0);
+], UserModel.prototype, "email", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String),
     __metadata("design:type", String)
-], User.prototype, "profileImageUrl", void 0);
-User = __decorate([
-    (0, graphql_1.ObjectType)()
-], User);
-exports.User = User;
+], UserModel.prototype, "name", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String),
+    __metadata("design:type", String)
+], UserModel.prototype, "profileImageUrl", void 0);
+UserModel = __decorate([
+    (0, graphql_1.ObjectType)(),
+    __metadata("design:paramtypes", [entities_1.UserEntity])
+], UserModel);
+exports.UserModel = UserModel;
 //# sourceMappingURL=user.model.js.map
