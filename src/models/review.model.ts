@@ -1,4 +1,4 @@
-import { Field, ObjectType } from '@nestjs/graphql';
+import { Field, Float, ObjectType } from '@nestjs/graphql';
 
 import { CommonEntity, ReviewEntity } from '../entities';
 
@@ -10,9 +10,9 @@ export class Review
   @Field(() => String)
   content: string;
 
-  @Field(() => Date, { nullable: true })
+  @Field(() => Float, { nullable: true })
   startedAt?: number;
 
-  @Field(() => Date, { nullable: true })
+  @Field(() => Float, { nullable: true })
   finishedAt?: number;
 }

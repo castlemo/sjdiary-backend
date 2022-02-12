@@ -14,11 +14,11 @@ const graphql_1 = require("@nestjs/graphql");
 let ReviewsInput = class ReviewsInput {
 };
 __decorate([
-    (0, graphql_1.Field)(() => Date),
+    (0, graphql_1.Field)(() => graphql_1.Float),
     __metadata("design:type", Number)
 ], ReviewsInput.prototype, "startDate", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Date),
+    (0, graphql_1.Field)(() => graphql_1.Float),
     __metadata("design:type", Number)
 ], ReviewsInput.prototype, "endDate", void 0);
 ReviewsInput = __decorate([

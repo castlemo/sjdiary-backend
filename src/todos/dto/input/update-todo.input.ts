@@ -1,4 +1,4 @@
-import { Field, ID, InputType } from '@nestjs/graphql';
+import { Field, Float, ID, InputType } from '@nestjs/graphql';
 
 @InputType()
 export class UpdateTodoInput {
@@ -8,12 +8,12 @@ export class UpdateTodoInput {
   @Field(() => String, { nullable: true })
   content?: string;
 
-  @Field(() => Date, { nullable: true })
+  @Field(() => Float, { nullable: true })
   startedAt?: number;
 
-  @Field(() => Date, { nullable: true })
+  @Field(() => Float, { nullable: true })
   finishedAt?: number;
 
-  @Field(() => Date, { nullable: true })
+  @Field(() => Float, { nullable: true })
   completedAt?: number;
 }

@@ -1,10 +1,10 @@
-import { Field, InputType } from '@nestjs/graphql';
+import { Field, Float, InputType } from '@nestjs/graphql';
 
 @InputType()
 export class TodosInput {
-  @Field(() => Date)
+  @Field(() => Float)
   startDate: number;
 
-  @Field(() => Date)
+  @Field(() => Float)
   endDate: number;
 }

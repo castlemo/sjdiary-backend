@@ -17,11 +17,11 @@ let CommonEntity = class CommonEntity {
 };
 __decorate([
     (0, graphql_1.Field)(() => graphql_1.ID),
-    (0, typeorm_1.PrimaryGeneratedColumn)(),
+    (0, typeorm_1.PrimaryGeneratedColumn)({ unsigned: true }),
     __metadata("design:type", Number)
 ], CommonEntity.prototype, "id", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Date),
+    (0, graphql_1.Field)(() => graphql_1.Float),
     (0, typeorm_1.CreateDateColumn)({
         name: 'created_at',
         type: 'timestamp',
@@ -30,7 +30,7 @@ __decorate([
     __metadata("design:type", Number)
 ], CommonEntity.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Date),
+    (0, graphql_1.Field)(() => graphql_1.Float),
     (0, typeorm_1.UpdateDateColumn)({
         name: 'updated_at',
         type: 'timestamp',

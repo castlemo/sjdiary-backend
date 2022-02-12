@@ -1,4 +1,4 @@
-import { Field, ID, ObjectType } from '@nestjs/graphql';
+import { Field, Float, ID, ObjectType } from '@nestjs/graphql';
 import {
   CreateDateColumn,
   DeleteDateColumn,
@@ -10,10 +10,10 @@ import { dateTransformer } from '../utils';
 @ObjectType()
 export abstract class CommonEntity {
   @Field(() => ID)
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ unsigned: true })
   id: number;
 
-  @Field(() => Date)
+  @Field(() => Float)
   @CreateDateColumn({
     name: 'created_at',
     type: 'timestamp',
@@ -21,7 +21,7 @@ export abstract class CommonEntity {
   })
   createdAt: number;
 
-  @Field(() => Date)
+  @Field(() => Float)
   @UpdateDateColumn({
     name: 'updated_at',
     type: 'timestamp',

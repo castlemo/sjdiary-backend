@@ -42,17 +42,15 @@ let TodosService = class TodosService {
     }
     async createTodo(authUser, input) {
         const user = await this.userRepo.findByAuth0Id(authUser.sub);
-        const pendingTimeTodos = await this.todoRepo.find({
-            where: [
-                {
-                    user,
-                    startedAt: (0, typeorm_2.IsNull)(),
-                    finishedAt: (0, typeorm_2.IsNull)(),
-                    deletedAt: (0, typeorm_2.IsNull)(),
-                },
-            ],
+        const unSetTimeTodos = await this.todoRepo.find({
+            where: {
+                user,
+                startedAt: (0, typeorm_2.IsNull)(),
+                finishedAt: (0, typeorm_2.IsNull)(),
+                deletedAt: (0, typeorm_2.IsNull)(),
+            },
         });
-        if (3 < pendingTimeTodos.length) {
+        if (3 < unSetTimeTodos.length) {
             throw new apollo_server_express_1.ApolloError('does not create todo');
         }
         return await this.todoRepo.save(Object.assign({ user }, input));

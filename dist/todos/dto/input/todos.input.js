@@ -14,11 +14,11 @@ const graphql_1 = require("@nestjs/graphql");
 let TodosInput = class TodosInput {
 };
 __decorate([
-    (0, graphql_1.Field)(() => Date),
+    (0, graphql_1.Field)(() => graphql_1.Float),
     __metadata("design:type", Number)
 ], TodosInput.prototype, "startDate", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Date),
+    (0, graphql_1.Field)(() => graphql_1.Float),
     __metadata("design:type", Number)
 ], TodosInput.prototype, "endDate", void 0);
 TodosInput = __decorate([

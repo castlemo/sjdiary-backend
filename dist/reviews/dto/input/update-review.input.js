@@ -22,11 +22,11 @@ __decorate([
     __metadata("design:type", String)
 ], UpdateReviewInput.prototype, "content", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Date, { nullable: true }),
+    (0, graphql_1.Field)(() => graphql_1.Float, { nullable: true }),
     __metadata("design:type", Number)
 ], UpdateReviewInput.prototype, "startedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Date, { nullable: true }),
+    (0, graphql_1.Field)(() => graphql_1.Float, { nullable: true }),
     __metadata("design:type", Number)
 ], UpdateReviewInput.prototype, "finishedAt", void 0);
 UpdateReviewInput = __decorate([

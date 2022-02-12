@@ -1,4 +1,4 @@
-import { Field, ObjectType } from '@nestjs/graphql';
+import { Field, Float, ObjectType } from '@nestjs/graphql';
 
 import { CommonEntity } from '../entities';
 
@@ -7,12 +7,12 @@ export class Todo extends CommonEntity {
   @Field(() => String)
   content: string;
 
-  @Field(() => Date, { nullable: true })
+  @Field(() => Float, { nullable: true })
   startedAt?: number;
 
-  @Field(() => Date, { nullable: true })
+  @Field(() => Float, { nullable: true })
   finishedAt?: number;
 
-  @Field(() => Date, { nullable: true })
+  @Field(() => Float, { nullable: true })
   completedAt?: number;
 }

@@ -1,4 +1,4 @@
-import { Field, InputType } from '@nestjs/graphql';
+import { Field, Float, InputType } from '@nestjs/graphql';
 
 import { Review } from '../../../models';
 
@@ -9,9 +9,9 @@ export class CreateReviewInput
   @Field(() => String)
   content: string;
 
-  @Field(() => Date, { nullable: true })
+  @Field(() => Float, { nullable: true })
   startedAt?: number;
 
-  @Field(() => Date, { nullable: true })
+  @Field(() => Float, { nullable: true })
   finishedAt?: number;
 }
