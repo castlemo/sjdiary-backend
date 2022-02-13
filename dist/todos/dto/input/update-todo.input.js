@@ -30,9 +30,9 @@ __decorate([
     __metadata("design:type", Number)
 ], UpdateTodoInput.prototype, "finishedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_1.Float, { nullable: true }),
-    __metadata("design:type", Number)
-], UpdateTodoInput.prototype, "completedAt", void 0);
+    (0, graphql_1.Field)(() => Boolean, { nullable: true }),
+    __metadata("design:type", Boolean)
+], UpdateTodoInput.prototype, "isCompleted", void 0);
 UpdateTodoInput = __decorate([
     (0, graphql_1.InputType)()
 ], UpdateTodoInput);

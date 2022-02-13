@@ -75,8 +75,13 @@ let TodosService = class TodosService {
         if (input.content) {
             todo.content = input.content;
         }
-        if (input.completedAt) {
-            todo.completedAt = new Date(input.completedAt).toISOString();
+        if (input.isCompleted) {
+            todo.completedAt = new Date().toISOString();
+        }
+        else {
+            if (input.isCompleted === false) {
+                todo.completedAt = null;
+            }
         }
         if (input.startedAt) {
             todo.startedAt = new Date(input.startedAt).toISOString();

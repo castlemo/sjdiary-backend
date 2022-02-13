@@ -3,5 +3,5 @@ export declare class UpdateTodoInput {
     content?: string;
     startedAt?: number;
     finishedAt?: number;
-    completedAt?: number;
+    isCompleted?: boolean;
 }

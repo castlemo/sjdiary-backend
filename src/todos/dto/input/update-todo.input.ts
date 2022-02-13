@@ -14,6 +14,6 @@ export class UpdateTodoInput {
   @Field(() => Float, { nullable: true })
   finishedAt?: number;
 
-  @Field(() => Float, { nullable: true })
-  completedAt?: number;
+  @Field(() => Boolean, { nullable: true })
+  isCompleted?: boolean;
 }

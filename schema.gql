@@ -79,10 +79,10 @@ input UpdateReviewInput {
 }
 
 input UpdateTodoInput {
-  completedAt: Float
   content: String
   finishedAt: Float
   id: ID!
+  isCompleted: Boolean
   startedAt: Float
 }
 
