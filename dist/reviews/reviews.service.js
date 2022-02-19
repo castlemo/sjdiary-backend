@@ -86,9 +86,16 @@ let ReviewsService = class ReviewsService {
         const updatedReview = await this.reviewRepo.save(review);
         return new models_1.ReviewModel(updatedReview);
     }
-    async deleteReview(authUser, { reviewId }) {
-        const user = await this.userRepo.findByAuth0Id(authUser.sub);
-        return await this.reviewRepo.softDelete({ user, id: reviewId });
+    async deleteReview(authUser, { id }) {
+        try {
+            const user = await this.userRepo.findByAuth0Id(authUser.sub);
+            await this.reviewRepo.softDelete({ user, id, deletedAt: (0, typeorm_2.IsNull)() });
+            return true;
+        }
+        catch (err) {
+            console.error(err);
+            return false;
+        }
     }
 };
 __decorate([

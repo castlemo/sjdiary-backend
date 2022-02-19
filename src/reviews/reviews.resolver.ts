@@ -48,7 +48,7 @@ export class ReviewsResolver {
   async deleteReview(
     @Auth0User() authUser: IAuth0User,
     @Args('input') input: DeleteReviewInput,
-  ) {
+  ): Promise<boolean> {
     return await this.reviewService.deleteReview(authUser, input);
   }
 }

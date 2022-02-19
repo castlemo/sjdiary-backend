@@ -16,7 +16,7 @@ let DeleteTodoInput = class DeleteTodoInput {
 __decorate([
     (0, graphql_1.Field)(() => graphql_1.ID),
     __metadata("design:type", Number)
-], DeleteTodoInput.prototype, "todoId", void 0);
+], DeleteTodoInput.prototype, "id", void 0);
 DeleteTodoInput = __decorate([
     (0, graphql_1.InputType)()
 ], DeleteTodoInput);

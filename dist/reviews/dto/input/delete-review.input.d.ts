@@ -1,3 +1,3 @@
 export declare class DeleteReviewInput {
-    reviewId: number;
+    id: number;
 }

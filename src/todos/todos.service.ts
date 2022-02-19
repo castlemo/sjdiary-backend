@@ -121,11 +121,14 @@ export class TodosService {
     return new TodoModel(updatedTodo);
   }
 
-  async deleteTodo(authUser: IAuth0User, { todoId }: DeleteTodoInput) {
+  async deleteTodo(
+    authUser: IAuth0User,
+    { id }: DeleteTodoInput,
+  ): Promise<boolean> {
     try {
       const user = await this.userRepo.findByAuth0Id(authUser.sub);
 
-      await this.todoRepo.softDelete({ user, id: todoId });
+      await this.todoRepo.softDelete({ user, id, deletedAt: IsNull() });
 
       return true;
     } catch (err) {

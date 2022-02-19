@@ -21,11 +21,11 @@ input CreateUserInput {
 }
 
 input DeleteReviewInput {
-  reviewId: ID!
+  id: ID!
 }
 
 input DeleteTodoInput {
-  todoId: ID!
+  id: ID!
 }
 
 type Mutation {

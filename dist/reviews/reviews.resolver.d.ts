@@ -8,5 +8,5 @@ export declare class ReviewsResolver {
     reviews(authUser: IAuth0User, input: ReviewsInput): Promise<ReviewModel[]>;
     createReview(authUser: IAuth0User, input: CreateReviewInput): Promise<ReviewModel>;
     updateReview(authUser: IAuth0User, input: UpdateReviewInput): Promise<ReviewModel>;
-    deleteReview(authUser: IAuth0User, input: DeleteReviewInput): Promise<import("typeorm").UpdateResult>;
+    deleteReview(authUser: IAuth0User, input: DeleteReviewInput): Promise<boolean>;
 }

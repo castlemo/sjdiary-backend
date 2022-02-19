@@ -92,10 +92,10 @@ let TodosService = class TodosService {
         const updatedTodo = await this.todoRepo.save(todo);
         return new models_1.TodoModel(updatedTodo);
     }
-    async deleteTodo(authUser, { todoId }) {
+    async deleteTodo(authUser, { id }) {
         try {
             const user = await this.userRepo.findByAuth0Id(authUser.sub);
-            await this.todoRepo.softDelete({ user, id: todoId });
+            await this.todoRepo.softDelete({ user, id, deletedAt: (0, typeorm_2.IsNull)() });
             return true;
         }
         catch (err) {

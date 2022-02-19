@@ -7,5 +7,5 @@ export declare class TodosService {
     todos(authUser: IAuth0User, { startDate, endDate }: TodosInput): Promise<TodoModel[]>;
     createTodo(authUser: IAuth0User, { content, startedAt, finishedAt }: CreateTodoInput): Promise<TodoModel>;
     updateTodo(authUser: IAuth0User, input: UpdateTodoInput): Promise<TodoModel>;
-    deleteTodo(authUser: IAuth0User, { todoId }: DeleteTodoInput): Promise<boolean>;
+    deleteTodo(authUser: IAuth0User, { id }: DeleteTodoInput): Promise<boolean>;
 }

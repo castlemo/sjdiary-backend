@@ -7,5 +7,5 @@ export declare class ReviewsService {
     reviews(authUser: IAuth0User, { startDate, endDate }: ReviewsInput): Promise<ReviewModel[]>;
     createReview(authUser: IAuth0User, { content, startedAt, finishedAt }: CreateReviewInput): Promise<ReviewModel>;
     updateReview(authUser: IAuth0User, input: UpdateReviewInput): Promise<ReviewModel>;
-    deleteReview(authUser: IAuth0User, { reviewId }: DeleteReviewInput): Promise<import("typeorm").UpdateResult>;
+    deleteReview(authUser: IAuth0User, { id }: DeleteReviewInput): Promise<boolean>;
 }

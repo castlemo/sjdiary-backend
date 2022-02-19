@@ -16,7 +16,7 @@ let DeleteReviewInput = class DeleteReviewInput {
 __decorate([
     (0, graphql_1.Field)(() => graphql_1.ID),
     __metadata("design:type", Number)
-], DeleteReviewInput.prototype, "reviewId", void 0);
+], DeleteReviewInput.prototype, "id", void 0);
 DeleteReviewInput = __decorate([
     (0, graphql_1.InputType)()
 ], DeleteReviewInput);

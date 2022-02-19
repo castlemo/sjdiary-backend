@@ -48,7 +48,7 @@ export class TodosResolver {
   async deleteTodo(
     @Auth0User() authUser: IAuth0User,
     @Args('input') input: DeleteTodoInput,
-  ) {
+  ): Promise<boolean> {
     return await this.todoService.deleteTodo(authUser, input);
   }
 }

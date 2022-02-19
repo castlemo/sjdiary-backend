@@ -115,9 +115,19 @@ export class ReviewsService {
     return new ReviewModel(updatedReview);
   }
 
-  async deleteReview(authUser: IAuth0User, { reviewId }: DeleteReviewInput) {
-    const user = await this.userRepo.findByAuth0Id(authUser.sub);
+  async deleteReview(
+    authUser: IAuth0User,
+    { id }: DeleteReviewInput,
+  ): Promise<boolean> {
+    try {
+      const user = await this.userRepo.findByAuth0Id(authUser.sub);
 
-    return await this.reviewRepo.softDelete({ user, id: reviewId });
+      await this.reviewRepo.softDelete({ user, id, deletedAt: IsNull() });
+
+      return true;
+    } catch (err) {
+      console.error(err);
+      return false;
+    }
   }
 }
