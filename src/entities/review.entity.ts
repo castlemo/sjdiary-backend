@@ -23,14 +23,14 @@ export class ReviewEntity extends CommonEntity {
     type: 'timestamp',
     nullable: true,
   })
-  startedAt?: string;
+  startedAt?: Date;
 
   @Column({
     name: 'finished_at',
     type: 'timestamp',
     nullable: true,
   })
-  finishedAt?: string;
+  finishedAt?: Date;
 
   @ManyToOne(() => UserEntity, (user) => user.reviews)
   @JoinColumn({ name: 'user_id' })

@@ -2,8 +2,8 @@ import { UserEntity } from '../entities';
 import { CommonEntity } from './common.entity';
 export declare class TodoEntity extends CommonEntity {
     content: string;
-    startedAt?: string;
-    finishedAt?: string;
-    completedAt?: string;
+    startedAt?: Date;
+    finishedAt?: Date;
+    completedAt?: Date;
     user: UserEntity;
 }

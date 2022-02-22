@@ -20,24 +20,14 @@ const reviews_repository_1 = require("./reviews.repository");
 let ReviewsService = class ReviewsService {
     async reviews(authUser, { startDate, endDate }) {
         const user = await this.userRepo.findByAuth0Id(authUser.sub);
+        const duplicateWheres = {
+            user,
+            deletedAt: (0, typeorm_2.IsNull)(),
+        };
         const reviews = await this.reviewRepo.find({
             where: [
-                {
-                    user,
-                    startedAt: (0, typeorm_2.MoreThanOrEqual)(startDate),
-                    deletedAt: (0, typeorm_2.IsNull)(),
-                },
-                {
-                    user,
-                    finishedAt: (0, typeorm_2.LessThanOrEqual)(endDate),
-                    deletedAt: (0, typeorm_2.IsNull)(),
-                },
-                {
-                    user,
-                    startedAt: (0, typeorm_2.IsNull)(),
-                    finishedAt: (0, typeorm_2.IsNull)(),
-                    deletedAt: (0, typeorm_2.IsNull)(),
-                },
+                Object.assign({ startedAt: (0, typeorm_2.MoreThanOrEqual)(new Date(startDate)), finishedAt: (0, typeorm_2.LessThanOrEqual)(new Date(endDate)) }, duplicateWheres),
+                Object.assign({ startedAt: (0, typeorm_2.IsNull)(), finishedAt: (0, typeorm_2.IsNull)() }, duplicateWheres),
             ],
         });
         return reviews.map((review) => new models_1.ReviewModel(review));
@@ -60,8 +50,8 @@ let ReviewsService = class ReviewsService {
         const review = await this.reviewRepo.save({
             user,
             content,
-            startedAt: startedAt ? new Date(startedAt).toISOString() : undefined,
-            finishedAt: finishedAt ? new Date(finishedAt).toISOString() : undefined,
+            startedAt: startedAt ? new Date(startedAt) : undefined,
+            finishedAt: finishedAt ? new Date(finishedAt) : undefined,
         });
         return new models_1.ReviewModel(review);
     }
@@ -78,10 +68,10 @@ let ReviewsService = class ReviewsService {
             review.content = input.content;
         }
         if (input.startedAt) {
-            review.startedAt = new Date(input.startedAt).toISOString();
+            review.startedAt = new Date(input.startedAt);
         }
         if (input.finishedAt) {
-            review.finishedAt = new Date(input.finishedAt).toISOString();
+            review.finishedAt = new Date(input.finishedAt);
         }
         const updatedReview = await this.reviewRepo.save(review);
         return new models_1.ReviewModel(updatedReview);

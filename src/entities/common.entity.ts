@@ -17,18 +17,18 @@ export abstract class CommonEntity {
     name: 'created_at',
     type: 'timestamp',
   })
-  createdAt: string;
+  createdAt: Date;
 
   @UpdateDateColumn({
     name: 'updated_at',
     type: 'timestamp',
   })
-  updatedAt: string;
+  updatedAt: Date;
 
   @DeleteDateColumn({
     name: 'deleted_at',
     type: 'timestamp',
     nullable: true,
   })
-  deletedAt: string;
+  deletedAt: Date;
 }

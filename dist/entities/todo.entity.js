@@ -25,7 +25,7 @@ __decorate([
         type: 'timestamp',
         nullable: true,
     }),
-    __metadata("design:type", String)
+    __metadata("design:type", Date)
 ], TodoEntity.prototype, "startedAt", void 0);
 __decorate([
     (0, typeorm_1.Column)({
@@ -33,7 +33,7 @@ __decorate([
         type: 'timestamp',
         nullable: true,
     }),
-    __metadata("design:type", String)
+    __metadata("design:type", Date)
 ], TodoEntity.prototype, "finishedAt", void 0);
 __decorate([
     (0, typeorm_1.Column)({
@@ -41,7 +41,7 @@ __decorate([
         type: 'timestamp',
         nullable: true,
     }),
-    __metadata("design:type", String)
+    __metadata("design:type", Date)
 ], TodoEntity.prototype, "completedAt", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => entities_1.UserEntity, (user) => user.todos),

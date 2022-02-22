@@ -28,23 +28,22 @@ export class ReviewsService {
   ): Promise<ReviewModel[]> {
     const user = await this.userRepo.findByAuth0Id(authUser.sub);
 
+    const duplicateWheres = {
+      user,
+      deletedAt: IsNull(),
+    };
+
     const reviews = await this.reviewRepo.find({
       where: [
         {
-          user,
-          startedAt: MoreThanOrEqual(startDate),
-          deletedAt: IsNull(),
+          startedAt: MoreThanOrEqual(new Date(startDate)),
+          finishedAt: LessThanOrEqual(new Date(endDate)),
+          ...duplicateWheres,
         },
         {
-          user,
-          finishedAt: LessThanOrEqual(endDate),
-          deletedAt: IsNull(),
-        },
-        {
-          user,
           startedAt: IsNull(),
           finishedAt: IsNull(),
-          deletedAt: IsNull(),
+          ...duplicateWheres,
         },
       ],
     });
@@ -76,8 +75,8 @@ export class ReviewsService {
     const review = await this.reviewRepo.save({
       user,
       content,
-      startedAt: startedAt ? new Date(startedAt).toISOString() : undefined,
-      finishedAt: finishedAt ? new Date(finishedAt).toISOString() : undefined,
+      startedAt: startedAt ? new Date(startedAt) : undefined,
+      finishedAt: finishedAt ? new Date(finishedAt) : undefined,
     });
 
     return new ReviewModel(review);
@@ -103,11 +102,11 @@ export class ReviewsService {
     }
 
     if (input.startedAt) {
-      review.startedAt = new Date(input.startedAt).toISOString();
+      review.startedAt = new Date(input.startedAt);
     }
 
     if (input.finishedAt) {
-      review.finishedAt = new Date(input.finishedAt).toISOString();
+      review.finishedAt = new Date(input.finishedAt);
     }
 
     const updatedReview = await this.reviewRepo.save(review);

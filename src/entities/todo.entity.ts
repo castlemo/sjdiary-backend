@@ -16,21 +16,21 @@ export class TodoEntity extends CommonEntity {
     type: 'timestamp',
     nullable: true,
   })
-  startedAt?: string;
+  startedAt?: Date;
 
   @Column({
     name: 'finished_at',
     type: 'timestamp',
     nullable: true,
   })
-  finishedAt?: string;
+  finishedAt?: Date;
 
   @Column({
     name: 'completed_at',
     type: 'timestamp',
     nullable: true,
   })
-  completedAt?: string;
+  completedAt?: Date;
 
   @ManyToOne(() => UserEntity, (user) => user.todos)
   @JoinColumn({ name: 'user_id' })

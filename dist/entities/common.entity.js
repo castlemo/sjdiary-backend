@@ -24,14 +24,14 @@ __decorate([
         name: 'created_at',
         type: 'timestamp',
     }),
-    __metadata("design:type", String)
+    __metadata("design:type", Date)
 ], CommonEntity.prototype, "createdAt", void 0);
 __decorate([
     (0, typeorm_1.UpdateDateColumn)({
         name: 'updated_at',
         type: 'timestamp',
     }),
-    __metadata("design:type", String)
+    __metadata("design:type", Date)
 ], CommonEntity.prototype, "updatedAt", void 0);
 __decorate([
     (0, typeorm_1.DeleteDateColumn)({
@@ -39,7 +39,7 @@ __decorate([
         type: 'timestamp',
         nullable: true,
     }),
-    __metadata("design:type", String)
+    __metadata("design:type", Date)
 ], CommonEntity.prototype, "deletedAt", void 0);
 CommonEntity = __decorate([
     (0, graphql_1.ObjectType)()

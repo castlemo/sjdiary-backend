@@ -20,24 +20,14 @@ const todos_repository_1 = require("./todos.repository");
 let TodosService = class TodosService {
     async todos(authUser, { startDate, endDate }) {
         const user = await this.userRepo.findByAuth0Id(authUser.sub);
+        const duplicateWheres = {
+            user,
+            deletedAt: (0, typeorm_2.IsNull)(),
+        };
         const todos = await this.todoRepo.find({
             where: [
-                {
-                    user,
-                    startedAt: (0, typeorm_2.MoreThanOrEqual)(startDate),
-                    deletedAt: (0, typeorm_2.IsNull)(),
-                },
-                {
-                    user,
-                    finishedAt: (0, typeorm_2.LessThanOrEqual)(endDate),
-                    deletedAt: (0, typeorm_2.IsNull)(),
-                },
-                {
-                    user,
-                    startedAt: (0, typeorm_2.IsNull)(),
-                    finishedAt: (0, typeorm_2.IsNull)(),
-                    deletedAt: (0, typeorm_2.IsNull)(),
-                },
+                Object.assign(Object.assign({}, duplicateWheres), { startedAt: (0, typeorm_2.MoreThanOrEqual)(new Date(startDate)), finishedAt: (0, typeorm_2.LessThanOrEqual)(new Date(endDate)) }),
+                Object.assign(Object.assign({}, duplicateWheres), { startedAt: (0, typeorm_2.IsNull)(), finishedAt: (0, typeorm_2.IsNull)() }),
             ],
         });
         return todos.map((todo) => new models_1.TodoModel(todo));
@@ -58,8 +48,8 @@ let TodosService = class TodosService {
         const todo = await this.todoRepo.save({
             user,
             content,
-            startedAt: startedAt ? new Date(startedAt).toISOString() : undefined,
-            finishedAt: finishedAt ? new Date(finishedAt).toISOString() : undefined,
+            startedAt: startedAt ? new Date(startedAt) : undefined,
+            finishedAt: finishedAt ? new Date(finishedAt) : undefined,
         });
         return new models_1.TodoModel(todo);
     }
@@ -76,7 +66,7 @@ let TodosService = class TodosService {
             todo.content = input.content;
         }
         if (input.isCompleted) {
-            todo.completedAt = new Date().toISOString();
+            todo.completedAt = new Date();
         }
         else {
             if (input.isCompleted === false) {
@@ -84,10 +74,10 @@ let TodosService = class TodosService {
             }
         }
         if (input.startedAt) {
-            todo.startedAt = new Date(input.startedAt).toISOString();
+            todo.startedAt = new Date(input.startedAt);
         }
         if (input.finishedAt) {
-            todo.finishedAt = new Date(input.finishedAt).toISOString();
+            todo.finishedAt = new Date(input.finishedAt);
         }
         const updatedTodo = await this.todoRepo.save(todo);
         return new models_1.TodoModel(updatedTodo);

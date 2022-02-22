@@ -28,23 +28,22 @@ export class TodosService {
   ): Promise<TodoModel[]> {
     const user = await this.userRepo.findByAuth0Id(authUser.sub);
 
+    const duplicateWheres = {
+      user,
+      deletedAt: IsNull(),
+    };
+
     const todos = await this.todoRepo.find({
       where: [
         {
-          user,
-          startedAt: MoreThanOrEqual(startDate),
-          deletedAt: IsNull(),
+          ...duplicateWheres,
+          startedAt: MoreThanOrEqual(new Date(startDate)),
+          finishedAt: LessThanOrEqual(new Date(endDate)),
         },
         {
-          user,
-          finishedAt: LessThanOrEqual(endDate),
-          deletedAt: IsNull(),
-        },
-        {
-          user,
+          ...duplicateWheres,
           startedAt: IsNull(),
           finishedAt: IsNull(),
-          deletedAt: IsNull(),
         },
       ],
     });
@@ -74,8 +73,8 @@ export class TodosService {
     const todo = await this.todoRepo.save({
       user,
       content,
-      startedAt: startedAt ? new Date(startedAt).toISOString() : undefined,
-      finishedAt: finishedAt ? new Date(finishedAt).toISOString() : undefined,
+      startedAt: startedAt ? new Date(startedAt) : undefined,
+      finishedAt: finishedAt ? new Date(finishedAt) : undefined,
     });
 
     return new TodoModel(todo);
@@ -101,7 +100,7 @@ export class TodosService {
     }
 
     if (input.isCompleted) {
-      todo.completedAt = new Date().toISOString();
+      todo.completedAt = new Date();
     } else {
       if (input.isCompleted === false) {
         todo.completedAt = null;
@@ -109,11 +108,11 @@ export class TodosService {
     }
 
     if (input.startedAt) {
-      todo.startedAt = new Date(input.startedAt).toISOString();
+      todo.startedAt = new Date(input.startedAt);
     }
 
     if (input.finishedAt) {
-      todo.finishedAt = new Date(input.finishedAt).toISOString();
+      todo.finishedAt = new Date(input.finishedAt);
     }
 
     const updatedTodo = await this.todoRepo.save(todo);
